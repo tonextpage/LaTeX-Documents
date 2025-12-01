@@ -21,12 +21,18 @@
 \end{dfn}
 정의 \ref{dfn:1.1}에서 $\mathcal T$의 원소를 \textbf{열린집합(open set)}이라 한다. 반대로 $C$의 여집합 $X\setminus C$가 열린집합이면 $C$를 \textbf{닫힌집합(closed set)}이라 한다.
 ```
-### 예시(example)
+### 예시(example)와 예제(example problem)
 **사용법**
 ```TeX
+% 예시
 \begin{example}{제목}{참조 키워드}
   내용
 \end{example}
+
+% 예제
+\begin{exc}{제목}{참조 키워드}
+  내용
+\end{exc}
 ```
 **사용 예시**
 ```TeX
@@ -37,6 +43,14 @@
     \item $X$의 모든 부분집합의 집합 ${\mathcal P}(X)$로 구성된 위상을 $X$의 \textbf{이산 위상(discrete topology)}이라 한다.
   \end{enumerate}
 \end{example}
+
+\begin{exc}{여유한 위상}{1.3}
+  집합 $X$에 대하여 집합족 ${\mathcal T}_f$를 다음과 같이 정의하자.
+  \[
+    {\mathcal T}_f=\{U\subset X\mid X-U\text{가 유한집합이거나 }X\text{ 전체이다.}\}
+  \]
+  ${\mathcal T}_f$가 $X$의 위상임을 보여라.
+\end{exc}
 ```
 ### 정리(theorem)
 **사용법**
@@ -58,7 +72,7 @@
 ```
 **사용 예시**
 ```TeX
-\begin{thm}{닫힌집합의 기본 성질}{1.3}
+\begin{thm}{닫힌집합의 기본 성질}{1.4}
   위상공간 $X$에 대하여 다음이 성립한다.
   \begin{enumerate}[(1)]
     \item $\varnothing$, $X$는 닫힌집합이다.
@@ -103,6 +117,6 @@
 **사용 예시**
 ```TeX
 \begin{remark}
-  정리 \ref{thm:1.3}에 의해 위상을 닫힌집합을 설정하여 정의할 수 있음을 알 수 있다.
+  정리 \ref{thm:1.4}에 의해 위상을 닫힌집합을 설정하여 정의할 수 있음을 알 수 있다.
 \end{remark}
 ```
