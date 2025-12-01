@@ -41,9 +41,20 @@
 ### 정리(theorem)
 **사용법**
 ```TeX
+% 정리
 \begin{thm}{제목}{참조 키워드}
   내용
 \end{thm}
+
+% 보조정리
+\begin{lemma}{제목}{참조 키워드}
+  내용
+\end{lemma}
+
+% 명제
+\begin{prop}{제목}{참조 키워드}
+  내용
+\end{prop}
 ```
 **사용 예시**
 ```TeX
