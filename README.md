@@ -21,3 +21,4 @@
 \end{dfn}
 정의 \ref{dfn:1.1}에서 $\mathcal T$의 원소를 \textbf{열린집합(open set)}이라 한다.
 ```
+<img width="880" height="362" alt="Image" src="https://github.com/user-attachments/assets/7d8e4a6c-4152-46e9-8233-813871891de8" />
