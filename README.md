@@ -2,6 +2,13 @@ TeX로 조판한 문서를 모아놓은 리포지토리입니다.
 
 ## preamble.tex 이용 가이드
 
+### 폰트 설치하기
+preaamble.tex에 설정된 기본 폰트는 **KoPub Dotum**입니다. 
+
+[링크](https://www.kopus.org/biz-electronic-font2/)을 통해 폰트를 다운로드하시기 바랍니다.
+
+---
+
 ### preamble에 정의된 tcolorbox
 
 preamble.tex에는 문서 조판에 도움되는 여러 tcolorbox 환경이 정의되어 있습니다.
