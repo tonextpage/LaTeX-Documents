@@ -13,7 +13,7 @@ https://github.com/tonextpage/LaTeX-Documents/blob/6224001ac63f70808b9392ded2e63
 
 preamble.tex에는 문서 조판에 도움되는 여러 tcolorbox 환경이 정의되어 있습니다.
 
-tcolorbox 패키지를 이용하여 새로운 상자를 디자인하여 사용할 수 있습니다.
+[tcolorbox 패키지](https://ctan.org/pkg/tcolorbox)를 이용하여 새로운 상자를 디자인하여 사용할 수 있습니다.
 
 문서 샘플 [sample.tex](https://github.com/tonextpage/TeX-Documents/blob/43b46be03d7181becaad294163a61198c1aff1f8/sameple/sample.pdf)을 확인해보세요.
 
