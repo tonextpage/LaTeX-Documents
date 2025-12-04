@@ -1,0 +1,1683 @@
+\documentclass{article}
+\input{"preamble.tex"}
+\usepackage{forloop}
+
+\geometry{a4paper, total={6.4in, 10in}}
+\title{Munkres Topology Solution: Section 13--32}
+
+\newtheorem{exercise}{Exercise}[section]
+\newtheorem*{note}{Note}
+\newtheorem*{lem}{Lemma}
+\newtheorem*{claim}{Claim}
+
+\DeclareMathOperator{\Tr}{Tr}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\T}{\mathbb{T}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\C}{\mathbb{C}}
+\renewcommand{\H}{\mathbb{H}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\tr}{\mathrm{tr}}
+
+\begin{document}
+\setstretch{1.3}
+\maketitle
+
+\newcounter{ct}
+\forloop{ct}{1}{\value{ct}<13}{
+	\stepcounter{section}
+}
+
+\section{Basis for a Topology}
+
+\begin{exercise}
+    $A$의 각 점 $x$에 대하여 $x\in U_x\subset A$인 열린집합 $U_x$가 존재한다. 이때 $A=\bigcup_{x\in A}U_x$이므로 $A$는 열린집합이다.
+    \begin{note}
+        이 연습문제의 명제는 이 책의 거의 모든 부분에서 사용하므로 이곳에서 역시 특별한 언급 없이 이용하겠다.
+    \end{note}
+\end{exercise}
+
+\begin{exercise}
+    \textcolor{red}{Do it yourself!}
+\end{exercise}
+
+\begin{exercise}
+    먼저 $\mathcal{T}_c$가 위상임을 보이자. $\varnothing$과 $X$의 여집합은 각각 $X$와 $\varnothing$이므로 $\mathcal{T}_c$에는 $\varnothing$과 $X$가 속한다. $\{U_\alpha\}$가 임의의 열린집합의 모임이면 집합 $X\setminus(\bigcup_{\alpha}U_\alpha)=\bigcap_\alpha(X\setminus U_\alpha)$가 가산이므로 $\bigcup_\alpha U_\alpha$ 역시 열린집합이다. $\{U_i\}_{i=1}^n$가 열린집합의 유한 모임이면 집합 $X\setminus(\bigcap_{i=1}^nU_i)=\bigcup_{i=1}^n(X\setminus U_i)$ 역시 가산이므로 열린집합이다. 한편, $\mathcal{T}_\infty$는 일반적으로 위상이 아니다. $X$가 유한집합이면, $\mathcal{T}_\infty$는 $X$ 위의 자명 위상이다. 이제 $X$가 무한집합이라 하자. 두 집합 $X_1$과 $X_2$가 무한집합이 되도록 집합 $X$의 분할 $X_1$, $X_2$, $\{x\}$를 잡자. 그러면 $X_1$과 $X_2$는 모두 열린집합이지만, 둘의 합집합 $X_1\cup X_2$는 열린집합이 아니다.
+\end{exercise}
+
+\begin{exercise}
+	\label{exc:13.4}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] 먼저 $\bigcap\mathcal{T}_\alpha$가 위상임을 보이자. 모든 $\mathcal{T}_\alpha$에 $\varnothing$과 $X$가 속하므로 $\bigcap\mathcal{T}_\alpha$에도 이 둘이 속한다. $\bigcap\mathcal{T}_\alpha$에 속하는 임의의 원소의 합집합과 유한 교집합 역시 같은 논리로 $\bigcap\mathcal{T}_\alpha$에 속한다. 한편, $\bigcup\mathcal{T}_\alpha$는 일반적으로 위상이 아니다. $X=\{a,b,c\}$라 하고,
+            \begin{equation*}
+                \mathcal{T}_1=\{\varnothing,\{a\},X\},\quad\mathcal{T}_2=\{\varnothing,\{b\},X\}
+            \end{equation*}
+            라 하자. 이 둘의 합집합 $\mathcal{T}_1\cup\mathcal{T}=\{\varnothing,\{a\},\{b\},X\}$는 위상이 아니다.
+        \item[(b)] (a)에 의해, 모든 $\mathcal{T}_\alpha$에 포함되는 가장 큰 (유일한) 위상은 $\bigcap\mathcal{T}_\alpha$이다. 모든 $\mathcal{T}_\alpha$를 포함하는 가장 작은 (유일한) 위상은 $\mathcal{T}_\alpha$를 모두 포함하는 모든 위상의 교집합이다. 이는 집합 $\bigcup\mathcal{T}_\alpha$을 부분기저로 하여 생성된 위상이다. \textcolor{blue}{\textbf{(Exercise \ref{exc:13.5})}}
+        \item[(c)] $\mathcal{T}_1$과 $\mathcal{T}_2$에 모두 포함되는 가장 큰 위상은 $\mathcal{T}_1\cap\mathcal{T}_2=\{\varnothing,X,\{a\}\}$이다. $\mathcal{T}_1$과 $\mathcal{T}_2$을 모두 포함하는 가장 작은 위상은 $\{\varnothing,X,\{a\},\{b\},\{a,b\},\{b,c\}\}$이다.
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+	\label{exc:13.5}
+    $\mathcal{A}$를 한 기저라 하자. $\mathcal{A}$를 포함하는 모든 위상에는 $\mathcal{A}$의 임의의 원소의 합집합이 속해야 하므로 $\mathcal{A}$를 포함하는 모든 위상은 $\mathcal{A}$로 생성된 위상을 포함한다. 이제 $\mathcal{A}$가 부분기저라 하자. $\mathcal{A}$를 포함하는 모든 위상에는 $\mathcal{A}$의 원소의 유한 교집합이 속해야 한다. 즉, $\mathcal{A}$로 생성된 기저를 포함해야 한다. 반대로, (기저 또는 부분기저) $\mathcal{A}$로 생성된 위상은 자명하게 $\mathcal{A}$를 포함한다.
+\end{exercise}
+
+\begin{exercise}
+    하극한 위상의 임의의 기저 원소 $[x,b)$에 대하여, $x$를 포함하는 $K$--위상의 기저 원소는 존재하지 않는다. 따라서 $K$--위상은 하극한 위상을 포함하지 않는다. 반대로, $K$--위상의 기저 원소 $(-1,1)\setminus K$에 대하여, $0$을 포함하는 하극한 위상의 기저 원소는 존재하지 않으므로 하극한 위상 역시 $K$--위상을 포함하지 않는다. \textcolor{blue}{\textbf{(Lemma 13.3)}}
+\end{exercise}
+
+\newpage
+\begin{exercise}
+    기저 원소를 간단히 비교하면
+    \[
+    	\mathcal{T}_3\subsetneq\mathcal{T}_1\subsetneq\mathcal{T}_2\subsetneq\mathcal{T}_4\text{이고}\quad\mathcal{T}_5\subsetneq\mathcal{T}_1\subsetneq\mathcal{T}_2\subsetneq\mathcal{T}_4
+	\]
+	임을 알 수 있다. ($\mathcal{T}_2$와 $\mathcal{T}_4$를 비교하는 경우, $K$--위상에서 $0$이 문제를 일으킴에 주목하라.) 한편, $\mathcal{T}_3$과 $\mathcal{T}_5$는 비교가능하지 않다. \textcolor{blue}{\textbf{(Lemma 13.3)}}
+\end{exercise}
+
+\begin{exercise}
+	\label{exc:13.8}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] $U$를 보통 위상에서의 열린집합이라 하고, $x$를 $U$의 한 점이라 하자. 이때 $x\in(a,b)\subset U$를 만족하는 열린구간 $(a,b)$가 존재한다. 이 열린구간에서 두 유리수점 $q$와 $r$을 $a<q<x<r<b$가 되도록 택하자. 그러면 열린구간 $(q,r)$은 $\mathcal{B}$의 원소이고, $x\in(q,r)\subset U$를 만족한다. 따라서 \textcolor{blue}{\textbf{Lemma 13.2}}에 의해 $\mathcal{B}$는 보통 위상을 생성하는 기저이다.
+        \item[(b)] $\mathcal{C}$가 기저인 점과 $\mathcal{C}$로 생성된 위상이 하극한 위상보다 거친 위상임은 쉽게 확인할 수 있다. 한편, 하극한 위상의 기저 원소 $[\sqrt2,2)$에 속하는 점 $\sqrt2$를 포함하는 $\mathcal{C}$의 기저 원소가 존재하지 않으므로 두 위상은 서로 다르다.
+    \end{itemize}
+\end{exercise}
+
+\forloop{ct}{1}{\value{ct}<3}{
+	\stepcounter{section}
+}
+
+\section{The Subspace Topology}
+
+\begin{exercise}
+    $B$가 ($Y$의 부분공간인) $A$의 열린집합이다. $\Longleftrightarrow$ $B=C\cap A$이고 $C$는 $Y$의 열린집합이다. $\Longleftrightarrow$ $C=D\cap Y$이고 $D$는 $X$의 열린집합이다. $\Longleftrightarrow$ $B=D\cap Y\cap A=D\cap A$이고 $D$는 $X$의 열린집합이다. $\Longleftrightarrow$ $B$는 ($X$의 부분공간인) $A$의 열린집합이다.
+\end{exercise}
+
+\begin{exercise}
+    $Y$와 $Y^{\prime}$을 각각 $(X,\mathcal{T})$와 $(X,\mathcal{T}^{\prime})$의 부분공간이라 하자. 그러면 $Y^{\prime}$의 위상은 $Y$의 위상보다 세밀하다. $X$의 위상이 $\mathcal{T}$에서 $\mathcal{T}^{\prime}$으로 바뀌어도, 기존의 열린집합은 새로운 위상에서도 열린집합이기 때문이다. 한편, 두 부분공간의 위상은 반드시 다를 필요는 없다. $Y$를 한점집합으로 두는 경우, 두 부분공간 위상은 항상 같다.
+\end{exercise}
+
+\begin{exercise}
+    \phantom{}
+    \begin{table}[H]
+		\centering
+		\begin{tabular}{c|ccccc}
+			\toprule
+			& $A$ & $B$ & $C$ & $D$ & $E$ \\
+			\midrule
+			$Y$에서 열린집합이다. & 참 & 참 & 거짓 & 거짓 & 참 \\
+			\midrule
+			$\R$에서 열린집합이다. & 참 & 거짓 & 거짓 & 거짓 & 참 \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+\end{exercise}
+
+\begin{exercise}
+    $U$를 $X\times Y$의 열린집합이라 하고, $x$를 $\pi_1(U)$의 한 점이라 하자. 그러면 $x\times y\in U$인 점 $y$가 존재한다. $U$가 열린집합이므로, $x\times y\in A\times B\subset U$를 만족하는 기저 원소 $A\times B$가 존재한다. 이때 $x\in A=\pi_1(A\times B)\subset\pi_1(U)$이므로 $\pi_1(U)$는 $X$의 열린집합니다. 같은 방법으로 $\pi_2(U)$ 역시 $Y$의 열린집합임을 알 수 있다.
+\end{exercise}
+
+\begin{exercise}
+	\label{exc:16.5}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] $X\times Y$의 모든 기저 원소는 $X^{\prime}\times Y^{\prime}$의 기저 원소이다.
+        \item[(b)] 모든 집합이 공집합이 아님을 가정하면 (a)의 역 또한 성립한다.
+            \begin{lem}
+                $A\subset X$와 $B\subset Y$가 공집합이 아니라 가정하자. $A\times B$가 $X\times Y$의 열린집합일 필요충분조건은 $A$와 $B$가 각각 $X$와 $Y$의 열린집합인 것이다.
+            \end{lem}
+            \begin{proof}
+                $A$와 $B$가 각각 열린집합이면 $A\times B$는 $X\times Y$의 기저 원소이다. 반대로 $A\times B$가 $X\times Y$의 열린집합이라 가정하자. 사영 $\pi_1$과 $\pi_2$가 열린사상이므로 $A=\pi_1(A\times B)$와 $B=\pi_2(A\times B)$는 열린집합이다.
+            \end{proof}
+        $U$가 점 $x$를 포함하는 $X$의 열린집합이고, $V$가 점 $y$를 포함하는 $Y$의 열린집합이라 하자. 그러면 $U\times V$는 $X\times Y$의 열린집합이면서 (가정에 의해) $X^{\prime}\times Y^{\prime}$의 열린집합이다. 따라서 $x\times y\in A\times B\subset U\times V$를 만족하는 $X^{\prime}\times Y^{\prime}$의 기저 원소 $A\times B$가 존재한다. $A$는 $x\in A\subset U$를 만족하는 $X^{\prime}$의 열린집합이고, $B$는 $y\in B\subset V$를 만족하는 $Y^{\prime}$의 열린집합이므로 \textcolor{blue}{\textbf{(Lemma)}} $U$와 $V$는 각각 $X^{\prime}$과 $Y^{\prime}$의 열린집합이다.
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    \textcolor{blue}{\textbf{Exercise \ref{exc:13.8}(a)}}와 \textcolor{blue}{\textbf{Theorem 15.1}}에 의해 성립한다.
+\end{exercise}
+
+\begin{exercise}
+    그렇지 않다. $\Q$에 보편적인 순서를 부여한 위상공간에서 $(-\sqrt2,\sqrt2)\cap\Q$는 볼록집합이지만 구간이 아니다.
+\end{exercise}
+
+\begin{exercise}
+    \textcolor{red}{To be updated.}
+\end{exercise}
+
+\begin{exercise}
+	\label{exc:16.9}
+    $\R_d\times\R$의 모든 기저 원소 $\{x\}\times(a,b)$는 $\R\times \R$에서의 열린구간 $(x\times a,x\times b)$에 해당한다. 반대로 $\R\times\R$의 모든 열린구간은 $\R_d\times\R$의 기저 원소의 적절한 합집합이다. 따라서 $\R\times\R$의 사전식 순서 위상과 $\R_d\times\R$의 위상은 같다. 이 위상은 $\R^2$보다 세밀하지만 \textcolor{blue}{\textbf{(Exercise \ref{exc:16.5}(a))}} 같지는 않다. 부분집합 $\{0\}\times\R$은 $\R_d\times\R$에서는 열린집합이지만 $\R^2$에서는 그렇지 않기 때문이다.
+\end{exercise}
+
+\begin{exercise}
+    $I\times I$ 위의 곱 위상과 $I\times I$ 위상 사전식 순서 위상은 비교가능하지 않다. 먼저 $A=I\times(1/2,1]$이라 하자. $(1/2,1]=(1/2,2)\cap I$이므로 $A$는 곱 위상에서 열린집합이지만, 사전식 순서 위상에서는 열린집합이 아니다. (\textcolor{blue}{\textbf{Figure 16.1}} 참고) $B=\{0\}\times(0,1)$이라 하자. $B$는 사전식 순서 위상에서의 열린구간에 해당하므로 열린집합지만, $\{0\}$은 $I$의 열린집합이 아니므로 $B$는 곱 위상에서 열린집합이 아니다. $\R\times\R$의 부분공간 $I\times I$의 기저 원소를 적절히 합집합하면 앞의 두 위상의 기저 원소를 얻는다. 따라서 $\R\times\R$의 부분공간인 $I\times I$는 앞의 두 위상보다 세밀하다. 그러나 앞의 두 위상이 서로 비교가능하지 않기에 모든 위상은 서로 같지 않다. 
+\end{exercise}
+
+\section{Closed Sets and Limit Points}
+
+\begin{exercise}
+    $\varnothing$과 $X$의 여집합은 각각 $X$와 $\varnothing$이므로 $\varnothing,X\in\mathcal{T}$이다. $\{C_\alpha\}$를 $\mathcal{C}$의 임의의 원소의 모임이라 하자. 그러면 $\bigcap_\alpha C_\alpha\in\mathcal{C}$이므로 $\bigcup_\alpha(X\setminus C_\alpha)=X\setminus(\bigcap_\alpha C_\alpha)\in\mathcal{T}$이다. $\{C_i\}_{i=1}^n$이 $\mathcal{C}$의 원소의 유한한 모임이라 하면, $\bigcup_{i=1}^nC_i\in\mathcal{C}$이므로 $\bigcap_{i=1}^n(X\setminus C_i)=X\setminus(\bigcup_{i=1}^nC_i)\in\mathcal{T}$이다. 따라서 $\mathcal{T}$는 $X$ 위의 한 위상이다.
+    \begin{note}
+        이 연습문제에서는 닫힌집합을 선언하여 위상을 구성할 수 있음을 보여준다.
+    \end{note}
+\end{exercise}
+
+\begin{exercise}
+    $A$가 $Y$의 닫힌집합이므로 \textcolor{blue}{\textbf{Theorem 17.2}}로부터 $X$의 닫힌집합 $C$가 존재하여 $A=C\cap Y$이다. $Y$ 역시 $X$의 닫힌집합이므로 $A$는 $X$에서 닫힌집합이다.
+\end{exercise}
+
+\begin{exercise}
+    $A\times B=(X\times Y)\setminus((X\setminus A)\times Y\cup X\times(Y\setminus B))$는 $X\times Y$에서의 닫힌집합이다.
+\end{exercise}
+
+\begin{exercise}
+    $U\setminus A=U\cap(X\setminus A)$는 $X$의 열린집합이고, $A\setminus U=A\cap (X\setminus U)$는 $X$의 닫힌집합이다.
+\end{exercise}
+
+\begin{exercise}
+    $[a,b]=X\setminus((-\infty,a)\cup(b,\infty))$는 $(a,b)$를 포함하는 닫힌집합이므로 $\overline{(a,b)}\subset[a,b]$가 성립한다. 두 집합이 같으려면 $a$와 $b$가 $(a,b)$의 극한점이어야 한다. 즉 $(a,b)\ne\varnothing$이고 모든 $x\in(a,b)$에 대하여 $a<c<x<d<b$인 $c$와 $d$가 존재해야 한다. 이는 곧 $a$의 바로 뒤 원소(immediate successor)가 존재하지 않고, $b$의 바로 앞 원소(immediate predecessor)가 존재하지 않는 것과 동치이다. 만약 $a$에 바로 뒤 원소 $u$가 존재하면 $(-\infty,u)$는 $a$를 포함하는 열린구간이지만 $(a,b)$의 원소를 갖지 않는다. ($b$가 바로 앞 원소를 갖는 경우도 비슷하다.)
+\end{exercise}
+
+\begin{exercise}
+	\label{exc:17.6}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] $\overline{B}$는 $A$를 포함하는 닫힌집합이므로 $\overline{A}\subset\overline{B}$가 성립힌다.
+        \item[(b)] \begin{itemize}
+            \item[($\supset$)] (c)를 참고하라.
+            \item[($\subset$)] $\overline{A}\cup\overline{B}$는 $A\cup B$를 포함하는 (닫힌집합의 \textbf{유한} 합집합으로서) 닫힌집합이므로 $\overline{A\cup B}\subset\overline{A}\cup\overline{B}$가 성립한다.
+        \end{itemize}
+        \item[(c)] \begin{itemize}
+            \item[($\supset$)] $\overline{A_\alpha}$는 $A_\alpha$를 포함하는 가장 작은 닫힌집합이므로 $\bigcup A_\alpha$를 포함하는 닫힌집합은 모든 $\overline{A_\alpha}$를 포함해야 한다. 따라서 $\overline{\bigcup A_\alpha}\supset\bigcup\overline{A_\alpha}$가 성립한다.
+            \item[($\not\subset$)] $X=\R$이라 하고, 유리수 $q$에 대하여 $A_q=\{q\}$라 하자. 그러면 $\overline{\bigcup_{q\in\Q}A_q}=\overline{\Q}=\R$이고, $\bigcup_{q\in\Q}\overline{A_q}=\bigcup_{q\in\Q}A_q=\Q$이다.
+        \end{itemize}
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    $x$의 근방 $U$의 선택에 따라 $A_\alpha$ 역시 달라질 수 있음에 주목하라. 따라서 $U$가 어떤 $A_\alpha$와 만난다는 사실만으로 $x$가 특정 $A_\alpha$에 속함을 보일 수 없다. \textcolor{blue}{\textbf{Exercise \ref{exc:17.6}(c)}}의 예시를 그대로 이용하자. $x=\sqrt2\in\overline{\bigcup_{q\in\Q}A_q}=\R$라 하자. $x$를 포함하는 임의의 열린구간은 어떠한 $A_q$, 즉 유리수점을 포함한다. 하지만 $x$는 무리수이므로 어떤 $\overline{A_q}$에도 속하지 않는다. 특히 어떤 $A_q$도 모든 열린구간에 포함되지 않는다.
+\end{exercise}
+
+\begin{exercise}
+    \phantom{}
+    \begin{itemize}
+        \item[(a), (b)] \begin{itemize}
+            \item[($\subset$)] \textcolor{blue}{\textbf{Exercise \ref{exc:17.6}(a)}}에 의해 $\overline{\bigcap A_\alpha}\subset\overline{A_\alpha}$이므로 $\overline{\bigcap A_\alpha}\subset\bigcap\overline{A_\alpha}$이 성립한다.
+            \item[($\not\supset$)] $X=\R$, $A=\Q$, $B=\R\setminus\Q$라 하자. $\overline{A\cap B}=\overline{\varnothing}=\varnothing$이고, $\overline{A}\cap\overline{B}=\R$이다.
+        \end{itemize}
+        \item[(c)] \begin{itemize}
+            \item[($\supset$)] \textcolor{blue}{\textbf{Exercise \ref{exc:17.6}(a), (b)}}로부터
+                \begin{align*}
+                    \overline{A}-\overline{B}&=\overline{(A-B)\cup(A\cap B)}-\overline{B}\\
+                    &=(\overline{A-B}\cup\overline{A\cap B})-\overline{B}\\
+                    &=\overline{A-B}-\overline{B}\subset\overline{A-B}
+                \end{align*}
+                가 성립한다. 다음과 같이 보일 수도 있다. $x$가 $\overline{A}\setminus\overline{B}$의 원소이면, $x$의 모든 근방은 $A$와 만나며, $B$와 만나지 않는 $x$의 근방 $U$가 존재한다. 이때 $x$가 $\overline{A\setminus B}$에 속하지 않는다고 가정하면, $A\setminus B$와 만나지 않는 $x$의 근방 $V$가 존재한다. 그러면 $x$의 근방 $U\cap V$는 $A\setminus B$ 및 $B$와 만나지 않는다. 이는 $Z\cap V$가 $A$와 만나지 않음을 의미하므로 모순이다. 즉, $x$는 $\overline{A\setminus B}$의 원소여야 한다.
+            \item[($\not\subset$)] (a), (b)의 예시에서 $\overline{A\setminus B}=\overline{\Q}=\R$이고 $\overline{A}\setminus\overline{B}=\varnothing$이다.
+        \end{itemize}
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    $x\times y\in\overline{A\times B}$일 필요충분조건은 $x\times y$를 포함하는 임의의 기저 원소가 $A\times B$와 만나는 것이다. 이때 $X\times Y$의 기저 원소는 $X$의 열린집합과 $Y$의 열린집합의 곱이므로 이는 $x$(또는 $y$)의 임의의 근방은 $A$(또는 $B$)와 만나야 함과 동치이다. 따라서 $x\in\overline{A}$이고 $y\in\overline{B}$이므로 $x\times y\in\overline{A}\times\overline{B}$와 동치이다.
+\end{exercise}
+
+\begin{exercise}
+    일반성을 잃지 않고 $x_1<x_2$라 하자. $x_2$가 $x_1$의 바로 앞 원소이면 $U=(-\infty,x_2)\ni x_1$이고 $V=(x_1,\infty)\ni x_2$이다. $x_1<y<x_2$인 $y$가 존재하면 $U=(-\infty,y)\ni x_1$이고 $V=(y,\infty)\ni x_2$이다.
+\end{exercise}
+
+\begin{exercise}
+    $x_1\times y_1$과 $x_2\times y_2$를 $X\times Y$의 서로 다른 두 원소라 하자. 일반성을 잃지 않고 $x_1\ne x_2$라 가정하자. $X$가 하우스도르프이므로 서로소인 두 근방 $U\ni x_1$와 $V\ni x_2$가 존재한다. 이때 $U\times Y\ni x_1\times y_1$와 $V\times Y\ni x_2\times y_2$는 $X\times Y$에서 서로소인 근방이다. 
+\end{exercise}
+
+\begin{exercise}
+    $x_1$과 $x_2$를 $Y$의 서로 다른 두 원소라 하자. $X$가 하우스도르프이므로 서로소인 두 근방 $U\ni x_1$와 $V\ni x_2$가 존재한다. 이때 $U\cap Y\ni x_1$과 $V\cap Y\ni x_2$는 $Y$에서 서로소인 근방이다.
+\end{exercise}
+
+\begin{exercise}
+	\label{exc:17.13}
+    \phantom{}
+    \begin{itemize}
+        \item[($\Longrightarrow$)] 먼저 $X$가 하우스도르프라 가정하자. 서로 다른 $X$의 두 원소 $x_1$과 $x_2$에 대하여 서로소인 두 근방 $U\ni x_1$과 $V\ni x_2$가 존재한다. 이때 두 성분이 모두 같은 원소 $x\times x$가 $U\times V$에 속하면, $U$와 $V$는 서로소가 될 수 없다. 따라서 $x_1\times x_2\in U\times V\in (X\times X)\setminus\Delta$이다. 즉 $(X\times X)\setminus\Delta$가 열린집합이므로 $\Delta$는 닫힌집합이다.
+        \item[($\Longleftarrow$)] 역으로, $\Delta$가 $X\times X$의 닫힌집합이라 가정하자. $(X\times X)\setminus\Delta$가 열린집합이므로, $X$의 서로 다른 두 원소 $x_1$과 $x_2$에 대하여 $X$의 열린집합 $U$와 $V$가 존재하여 $x_1\times x_2\in U\times V\subset(X\times X)\setminus\Delta$이다. 이때 $U\ni x_1$와 $V\ni x_2$는 서로소인 두 근방이다. 따라서 $X$는 하우스도르프이다.
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    수열 $x_n=1/n$은 $\R$의 여유한위상에서 모든 점으로 수렴한다. 임의의 실수 $x$의 근방 $U$에 대하여 $\R\setminus U$가 유한집합이므로 $U$는 유한개를 제외한 수열의 모든 값을 포함해야 하기 때문이다.
+\end{exercise}
+
+\begin{exercise}
+    $T_1$ 공리 $\Longleftrightarrow$ $X$의 모든 한점집합 $\{x\}$이 닫혀있다. $\Longleftrightarrow$ 모든 $x\in X$에 대하여 $X\setminus\{x\}$이 열린집합이다. $\Longleftrightarrow$ $X$의 서로 다른 두 원소 $x$와 $y$에 대하여, $y\in U\subset X\setminus\{x\}$을 만족하는 $y$의 근방 $U$가 존재한다.
+\end{exercise}
+
+\begin{exercise}
+    \phantom{()}
+    \begin{table}[H]
+    	\centering
+        \begin{tabular}{c|ccccc}
+            \toprule
+            & $\mathcal{T}_1$ & $\mathcal{T}_2$ & $\mathcal{T}_3$ & $\mathcal{T}_4$ & $\mathcal{T}_5$ \\
+            \midrule
+            $K^{\prime}$ & $\{0\}$ & $\varnothing$ & $\R$ & $\varnothing$ & $[0,\infty)$ \\
+            \midrule
+            $\overline{K}$ & $K\cup\{0\}$ & $K$ & $\R$ & $K$ & $[0,\infty)$  \\
+            \midrule
+            하우스도르프 & Yes & Yes & No & Yes & No \\
+            \midrule
+            $T_1$ 성질 & Yes & Yes & Yes & Yes & No \\
+            \bottomrule
+        \end{tabular} 
+    \end{table}
+\end{exercise}
+
+\begin{exercise}
+    \phantom{}
+    \begin{table}[H]
+    	\centering
+        \begin{tabular}{c|cc}
+            \toprule
+            & $\overline{A}$ & $\overline{B}$ \\
+            \midrule
+            하극한 위상 & $[0,\sqrt2)$ & $[\sqrt2,3)$ \\
+            \midrule
+            $\mathcal{C}$ 로 생성된 위상 & $[0,\sqrt2]$ & $[\sqrt2,3)$ \\
+            \midrule
+        \end{tabular}
+    \end{table}
+\end{exercise}
+
+\begin{exercise}
+    \begin{align*}
+        \overline{A}&=A\cup\{0\times 1\}\\
+        \overline{B}&=B\cup\{1\times0\}\\
+        \overline{C}&=(0,1]\times\{0\}\cup[0,1)\times\{1\}\\
+        \overline{D}&=D\cup(0,1]\times\{0\}\cup[0,1)\times\{1\}\\
+        \overline{E}&=\{1/2\}\times[0,1]
+    \end{align*}
+\end{exercise}
+
+\begin{exercise}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] $\operatorname{Int}A\subset A\subset\overline{A}$이고 $\operatorname{Bd}A\subset\overline{A}$이므로 $\operatorname{Int}A\cup\operatorname{Bd}A\subset\overline{A}$이다. 역으로, $x\in\overline{A}\setminus\operatorname{Int}A$라 가정하자. 그러면 $x$의 모든 근방은 $A$과 만나고, 임의의 열린집합 $U$에 대하여 $x\notin U$이거나 $U\not\subset A$이다. 따라서 $x$의 모든 근방은 $A$와 $X\setminus A$의 점을 동시에 포함한다. 즉 $x\in\overline{A}\cap\overline{X\setminus A}=\operatorname{Bd}A$이다. 또한 이로부터 $\operatorname{Int}A\cap\operatorname{Bd}A=\varnothing$임을 알 수 있다.
+        \item[(b)] $A$가 열린집합이면서 닫힌집합이면 $\operatorname{Bd}A=\overline{A}\cap\overline{X\setminus A}=A\cap(X\setminus A)=\varnothing$이다. 역으로, $\operatorname{Bd}A=\varnothing$이면, (a)로부터 $A=\operatorname{Int} A=\overline{A}$이다. 따라서 $A$는 열린집합이면서 닫힌집합이다.
+        \item[(c)] (a)로부터 $\operatorname{Bd}A=\overline{A}\setminus\operatorname{Int}A$이고 $\operatorname{Int}A=\overline{A}\setminus\operatorname{Bd}A$이다. 따라서 $U$가 열린집합일 필요충분조건은 $\operatorname{Bd}U=\overline{U}\setminus\operatorname{Int}U=\overline{U}\setminus U$이다.
+        \item[(d)] 일반적으로, $U$가 열린집합이면 정의에 의해 $U\subset\operatorname{Int}(\overline{U})$가 성립한다. 하지만 역은 성립하지 않는다. $\R$의 열린집합 $U=\R\setminus\{0\}$에 대하여 $\operatorname{Int}(\overline{U})=\R$이다.
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] $\operatorname{Int}A=\varnothing$, $\operatorname{Bd}A=A$
+        \item[(b)] $\operatorname{Int}B=B$, $\operatorname{Bd}B=(\{0\}\times\R)\cup((0,\infty)\times\R)$
+        \item[(c)] $\operatorname{Int}C=[0,\infty)\times\R$, $\operatorname{Bd}(C)=(\{0\}\times\R)\cup((-\infty,0)\times\{0\})$
+        \item[(d)] $\operatorname{Int}D=\varnothing$, $\operatorname{Bd}D=\R^2$
+        \item[(e)] $\operatorname{Int}E=\{x\times y\mid0<x^2-y^2<1\}$, $\operatorname{Bd}E=\{x\times y\mid\vert x\vert=\vert y\vert\vee x^2-y^2=1\}$
+        \item[(f)] $\operatorname{Int}F=\{x\times y\mid x\ne0,y<1/x\}$, $\operatorname{Bd}F=\{x\times y\mid x\ne0,y=1/x\}\cup\{x\times y\mid x=0\}$
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    \textcolor{red}{To be updated.}
+\end{exercise}
+
+\section{Continuous Functions}
+
+\begin{exercise}
+    $f$가 $\epsilon-\delta$ 정의를 만족하고, $V$가 $\R$의 열린집합이라 가정하자. $f^{-1}(V)$에 속한 모든 $a$에 대하여, $(f(a)-\epsilon,f(a)+\epsilon)\subset V$인 $\epsilon>0$이 존재한다. $\epsilon-\delta$ 정의에 따라, $x$가 $\vert x-a\vert<\delta$를 만족하면 $\vert f(x)-f(a)\vert<\epsilon$가 성립하도록 하는 $\delta>0$가 존재한다. 따라서 $U=(a-\delta,a+\delta)$라 하면 $a\in U\subset f^{-1}(V)$이다. 그러므로 $f$는 연속함수이다.
+\end{exercise}
+
+\begin{exercise}
+    그렇지 않다. $\R$ 위의 임의의 상수함수를 생각하면 간단하다.
+\end{exercise}
+
+\begin{exercise}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] $i$가 연속이면 모든 $U\in\mathcal{T}$에 대하여 $i^{-1}(U)=U$이므로 $U\in\mathcal{T}^{\prime}$이다.
+        \item[(b)] (a)에서 $i$와 $i^{-1}$의 역할을 바꾸면 자명하다.
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+	\label{exc:18.4}
+    $f$와 $g$가 단사 연속함수임은 자명하다. $X$의 부분집합 $U$에 대하여 $V=f(U)$라 하자. $V$가 $f(X)=X\times\{y_0\}$에서 열린집합일 필요충분조건은 $U\times\{y_0\}$가 $f(X)$에서 열린집합인 것이고,이는 $U$가 $X$에서 열린집합인 것과 동치이다. $g$도 마찬가지이므로 $f$와 $g$는 매장이다.
+\end{exercise}
+
+\begin{exercise}
+    두 경우 모두 함수 $f(x)=(x-a)/(b-a)$가 위상동형사상이다.
+\end{exercise}
+
+\begin{exercise}
+    유리수 $x$에 대하여 $f(x)=x$이고, 무리수 $x$에 대하여 $f(x)=0$인 함수 $f:\R\to\R$은 $x=0$에서만 연속이다.
+\end{exercise}
+
+\begin{exercise}
+	\label{exc:18.7}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] $V$를 $\R$의 열린집합이라 하고, $a\in f^{-1}(V)$라 하자. 그러면 $(f(a)-\epsilon,f(a)+\epsilon)\subset V$인 $\epsilon>0$이 존재한다. $f$가 오른쪽에서 연속(continuous from the right)이므로 $x$가 $a\leq x<a+\delta$을 만족하면 $\vert f(x)-f(a)\vert<\epsilon$이 성립하도록 하는 $\delta>0$이 존재한다. 따라서 $U=[a,a+\epsilon)$이라 하면 $a\in[a,a+\epsilon)\subset f^{-1}(V)$이므로 $f^{-1}(V)$는 $\R_l$의 열린집합이다. 그러므로 $f:\R_l\to\R$은 연속함수이다.
+        \item[(b)] 먼저 $f:\R\to\R_l$가 연속함수이면, $f^{-1}([a,b))$가 $\R$의 열린집합이다. 한편, $\R\setminus f^{-1}([a,b))=f^{-1}(\R\setminus[a,b))=f^{-1}((-\infty,a)\cup[b,\infty))$ 역시 $\R$의 열린집합이므로, $f^{-1}([a,b))$은 $\R$에서 열린집합이면서 닫힌집합이다. 따라서 $f^{-1}([a,b))$는 $\varnothing$ 또는 $\R$이다. \textcolor{blue}{\textbf{(Theorem 24.1)}} 이것이 가능한 경우는 상수함수밖에 없다. 한편, 함수 $f:\R_l\to\R_l$이 연속함수일 필요충분조건은
+            \begin{equation*}
+                \forall a\in\R_l~\forall\epsilon>0~\exists\delta>0~\text{s.t.}~x\in[a,a+\delta)\Longrightarrow f(x)\in[f(a),f(a)+\epsilon)
+            \end{equation*}
+            이다. 이는 $f$가 오른쪽에서 연속이고, 오른쪽에서 국소적으로 단조증가함수임을 의미한다.
+    \end{itemize}
+    \begin{note}
+        정의역의 위상을 더 세밀한 것으로 교체하면, 기존의 연속함수과 더불어 더 많은 함수가 연속함수로 인정된다. 비슷한 논리로, 공역의 위상을 더 거친 것으로 교체하면 더 많은 함수가 연속함수가 될 수 있다. 반대로 정의역의 위상을 더 거칠게 하거나 공역의 위상을 더 세밀하게 하면, 기존의 연속함수가 자격을 박탈당할 수 있다. 하지만 동시에 거칠게 하거나 세밀하게 하는 경우에는 일반적인 결론이 없다.
+    \end{note}
+\end{exercise}
+
+\begin{exercise}
+    \begin{lem}
+        순서 공간 $Y$에 대하여, 집합 $\Delta^-=\{y_1\times y_2\mid y_1>y_2\}$는 곱 공간 $Y\times Y$의 열린집합이다.
+    \end{lem}
+    \begin{proof}
+        $y_1>y_2$라 가정하자. $y_2$가 $y_1$의 바로 앞 원소이면
+        \begin{equation*}
+            y_1\times y_2\in(y_2,\infty)\times(-\infty,y_1)\subset\Delta^-
+        \end{equation*}
+        이다. $y_1>y>y_2$인 $y\in Y$가 존재하면
+        \begin{equation*}
+            y_1\times y_2\in(y,\infty)\times (-\infty,y)\subset\Delta^-
+        \end{equation*}
+        이다. 따라서 $\Delta^-$는 열린집합이다.
+    \end{proof}
+    \begin{itemize}
+        \item[(a)] 대응 $x\mapsto x\times x\mapsto f(x)\times g(x)$로 정의된 함수 $(f,g):X\xrightarrow[]{\Delta}X\times X\xrightarrow[]{f\times g} Y\times Y$를 생각하자. \textcolor{blue}{\textbf{Exercise \ref{exc:18.10}}}으로부터 함수 $f\times g$는 연속이다. 따라서 $(f,g)(\Delta^-)=\{x\mid f(x)>g(x)\}$는 열린집합이므로, $\{x\mid f(x)\leq g(x)\}$는 닫힌집합이다.
+        \item[(b)] $f(x)\leq g(x)$이면 $h(x)=f(x)$이고 $f(x)\geq g(x)$이면 $h(x)=g(x)$이므로 \textcolor{blue}{\textbf{Theorem 18.3(The pasting lem)}}에 의해 $h$는 연속함수이다.
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] \textcolor{blue}{\textbf{Theorem 18.3(The pasting lem)}}을 유한번 적용한다.
+        \item[(b)] 함수 $f:(-\infty,1]\to \R$을 다음과 같이 정의하자: 어떤 자연수 $n$에 대하여 $x\in\left[\frac{1}{n+1},\frac{1}{n}\right]$이면 $f(x)=0$이다. $x\in(-\infty,0]$이면 $f(x)=1$이다. 그러면 $f^{-1}(\{0\})=(0,1]$은 $(-\infty, 1]$에서 닫힌집합이 아니므로 $f$는 연속함수가 아니다.
+            \begin{note}
+                닫힌집합의 \textbf{무한} 합집합이 닫힌집합이 아닐 수 있음을 이용한다.
+            \end{note}
+        \item[(c)] $B$를 $Y$의 닫힌집합이라 하고, $A=f^{-1}(B)=\bigcup_\alpha(f\vert_{A_\alpha})^{-1}(B)$라 하자. $A$가 닫힌집합임을 보이기 위해 $x\notin A$라 가정하자. $\{A_\alpha\}$가 국소유한(locally finite)이므로 유한개의 $A_\alpha$와만 만나는 $x$의 근방 $U$가 존재한다. $U$와 만나는 $A_\alpha$의 첨수 $\alpha$를 $\alpha_1$, $\cdots$, $\alpha_n$이라 하자. 각 $i=1,\cdots,n$에 대하여 $C_i=(f\vert_{A_{\alpha_i}})^{-1}(B)$가 $A_{\alpha_i}$의 닫힌집합이므로 $X$에서도 닫힌집합이다. $x\notin C_i$이므로, $C_i$와 만나지 않는 $x$의 근방 $U_i$가 존재한다. 따라서 집합 $U\cap(\bigcap_{i=1}^nU_i)$는 $A$와 만나지 않는 $x$의 근방이다.
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+	\label{exc:18.10}
+    $U\times V$를 $B\times D$의 기저 원소라 하면, $(f\times g)^{-1}(U\times V)=f^{-1}(U)\times g^{-1}(V)$은 $A\times C$의 열린집합이다.
+\end{exercise}
+
+\begin{exercise}
+	\label{exc:18.11}
+    $f$와 $g$를 \textcolor{blue}{\textbf{Exercise \ref{exc:18.4}}}에서 정의한 함수라 하자. 그러면 $h=F\circ f$, $k=F\circ g$이므로 $F$가 연속함수이면 $h$와 $k$도 연속함수이다.
+\end{exercise}
+
+\begin{exercise}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] $y_0=0$이면 $F(x\times y_0)=0$이고, $y_0\ne0$이면 $F(x\times y_0)=\dfrac{xy_0}{x^2+y_0^2}$이다. 이 두 함수의 연속성은 자명하다.
+        \item[(b)] $x\ne0$이면 $g(x)=1/2$이고, $x=0$이면 $g(x)=0$이다.
+        \item[(c)] $F^{-1}(\{1/2\}=\{x\times x\mid x\ne0\}$이 닫힌집합이 아니므로 $F$는 연속함수가 아니다.
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    $g$와 $h$를 집합 $\overline{A}$로의 $f$의 연속적 확장이라 하자. 그러면 함수 $(g,h):\overline{A}\to Y\times Y$는 연속이다. 집합 $C=\{x\in \overline{A}\mid g(x)=h(x)\}$라 하면, $g\vert_A=h\vert_A$이므로 $A\subset C\subset\overline{A}$가 성립한다. 이때 $Y$가 하우스도르프이므로 \textcolor{blue}{\textbf{Exercise \ref{exc:17.13}}}에서 정의한 집합 $\Delta$는 $Y\times Y$의 닫힌집합이다. $C=(g,h)^{-1}(\Delta)$이므로 $C$는 닫힌집합이다. 따라서 $C=\overline{A}$이다.
+\end{exercise}
+
+\section{The Product Topology}
+
+\begin{exercise}
+    기저 원소는 열린집합이므로 \textcolor{blue}{\textbf{Theorem 19.2}}에서 정의한 위상은 각각 상자 위상과 곱 위상보다 거칠다. $X_\alpha$의 열린집합 $U_\alpha$는 적당한 기저 원소의 합집합 $\bigcup_{B_\alpha\subset U_\alpha}B_\alpha$이다. 따라서 $\prod_{\alpha}U_\alpha=\bigcup_{B_\alpha\subset U_\alpha}\prod_\alpha B_\alpha$이다. 따라서 \textcolor{blue}{\textbf{Theorem 19.2}}의 기저는 각각 상자 위상과 곱 위상의 기저이다.
+\end{exercise}
+
+\begin{exercise}
+    $\prod_\alpha U_\alpha\cap\prod_\alpha A_\alpha=\prod_\alpha(U_\alpha\cap A_\alpha)$이다. 좌변의 집합은 곱 공간의 부분공간의 기저 원소이고, 우변의 집합은 부분공간의 곱 공간의 기저 원소이다. 따라서 이 등식은 곱 공간의 부분공간과 부분공간의 곱 공간의 기저가 같음을 보여준다.
+\end{exercise}
+
+\begin{exercise}
+    곱 공간 $\prod X_\alpha$의 두 점 $x$와 $y$가 서로 다르면, 적어도 하나의 좌표에 대한 값 $x_\beta$와 $y_\beta$가 서로 다르다. $X_\beta$에서 $x_\beta$와 $y_\beta$를 각각 포함하는 서로소 근방 $U$와 $V$를 선택하자. 각 첨수 $\alpha$에 대하여 $\alpha\ne\beta$이면 $U_\alpha=V_\alpha=X_\alpha$라 하고, $\alpha=\beta$이면 $U_\alpha=U$, $V_\alpha=V$라 하자. 그러면 $\prod U_\alpha$와 $\prod V_\alpha$는 $x$와 $y$를 각각 포함하는 서로소 근방이다.
+\end{exercise}
+
+\begin{exercise}
+    함수 $f:\prod_{i=1}^{n-1}X_i\times X_n\to\prod_{i=1}^nX_i$를
+    \begin{equation*}
+        f((x_1\times\cdots\times x_{n-1})\times x_n)=x_1\times\cdots\times x_{n-1}\times x_n
+    \end{equation*}로 정의하자. $f$가 전단사임은 자명하다. $f$가 위상 동형 사상임은 다음과 같이 보일 수 있다: $U$가 $\prod_{i=1}^{n-1}X_i\times X_n$의 열린집합이다. $\Longleftrightarrow$ $U$의 모든 점 $(x_1\times\cdots\times x_{n-1})\times x_n$에 대하여 기저 근방 $V\times U_n\subset U$이 존재한다. 여기서 $V$는 $\prod_{i=1}^{n-1}X_i\times X_n$의 열린집합이다. $\Longleftrightarrow$ $U$의 모든 점 $(x_1\times\cdots\times x_{n-1})\times x_n$에 대하여 기저 근방 $\prod_{i=1}^{n-1}U_i\times U_n\subset U$이 존재한다. $\Longleftrightarrow$ $f(U)$의 모든 점 $x_1\times\cdots\times x_{n-1}\times x_n$에 대하여 기저 근방 $\prod_{i=1}^nU_i$가 존재한다.
+\end{exercise}
+
+\begin{exercise}
+    사영 $\pi_\alpha$는 상자 위상에서도 연속이므로 $f$가 연속이면 각 성분 함수 $f_\alpha$도 연속이다. 하지만 각 성분 함수 $f_\alpha$가 연속이라고 해서 $f$가 연속은 아니다. \textcolor{blue}{\textbf{Example 19.2}}를 참고하라.
+\end{exercise}
+
+\begin{exercise}
+	\label{exc:19.6}
+    \phantom{}
+    \begin{itemize}
+        \item[($\Longrightarrow$)] \textbf{곱 위상 또는 상자 위상}에서 점렬 $x_n$이 $x$로 수렴한다고 가정하자. $U$를 $X_\alpha$에서 $\pi_\alpha(x)$의 근방이라 하자. 그러면 $\pi^{-1}_\alpha(U)$는 $\prod X_\alpha$에서 $x$의 근방이다. 따라서 적당한 자연수 $N$에 대하여 $n\geq N$이면 $x_n\in\pi^{-1}_\alpha(U)$, 즉 $\pi_\alpha(x_n)\in U$이므로 점렬 $\pi_\alpha(x_n)$은 $\pi_a(x)$로 수렴한다.
+        \item[($\Longleftarrow$)] \textbf{곱 위상}에서 모든 $\alpha$에 대하여 점렬 $\pi_\alpha(x_n)$이 $\pi_\alpha(x)$로 수렴한다고 가정하자. $U$를 $\prod X_\alpha$에서 $x$의 근방이라 하자. 그러면 $x\in\prod U_\alpha\subset U$를 만족하는 기저 원소 $\prod U_\alpha$가 존재한다. 이때 $\alpha_1$, $\cdots$, $\alpha_n$을 제외한 모든 $\alpha$에 대하여 $U_\alpha=X_\alpha$이다. 각 $\alpha$에 대하여, $n\geq N_\alpha$이면 $\pi_\alpha(x_n)\in U_\alpha$가 되도록 하는 자연수 $N_\alpha$를 선택하자. 이때 $\alpha\ne\alpha_1,\cdots,\alpha_n$의 경우에는 $N_\alpha=1$로 택할 수 있다. 따라서 $N=\max\{N_{\alpha_1},\cdots,N_{\alpha_n}\}$이라 하면 $n\geq N$일 때 $x_n\in\prod U_\alpha\subset U$이므로 점렬 $x_n$은 $x$로 수렴한다.
+    \end{itemize}
+    상자 위상에서 ($\Longleftarrow$)가 성립하지 않는 예시는 \textcolor{blue}{\textbf{Exercise \ref{exc:20.4}(b)}}를 참고하라.
+\end{exercise}
+
+\begin{exercise}
+	\label{exc:19.7}
+    \textbf{곱 위상}에서 $\overline{\R^\infty}=\R^\omega$이다. $\R^\omega$의 임의의 점 $x$와 그 기저 근방 $U=\prod_{n\in\Z_+}U_n$을 생각하자. 이때 $n_1,\cdots,n_k$를 제외한 모든 $n$에 대하여 $U_n=\R$이고, $U_{n_1},\cdots,U_{n_k}$는 $\R$의 열린집합이다. 각 $n\in\Z_+$에 대하여 $U_n$에 속하는 점 $y_n$을 선택하자. 이때 $n=n_1,\cdots,n_k$인 경우에는 $y_n\ne x_n$이 되도록 하고, 그 외의 경우에는 $y_n=0$으로 정한다. 그러면 $\R^\omega$의 원소 $y=(y_n)_{n\in\Z_+}$는 $x$와 서로 다르면서 집합 $U\cap\R^\infty$에 속한다. 따라서 $\R^\omega$의 모든 점은 $\R^\infty$의 극한점이다. 한편, \textbf{상자 위상}에서 $\overline{\R^\infty}=\R^\infty$이다. $\R^\omega\setminus\R^\infty$의 임의의 점 $x$을 고려하자. 각 $n\in\Z_+$에 대하여, $x_n\ne0$이면 $U_n=(-\vert x_n\vert-1,0)\cup(0,\vert x_n\vert+1)$라 하고, $x_n=0$이면 $U_n=\R$이라 하자. 그러면 집합 $U=\prod_{n\in\Z_+}U_n$은 $x\in U\subset\R^\omega\setminus\R^\infty$를 만족하는 열린집합이다. 따라서 $\R^\omega\setminus\R^\infty$가 열린집합이므로 $\R^\infty$는 닫힌집합이다.
+\end{exercise}
+\begin{note}
+    위상이 세밀할수록 닫힌집합으로 인정되는 부분집합이 많다. 따라서 같은 부분집합의 폐포는 세밀한 위상에서 더 작다.
+\end{note}
+
+\begin{exercise}
+	\label{exc:19.8}
+    사상 $h$가 일대일대응임은 자명하다. \textbf{곱 위상 또는 상자 위상}에서, $h$가 위상동형사상임을 보이기 위해서는 $h$가 연속임을 보이는 것으로 충분하다. ($h^{-1}$도 $h$와 같은 형태이기 때문이다.) $U=\prod_{n\in\Z_-}U_n$을 기저 원소라 하자. $V_n=\{x\in\R\mid a_nx+b_n\in U_n\}$이라 하면 $V_n$은 $\R$의 열린집합이므로 $h^{-1}(U)=\prod_{n\in\Z_+}V_n$은 $\R^\omega$의 열린집합이다. ($U_n=\R$이면 $V_n=\R$이다.)
+\end{exercise}
+
+\begin{exercise}
+    \phantom{}
+    \begin{itemize}
+        \item[($\Longleftarrow$)] $\mathcal B$가 공집합이 아닌 집합의 족이면 데카르트 곱 $\prod_{B\in\mathcal B}B$는 공집합이 아니다. 따라서 임의의 $B\in\mathcal B$에 대하여 $x(B)\in B$가 되도록 하는 함수 $x:\mathcal B\to\bigcup_{B\in\mathcal B}B$가 존재한다. 이는 선택함수이다.
+        \item[($\Longrightarrow$)] $J\ne0$에 대하여 $\{A_\alpha\}_{\alpha\in J}$를 공집합이 아닌 집합의 첨수족(indexed family)이라 하자. 선택공리에 의해 각 $\alpha\in J$에 대하여 $x(\alpha)\in A_\alpha$인 선택함수 $x:J\to\bigcup_{\alpha\in J}A_\alpha$가 존재한다. 이는 데카르트 곱 $\prod_{\alpha\in J}A_\alpha$가 공집합이 아님을 의미한다.
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+	\label{exc:19.10}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] $\mathfrak T$를 모든 $f_\alpha$가 연속이 되도록 하는 $A$ 위의 위상의 모임이라 하자. $A$ 위의 이산 위상은 $\mathfrak T$에 속하므로 $\mathfrak T$는 비어있지 않다. 이제 $\mathcal T=\bigcap_{\mathcal U\in\mathfrak T}\mathcal U$라 하자. \textcolor{blue}{\textbf{Exercise \ref{exc:13.4}(a)}}에 의해 $\mathcal T$는 위상이다. 이때 $U$가 $X_\alpha$의 열린집합이면 임의의 위상 $\mathcal U\in\mathfrak T$에 대하여 $f_\alpha^{-1}(U)\in\mathcal U$이므로 $\mathcal T\in\mathfrak T$이다. 따라서 $\mathcal T$는 모든 $f_\alpha$가 연속이 되도록 하는 가장 거친 유일한 위상이다. (유일성은 정의에 의해 자명하다.)
+        \item[(b)] 임의의 위상 $\mathcal U\in\mathfrak T$에 대하여, 모든 $f_\beta$가 연속이므로 $S$의 원소는 모두 $\mathcal U$에 속해야 한다. 따라서 $\mathfrak T$에 속하는 모든 위상은 $\mathcal S$를 포함한다. 역으로, $\mathcal S$를 포함하는 $A$의 위상에서는 모든 $f_\beta$가 연속이다. 따라서 $\mathfrak T$는 $\mathcal S$를 포함하는 $A$의 위상의 모임과 같다. 그러므로 \textcolor{blue}{\textbf{Exercise \ref{exc:13.5}}}에 의해 $\mathcal T$는 $\mathcal S$를 부분기저로 하여 생성된 위상이다.
+        \item[(c)] $g$가 연속이면 모든 합성 $f_\alpha\circ g$도 연속이다. \textcolor{blue}{\textbf{(Theorem 18.2(c))}} 역으로, $f_\alpha\circ g$가 연속이라 하고, $U_\beta$를 $X_\beta$의 열린집합, $U=f_\beta^{-1}(U_\beta)$라 하자. $g^{-1}(U)=g^{-1}(f_\beta^{-1}(U_\beta))=(f_\beta\circ g)^{-1}(U_\beta)$이므로 $g^{-1}(U)$는 $Y$의 열린집합이다. 그러므로 $g$는 연속이다.
+        \item[(d)] $U\in\mathcal T$, $x\in f(U)$라 하자. $f(a)=x$인 $a\in U$를 선택하자. $U$가 열린집합이므로 $a\in V\subset U$인 기저 원소 $V$가 존재한다. 이때 부분기저를 이용하여 $V=\bigcap_{i=1}^nf_{\alpha_i}^{-1}(U_{\alpha_i})$라 쓸 수 있다. 여기서 $U_{\alpha_i}$는 $X_{\alpha_i}$의 열린집합이다. (일반성을 잃지 않고 모든 첨수 $\beta_i$가 서로 다르다고 가정하자.) 여기서 $\alpha_1,\cdots,\alpha_n$을 제외한 모든 $\alpha$에 대하여 $U_\alpha=X_\alpha$라 두면 $V=f^{-1}(\prod_{\alpha\in J}U_\alpha)$이고 $f(V)=f(A)\cap\prod_{\alpha\in J}U_\alpha$이다. $f(V)$는 부분공간 $f(A)$의 열린집합이고 $x\in f(V)\subset f(U)$를 만족한다. 따라서 $f(U)$ 역시 $f(A)$의 열린집합이다.
+    \end{itemize}
+\end{exercise}
+
+\section{The Metric Topology}
+
+\begin{exercise}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] $\rho(x,y)\leq d^\prime(x,y)\leq n\rho(x,y)$이므로 $d^\prime$은 $\R^n$의 보통 위상을 생성한다. $n=2$일 때의 기저 원소는 $\pi/4$(rad)만큼 기울어진 정사각형이다.
+        \item[(b)] (a)와 마찬가지로 $\rho(x,y)\leq d^\prime(x,y)\leq n^{1/p}\rho(x,y)$이다.
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    두 점 $x_1\times y_1$과 $x_2\times y_2$에 대하여 $x_1\ne x_2$이면 $d(x_1\times y_1,x_2\times y_2)=1$, $x_1=x_2$이면 $d(x_1\times y_1,x_2\times y_2)=\min\{\vert y_1-y_2\vert,1\}$이라 하자. $d$는 거리함수이다. (삼각부등식이 약간 까다롭지만, 이마저도 쉽게 보일 수 있다.) \textcolor{blue}{\textbf{Exercise \ref{exc:16.9}}}로부터 $\R\times\R$는 $\{x\}\times (a,b)$로 생성된다. 이 세로 막대 구간은 $0<\dfrac{b-a}{2}\leq 1$일 때 $\{x\}\times(a,b)=B_d\biggl(x\times\dfrac{a+b}{2},\dfrac{b-a}{2}\biggr)$로 표현할 수 있다. 역으로, 임의의 $\epsilon\in(0,1]$에 대하여 $B_d(x\times y,\epsilon)=\{x\}\times(y-\epsilon,y+\epsilon)$이다. 따라서 $\R\times\R$의 사전식 순서 위상은 $d$에 대한 반지름이 $\epsilon\leq1$인 열린 공으로 생성된다.
+\end{exercise}
+\begin{note}
+    본문에 따르면, 거리 위상에서는 충분히 작은 반지름의 열린 공만 살피면 충분하다. 따라서 이후에 풀이에서 등장하는 열린 공의 반지름은 모두 특정 양수보다 (대표적으로 $1$) 작다고 가정해도 좋다.
+\end{note}
+
+\begin{exercise}
+	\label{exc:20.3}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] $U$를 $\R$의 열린집합이라 하고, $x\times y\in d^{-1}(U)$라 하자. 그러면 $d:=d(x\times y)\in U$이므로 $\epsilon>0$에 대하여 $(d-\epsilon,d+\epsilon)\subset U$이다. 집합 $V=B_d(x,\epsilon/2)\times B_d(y,\epsilon/2)$의 임의의 점 $a\times b$에 대하여 $ \vert d(a\times b)-d(x\times y)\vert\leq d(a\times x)+d(y\times b)<\epsilon/2+\epsilon/2<\epsilon$이므로 $x\times y\in V\subset d^{-1}(U)$에서 $d^{-1}(U)$는 열린집합이다.
+        \item[(b)] $d:X^\prime\times X^\prime\to\R$이 연속이면, \textcolor{blue}{\textbf{Exercise \ref{exc:18.11}}}로부터 고정된 $x\in X^\prime$에 대하여 $d_x(y)=d(x,y)$로 정의된 함수 $d_x:X^\prime\to\R$가 연속이다. 따라서 $B_d(x,\epsilon)=d_x^{-1}((-\infty,\epsilon))$은 $X^\prime$에서 열린집합이다.
+    \end{itemize}
+\end{exercise}
+\begin{note}
+    연습문제 아래의 첨언은 \textcolor{blue}{\textbf{Exercise \ref{exc:19.10}}}을 참고하라.
+\end{note}
+
+\begin{exercise}
+	\label{exc:20.4}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] \phantom{}
+            \begin{center}
+                \begin{tabular}{|c||ccccc|}
+                    \hline
+                    $\R^\omega$ & 상자 위상$^{\text{(i)}}$ & $\supsetneq$ & 균등 위상$^{\text{(ii)}}$ & $\supsetneq$ & 곱 위상$^{\text{(iii)}}$ \\ \hline\hline
+                   $f$ & 불연속 && 불연속 && 연속 \\ \hline
+                   $g$ & 불연속 && 연속 && 연속 \\ \hline
+                   $h$ & 불연속 && 연속 && 연속 \\ \hline
+                \end{tabular}
+            \end{center}
+            \begin{itemize}
+                \item[(i)] \textbf{상자 위상}에서, 각 함수에 대한 열린집합 $\prod_{n\in\Z_+}(-1/n^2,1/n^2)$의 역상은 모두 $\{0\}$이다. 따라서 세 함수는 모두 불연속이다. (\textcolor{blue}{\textbf{Example 19.2}} 참고)
+                \item[(ii)] \textbf{균등 위상}에서, $f^{-1}(B_{\overline{\rho}}(0,\epsilon))=f^{-1}(\prod_{n\in\Z_+}(-1,1))=\{0\}$이다. 이제 함수 $k:\R\to\R^\omega$를 $k(t)=(a_nt)_{n\in\Z_+}$라 하자. ($g$와 $h$를 따지기 위해 $a_n=1$ 또는 $a_n=1/n$으로 둔다.) $t\in k^{-1}(B_{\overline{\rho}}(x,\epsilon))$이라 하면 모든 $n\in\Z_+$에 대하여 $\vert x_n-a_nt\vert\leq\sup\{\vert x_n-a_nt\vert:n\in\Z_+\}=:\mu<\epsilon$이다. 이제 $\vert\delta\vert <\dfrac{\epsilon-\mu}{2}$이면
+                \begin{align*}
+                    \vert x_n-a_n(t+\delta)\vert&\leq\vert x_n-a_nt\vert+a_n\vert \delta\vert<\mu+a_n\frac{\epsilon-\mu}{2}\\
+                    &\leq\mu+\frac{\epsilon-\mu}{2}=\dfrac{\epsilon+\mu}{2}<\epsilon
+                \end{align*}
+                이 성립한다. 따라서 $f$는 불연속이고, $g$와 $h$는 연속이다.
+                \item[(iii)] \textbf{곱 위상}에서, 세 함수는 \textcolor{blue}{\textbf{Theorem 19.6}}에 따라 모두 연속이다.
+            \end{itemize}
+            \begin{note}
+                \textcolor{blue}{\textbf{Exercise \ref{exc:18.7}}}의 note를 추가로 참고하라.
+            \end{note}
+        \item[(b)] \textcolor{blue}{\textbf{Exercise \ref{exc:19.6}}}에 의해, 네 점렬은 $0$으로만 수렴하거나 발산해야 한다.
+            \begin{center}
+                \begin{tabular}{|c||ccccc|}
+                    \hline
+                   $\R^\omega$ & 상자 위상$^{\text{(i)}}$ & $\supsetneq$ & 균등 위상$^{\text{(ii)}}$ & $\supsetneq$ & 곱 위상$^{\text{(iii)}}$ \\ \hline\hline
+                   $w_n$ & 발산 && 발산 && 수렴  \\ \hline
+                   $x_n$ & 발산 && 수렴 && 수렴 \\ \hline
+                   $y_n$ & 발산 && 수렴 && 수렴 \\ \hline
+                   $z_n$ & 수렴 && 수렴  && 수렴 \\ \hline
+                \end{tabular}
+            \end{center}
+            \begin{itemize}
+                \item[(i)] \textbf{상자 위상}에서, 양수 $\epsilon_n$에 대하여 $n>1/\min\{\epsilon_1,\epsilon_2\}$이면 $z_n\in\prod_{n\in\Z_+}(-\epsilon_n,\epsilon_n)$이다. 한편, $0$의 근방 $U=\prod_{n\in\Z_+}(-1/(n+1),1/(n+1))$에 대하여 모든 $w_n$, $x_n$, $y_n$은 $U$에 속하지 않는다. 따라서 점렬 $z_n$은 $0$으로 수렴하고, $w_n$, $x_n$, $y_n$은 발산한다.
+                \item[(ii)] \textbf{균등 위상}에서, 임의의 점 $w_n$과 $0$ 사이의 거리는 $1$이다. 이는 어떤 $w_n$도 $0$의 근방 $B_{\overline{\rho}}(0,1)$에 속하지 않음을 의미한다. 한편 $\overline{\rho}(x_n,0)=\overline{\rho}(y_n,0)=1/n$이므로 $n>1/\epsilon$이면 $x_n,y_n\in B_{\overline{\rho}}(0,\epsilon)$이다. 따라서 점렬 $x_n$, $y_n$은 $0$으로 수렴하고, $w_n$은 발산한다.
+                \item[(iii)] \textbf{곱 위상}에서, 네 점렬은 \textcolor{blue}{\textbf{Exercise \ref{exc:19.6}}}에 따라 모두 $0$으로 수렴한다.
+            \end{itemize}
+            \begin{note}
+                한 위상에서 수렴하는 점렬은 그보다 거친 위상에서도 수렴한다.
+            \end{note}
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    $X$를 $\R$에서 $0$으로 수렴하는 모든 수열 $x_n$의 집합이라 하면 $\overline{\R^\infty}=X$이다. 먼저 $X$가 $\R^\omega$의 닫힌집합임을 보이자. $x\in\R^\omega\setminus X$라 하면, 모든 $k\in\Z_+$에 대하여 $\vert x_{n_k}\vert\geq\epsilon$인 $n_k\geq k$가 존재하도록 하는 $\epsilon>0$이 존재한다. 그러한 $\epsilon$에 대해 $y\in B_{\overline{\rho}}(x,\epsilon/2)$라 하자. 그러면 모든 $k\in\Z_+$에 대하여
+    \[
+        \epsilon\leq\vert x_{n_k}\vert\leq\vert x_{n_k}-y_{n_k}\vert+\vert y_{n_k}\vert<\frac{\epsilon}{2}+\vert y_{n_k}\vert
+    \]
+    이므로 $\vert y_{n_k}\vert>\epsilon/2$이고, $y\in\R^\omega\setminus X$이다. 따라서 $B_{\overline{\rho}}(x,\epsilon/2)\subset\R^\omega\setminus X$이므로 $\R^\omega\setminus X$는 열린집합이다. $X$는 $\R^\infty$를 포함하는 닫힌집합이므로 $\overline{\R^\infty}\subset X$이다. 역으로, $x\in X$라 하면, 모든 $\epsilon>0$에 대하여 $n\geq k$이면 $\vert x_n\vert<\epsilon/2$인 $k\in\Z_+$가 존재한다. 이때 $y=(x_1,\cdots,x_k,0,0,\cdots)$라 하면 $\overline{\rho}(x,y)<\epsilon$이므로 $y\in B_{\overline{\rho}}(x,\epsilon)\cap\R^\infty$이다. 그러므로 $X\subset\overline{\R^\infty}$이다.
+\end{exercise}
+\begin{note}
+    \textcolor{blue}{\textbf{Exercise \ref{exc:19.7}}}의 note를 추가로 참고하라.
+\end{note}
+
+\begin{exercise}
+	\label{exc:20.6}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] $U(x,\epsilon)$에 속하면서 $\overline{\rho}(x,y)=\epsilon$인 점 $y$를 찾자. $y=(x_n+\epsilon-\epsilon/n)_{n\in\Z_+}$라 하자. 그러면 모든 $n\in\Z_+$에 대하여 $\vert x_n-y_n\vert=\epsilon(1-1/n)<\epsilon$이므로 $y\in U(x,\epsilon)$이고, $\overline{\rho}(x,y)=\sup\{\epsilon(1-1/n)\mid n\in\Z_+\}=\epsilon$이므로 $y\notin B_{\overline{\rho}}(x,\epsilon)$이다.
+        \item[(b)] (a)의 점 $y$와 $\delta\in(0,\epsilon)$에 대하여 열린 공 $B_{\overline{\rho}}(y,\delta)$를 생각하자. 아르키메데스 원리에 의해 $\epsilon/n<\delta$인 $n\in\Z_+$가 존재한다. 이러한 자연수 중 가장 작은 것을 $n_0$라 하자. 자연수 $n$에 대하여 $n<n_0$이면 $z_n=y_n+\delta/2$, $n\geq n_0$이면 $z_n=y_n+\epsilon/n+\delta/2$라 하고, $z=(z_n)_{n\in\Z_+}$라 하자. 그러면 모든 $n\in\Z_+$에 대하여
+        \[
+            \vert y_n-z_n\vert=\begin{cases}
+                \dfrac{\delta}{2} & (n<n_0) \\[6pt]
+                \dfrac{1}{2}\biggl(\delta+\dfrac{\epsilon}{n}\biggr) & (n\geq n_0)
+            \end{cases}<\delta
+        \]
+        이고, 모든 $n\geq n_0$에 대하여
+        \[
+            \vert x_n-z_n\vert=\epsilon+\frac{1}{2}\biggl(\delta-\frac{\epsilon}{n}\biggr)>\epsilon
+        \]
+        이다. 따라서 $z$는 $B_{\overline{\rho}}(y,\delta)$에는 속하지만, $U(x,\epsilon)$에는 속하지 않는다.
+        \item[(c)] 먼저 $\delta<\epsilon$에 대하여 $z\in U(x,\delta)$라 하자. 그러면 모든 $n\in\Z_+$에 대하여 $\vert x_n-z_n\vert<\delta$이므로 $\overline{\rho}(x,z)\leq\delta<\epsilon$이다. 역으로, $z\in B_{\overline{\rho}}(x,\epsilon)$이라 하자. 그러면 $\overline{\rho}(x,z)<\epsilon$이므로 모든 $n\in\Z_+$에 대하여
+        \[
+            \vert x_n-z_n\vert\leq\overline{\rho}(x,z)<\dfrac{\epsilon+\overline{\rho}(x,z)}{2}<\epsilon
+        \]
+        이므로 $z\in U\biggl(x,\dfrac{\epsilon+\overline{\rho}(x,z)}{2}\biggr)$이다.
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    $h$가 연속일 필요충분조건은 수열 $a_n$이 유계인 것이다.
+    \begin{itemize}
+        \item[($\Longrightarrow$)] 수열 $a_n$이 유계가 아니라고 가정하자. 이때 \textcolor{blue}{\textbf{Exercise \ref{exc:20.6}}}으로부터
+            \begin{align*}
+                h^{-1}(B_{\overline{\rho}}(y,\epsilon))&=\bigcup_{\epsilon_1<\epsilon}h^{-1}(U(x,\epsilon_1))=\bigcup_{\epsilon_1<\epsilon}\prod_{n\in\Z_+}\biggl(\frac{y_n}{a_n}-\frac{b_n}{a_n}-\frac{\epsilon_1}{a_n},\frac{y_n}{a_n}-\frac{b_n}{a_n}+\frac{\epsilon_1}{a_n}\biggr),\\[6pt]
+                B_{\overline{\rho}}(x,\delta)&=\bigcup_{\delta_1<\delta}U(x,\delta_1)=\bigcup_{\delta_1<\delta}\prod_{n\in\Z_+}(x_n-\delta_1,x_n+\delta_1)
+            \end{align*}
+            이다. 수열 $a_n$이 유계가 아니므로 임의의 $\delta_1<\delta$에 대하여 $\epsilon/a_n<\delta$인 $n\in\Z_+$가 존재한다. 이러한 자연수 중 가장 작은 것을 $n_0$이라 하자. 그러면 $\R$에서 지름이 $2\delta_1$인 구간 $(x_{n_0}-\delta_1,x_{n_0}+\delta_1)$은 반지름이 $\dfrac{2\epsilon_1}{a_{n_0}}<\dfrac{2\epsilon}{a_{n_0}}<2\delta$인 구간 $\biggl(\dfrac{y_{n_0}}{a_{n_0}}-\dfrac{b_{n_0}}{a_{n_0}}-\dfrac{\epsilon_1}{a_{n_0}},\dfrac{y_{n_0}}{a_{n_0}}-\dfrac{b_{n_0}}{a_{n_0}}+\dfrac{\epsilon_1}{a_{n_0}}\biggr)$에 포함될 수 없다. 따라서 어떠한 열린 공 $B_{\overline{\rho}}(x,\delta)$도 역상 $h^{-1}(B_{\overline{\rho}}(y,\epsilon))$에 포함될 수 없으므로 $h$는 연속이 아니다.
+        \item[($\Longleftarrow$)] 수열 $a_n$이 유계라 가정하고, $M>0$을 $a_n$의 한 상계라 하자. $x\in h^{-1}(B_{\overline{\rho}}(y,\epsilon))$이라 하자. 그러면 어떤 $\epsilon_1<\epsilon$에 대하여 $h(x)\in U(y,\epsilon_1)$이므로 모든 $n\in\Z_+$에 대하여 $\vert a_nx_n+b_n-y_n\vert<\epsilon_1$이다. 이제 $\delta=\dfrac{\epsilon-\epsilon_1}{2M}$라 하고, $z\in B_{\overline{\rho}}(x,\delta)$라 하자. 그러면 모든 $n\in\Z_+$에 대하여 $\vert x_n-z_n\vert<\delta_1$인 $\delta_1<\delta$가 존재한다. 이때 모든 $n\in\Z_+$에 대하여
+            \begin{align*}
+                \vert a_nz_n+b_n-y_n\vert&\leq a_n\vert z_n-x_n\vert+\vert a_nx_n+b_n-y_n\vert<M\delta_1+\epsilon_1\\
+                &<M\delta+\epsilon_1=\frac{\epsilon+\epsilon_1}{2}<\epsilon
+            \end{align*}
+            이므로 $z\in h^{-1}(B_{\overline{\rho}}(y,\epsilon))$이다. 따라서 $B_{\overline{\rho}}(x,\delta)\subset h^{-1}(B_{\overline{\rho}}(y,\epsilon))$이므로 $h$는 연속이다.
+    \end{itemize}
+    앞선 내용과 $h^{-1}$의 형태를 생각하면, $h$가 위상동형사상이 될 필요충분조건은 두 양수 $m$과 $M$이 존재하여 모든 $n\in\Z_+$에 대해 $m\leq a_n\leq M$인 것이라 할 수 있다.
+\end{exercise}
+
+\begin{exercise}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] 점 $x\in X$에 대하여 집합 $D(x,\epsilon)=\prod_{n\in\Z_+}(x_n-\epsilon/2^{n/2},x_n+\epsilon/2^{n/2})$라 하고, $y\in D(x,\epsilon)$이라 하자. 모든 $n\in\Z_+$에 대하여 $\vert y_n\vert^2<\vert x_n\vert^2+\epsilon^2/2^n$이므로 $D(x,\epsilon)\subset X$이다. 또한 $d(x,y)^2=\sum_{i=1}^\infty\vert x_n-y_n\vert^2<\sum_{i=1}^\infty\epsilon^2/2^n=\epsilon^2$이므로 $y\in B_d(x,\epsilon)$이다. 이제 $z\in B_d(x,\epsilon)$이라 하자. 그러면 $\sum_{i=1}^\infty\vert x_n-y_n\vert^2<\epsilon^2$이고, 이는 $\overline{\rho}(x,y)<\epsilon$을 함의한다. 그렇지 않으면, 어떤 $n_0\in\Z_+$에 대하여 $\vert x_{n_0}-y_{n_0}\vert>\dfrac{\epsilon+\overline{\rho}(x,y)}{2}\geq\epsilon$이므로 $\vert x_{n_0}-y_{n_0}\vert^2>\epsilon^2$이다. 따라서 $D(x,\epsilon)\subset B_d(x,\epsilon)\subset B_{\overline{\rho}}(x,\epsilon)$이 성립한다.
+        \item[(b)] 상자 위상에서 집합 $U=\R^\infty\cap\prod_{n\in\Z_+}(-1/k,1/k)$는 열린집합이지만 $l^2$--위상에서는 그렇지 않다. 어떠한 기저 원소 $B_d(0,\epsilon)\cap\R^\infty$도 $U$에 포함되지 않기 때문이다. 임의의 $\epsilon>0$에 대하여 $1/n_0<\epsilon/2$이 되도록 하는 자연수 $n_0$를 선택하고, $n\ne n_0$이면 $x_n=0$, $x_{n_0}=1/2n_0+\epsilon /4$라 하자. 그러면 점 $x=(x_n)_{n\in\Z_+}\in\R^\infty$에 대하여
+            \[
+              \sum_{i=1}^\infty\vert x_i\vert^2=\vert x_{n_0}\vert^2=\biggl(\frac{1}{2n_0}+\frac{\epsilon}{4}\biggr)^2<\biggl(\frac{\epsilon}{4}+\frac{\epsilon}{4}\biggr)^2=\dfrac{\epsilon^2}{4}<\epsilon^2
+            \]
+            이므로 $x\in B_d(0,\epsilon)\cap\R^\infty$이고,
+            \[
+                \vert x_{n_0}\vert=\frac{1}{2n_0}+\frac{\epsilon}{4}>\frac{1}{2n_0}+\frac{1}{2n_0}=\frac{1}{n_0}
+            \]
+            이므로 $x\notin U$이다. 또한 $l^2$--위상의 기저 원소 $B_d(0,\epsilon)\cap\R^\infty$는 균등 위상에서 열린집합이 아니다. 앞선 경우와 마찬가지로, 어떠한 기저 원소 $B_{\overline{\rho}}(0,\delta)\cap\R^\infty$도 $B_d(0,\epsilon)\cap\R^\infty$에 포함되지 않기 때문이다. 임의의 $\delta>0$에 대하여 $n_0\delta^2/4>\epsilon^2$이 되도록 하는 자연수 $n_0$를 선택하고, $n\leq n_0$이면 $x_n=\delta/2$, $n>n_0$이면 $x_n=0$이라 하자. 그러면 점 $x=(x_n)_{n\in\Z_+}\in\R^\infty$에 대하여
+                \[
+                    \sup_{n\in\Z_+}\vert x_n\vert=\frac{\delta}{2}<\delta
+                \]
+                이므로 $x\in B_{\overline{\rho}}(0,\delta)\cap\R^\infty$이고,
+                \[
+                    \sum_{i=1}^\infty\vert x_k\vert^2=\sum_{i=1}^{n_0}\frac{\delta^2}{4}=\frac{n_0\delta^2}{4}>\epsilon^2
+                \]
+                이므로 $x\notin B_d(0,\epsilon)\cap\R^\infty$이다. 마지막으로 균등 위상과 곱 위상에 의한 부분공간이 서로 같지 않음은 \textcolor{blue}{\textbf{Theorem 20.4}}로부터 유도된다.
+        \item[(c)] 상자 위상에서 집합 $U=H\cap\prod_{n\in\Z_+}(-1/(k+1),1/(k+1)=\prod_{n\in\Z_+}[0,1/(k+1))$은 열린집합이지만, 균등 위상에서는 그렇지 않다. ((b)와 비슷하게 증명할 수 있다.) 이제 $H$에서 곱 위상이 $l^2$--위상보다 세밀함을 보이자. $l^2$--위상의 기저 원소 $B_d(x,\epsilon)\cap H$에 대하여, $\sum_{k=k_0}^\infty1/k^2<\epsilon^2/2$가 되도록 하는 자연수 $k_0$를 선택하고, 집합
+            \[
+                V=\prod_{k=1}^{k_0}\biggl(x_k-\frac{\epsilon}{(2k_0)^{1/2}},x_k+\frac{\epsilon}{(2k_0)^{1/2}}\biggr)\cap H\times\prod_{k>k_0}\biggl[0,\frac{1}{k}\biggr]
+            \]
+            라 하자. $V$는 곱 위상의 기저 원소이다. 점 $y\in V$에 대하여
+            \begin{align*}
+                \sum_{k=1}^\infty\vert x_k-y_k\vert^2&=\sum_{k=1}^{k_0}\vert x_k-y_k\vert^2+\sum_{k>k_0}\vert x_k-y_k\vert^2<\sum_{k=1}^{k_0}\frac{\epsilon^2}{2k_0}+\sum_{k>k_0}\frac{1}{k^2}\\[3pt]
+                &<\frac{\epsilon^2}{2}+\frac{\epsilon^2}{2}=\epsilon^2
+            \end{align*}
+            이므로 $V\subset B_d(x,\epsilon)\cap H$이다. 그러므로 $H$에서 상자 위상을 제외한 세 위상에 의한 부분공간은 서로 같다.
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    \textcolor{red}{Do it yourself!}
+\end{exercise}
+
+\begin{exercise}
+    \textcolor{red}{Do it yourself!}
+\end{exercise}
+
+\begin{exercise}
+    함수 $f:[0,\infty)\to[0,1)$을 $f(x)=\dfrac{x}{1+x}$로 정의하자. $f$는 증가함수이고, 모든 $a,b\geq0$에 대하여
+    \[
+        f(a+b)-f(b)=\frac{a+b}{1+a+b}-\frac{b}{1+b}=\frac{a}{(1+b)(1+a+b)}\leq\frac{a}{1+b}=f(a)
+    \]
+    이므로 $f(a+b)\leq f(a)+f(b)$이다. $d^\prime=f\circ d$이므로
+    \begin{align*}
+        d^\prime(x,z)&=f(d(x,z))\leq f(d(x,y)+d(y,z))\\
+        &\leq f(d(x,y))+f(d(y,z))=d^\prime(x,y)+d^\prime(y,z)
+    \end{align*}
+    이다. 나머지 두 조건은 자명하므로 $d^\prime$은 거리함수이다. \textcolor{blue}{\textbf{Exercise \ref{exc:20.3}(a)}}에 의해 $d^\prime=f\circ d$는 $d$로 생성된 공간에서 연속이고, 역으로 $d=f^{-1}\circ d^\prime$은 $d^\prime$으로 생성된 공간에서 연속이다. 따라서 \textcolor{blue}{\textbf{Exercise \ref{exc:20.3}(b)}}로부터 $d^\prime$은 $d$와 같은 거리 위상을 생성하는 $X$ 위의 유계 거리함수이다.
+\end{exercise}
+\begin{note}
+    본문과 더불어 이 연습문제에서 유계성은 위상적 성질이 아님을 재차 강조하겠다.
+\end{note}
+
+\section{The Metric Topology (continued)}
+
+\begin{exercise}
+	\label{exc:21.1}
+    $d^\prime:=d\vert_{A\times A}$가 $A$ 위의 거리함수임은 자명하다. 점 $a\in A$에 대하여 $B_{d^\prime}(a,\epsilon)=B_d(a,\epsilon)\cap A$이므로 부분공간 위상은 $d^\prime$로 유도된 거리 위상보다 세밀하다. 역으로, 부분공간의 기저 원소 $B_d(x,\epsilon)\cap A$ ($x\in X$)에 속한 점 $a$에 대하여 $\delta\in(0,\epsilon-d(x,a))$이면 $B_{d^\prime}(a,\delta)=B_d(a,\delta)\cap A\subset B_d(x,\epsilon)\cap A$이므로 $d^\prime$으로 유도된 거리 위상은 부분공간 위상보다 세밀하다.
+\end{exercise}
+
+\begin{exercise}
+    거리함수의 성질에 의해 $f$는 단사이다. 이때
+    \[
+        x\in B_{d_X}(x_0,\epsilon)\Longleftrightarrow d_X(x,x_0)<\epsilon \Longleftrightarrow d_Y(f(x),f(x_0))<\epsilon\Longleftrightarrow f(x)\in B_{d_Y}(f(x_0),\epsilon)
+    \]
+    이므로 $f$는 $X$에서 $Y$로의 등거리매장(isometric imbedding)이다.
+\end{exercise}
+
+\begin{exercise}
+    \textcolor{blue}{\textbf{Theorem 20.3}}과 \textcolor{blue}{\textbf{Theorem 20.5}}의 증명을 변형하라. \textcolor{red}{Do it yourself!}
+\end{exercise}
+
+\begin{exercise}
+    $\R_l$에서, 집합족 $\{[x,x+1/n)\}_{n\in\Z_+}$은 점 $x$에서의 가산 기저이다. $I_o^2$에서는 점에 따라 가산 기저를 다르게 잡을 수 있다.
+    \begin{table}[H]
+    	\centering
+        \begin{tabular}{l|l}
+            \toprule
+            점 & 가산 기저 \\
+            \midrule
+            $0\times 0$ & $\{[0\times 0,0\times1/n)\}_{n\in\Z_+}$ \\
+            \midrule
+            $a\times 0$ ($a>0$) & $\{((a-a/n)\times1,a\times1/n)\}_{n\in\Z_+}$ \\
+            \midrule
+            $a\times b$ ($0<b<1$) & $\{(a\times(b-b/n),a\times(b+(1-b)/n))\}_{n\in\Z_+}$ \\
+            \midrule
+            $a\times 1$ ($a<1$) & $\{(a\times(1-1/n),(a+(1-a)/n)\times0)\}_{n\in\Z_+}$ \\
+            \midrule
+            $1\times 1$ & $\{(1\times (1-1/n),1\times 1]\}_{n\in\Z_+}$ \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+\end{exercise}
+
+\begin{exercise}
+    \textcolor{red}{Do it yourself!}
+\end{exercise}
+
+\begin{exercise}
+    \textcolor{red}{Do it yourself!}
+\end{exercise}
+
+\begin{exercise}
+    \phantom{}
+    \begin{itemize}
+        \item[($\Longrightarrow$)] 함수열 $f_n$이 $f$로 균등수렴한다고 가정하고 $(\R^X,\overline{\rho})$에서 $U$를 $f$의 한 근방이라 하자. 그러면 $U$에 속하는 열린 공 $B_{\overline{\rho}}(f,\epsilon)$이 존재한다. 또한 자연수 $N$이 존재하여 모든 $x\in X$와 $n\geq N$에 대하여 $\vert f_n(x)-f(x)\vert<\epsilon/2$이다. 따라서 $n\geq N$이면
+            \[
+                \overline{\rho}(f_n,f)=\sup\{\overline{d}(f_n(x),f(x))\mid x\in X\}\leq\frac{\epsilon}{2}<\epsilon
+            \]
+            이므로 $f_n\in B_{\overline{\rho}}(f,\epsilon)$이다. 이는 점렬 $f_n$이 $(\R^X,\overline{\rho})$에서 $f$로 수렴함을 의미한다.
+        \item[($\Longleftarrow$)] 역으로, 점렬 $f_n$이 $(\R^X,\overline{\rho})$에서 $f$로 수렴한다고 가정하자. 그러면 자연수 $N$이 존재하여 $n\geq N$이면 $f_n\in B_{\overline{\rho}}(f,\epsilon)$이다. 이러한 $n$과 $x\in X$에 대하여 $d(f_n(x),f(x))\leq\delta<\epsilon$인 $\delta\in(0,\epsilon)$이 존재한다. 이는 함수열 $f_n$이 $f$로 균등수렴함을 의미한다. 
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    함수열 $f_n$이 $f$로 균등수렴한다고 가정하고, $U$를 $f(x)$의 한 근방이라 하자. $U$에 속하는 열린 공 $B_{d_Y}(f(x),\epsilon)$을 택하자. 자연수 $N_1$이 존재하여 $n\geq N_1$이면 $d_Y(f_n(x_n)-f_n(x))<\epsilon/2$이다. \textcolor{blue}{\textbf{(Theorem 21.3)}} 자연수 $N_2$가 존재하여 $n\geq N_2$이면 $d_Y(f_n(x),f(x))<\epsilon/2$이다. 따라서 $n\geq\max\{N_1,N_2\}$이면
+    \[
+        d_Y(f_n(x_n),f(x))\leq d_Y(f_n(x_n),f_n(x))+d_Y(f_n(x),f(x))<\frac{\epsilon}{2}+\frac{\epsilon}{2}=\epsilon
+    \]
+    이므로 점렬 $(f_n(x_n))$은 $f(x)$로 수렴한다.
+\end{exercise}
+
+\begin{exercise}
+	\label{exc:21.9}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] 간단한 극한 계산으로 쉽게 알 수 있다.
+        \item[(b)] $\vert f_n(1/n)-f(1/n)\vert=1$
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    두 연속함수 $f,g:\R^2\to\R$를 각각 $f(x\times y)=xy$, $g(x\times y)=x^2+y^2$으로 정의하자. \textcolor{blue}{\textbf{Theorem 18.1}}에 의해, 세 집합 $A=f^{-1}(\{1\})$, $B=g^{-1}(\{1\})$, $C=g^{-1}((-\infty,1])$은 모두 $\R^2$의 닫힌집합이다.
+\end{exercise}
+
+\begin{exercise}
+    \textcolor{red}{Do it yourself!}
+\end{exercise}
+
+\begin{exercise}
+    \textcolor{red}{Do it yourself!}
+\end{exercise}
+
+\section{The Quotient Topology}
+
+\begin{exercise}
+    \textcolor{red}{Do it yourself!}
+\end{exercise}
+
+\begin{exercise}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] 사상 $p$가 우역사상(right inverse) $f$를 가지므로 $p$는 전사이다. \textcolor{blue}{\textbf{(Exercise 2.5(a))}} 여기서 임의의 $U\subset Y$에 대하여 $U=(p\circ f)^{-1}(U)=f^{-1}(p^{-1}(U))$가 성립함과 두 사상 $f$, $g$가 모두 연속임을 고려하면, $U$가 $Y$의 열린집합일 필요충분조건은 $p^{-1}(U)$가 $X$의 열린집합인 것이다. 따라서 $p$는 상사상이다.
+        \item[(b)] $f$를 $A$에서 $X$로의 포함사상(inclusion map)이라 하자. $f$는 연속이고, $r\circ f$는 $A$ 위의 항등사상이므로 (a)에 의해 $r$은 상사상이다.
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    사상 $p:A\to\R\times\{0\}$를 수축 $x\times y\mapsto x\times0$으로 정의하고, 사상 $f:\R\times\{0\}\to\R$을 위상동형사상 $x\times 0\to x$로 정의하자. 그러면 $p$와 $f$는 모두 상사상이고, $q=f\circ p$이다. 따라서 \textcolor{blue}{\textbf{Theorem 22.2}}로부터 $q$는 상사상이다. 이때
+    \begin{align*}
+        &q(\{x\times y\mid x\geq0,y>1\})=[0,\infty),\\
+        &q(\{x\times 1/x\mid x>0\})=(0,\infty)
+    \end{align*}
+    이므로 $q$는 열린 사상도 닫힌 사상도 아니다.
+\end{exercise}
+
+\begin{exercise}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] 힌트와 \textcolor{blue}{\textbf{Corollary 22.3}}을 이용하여 $X^*$이 $\R$와 위상동형임을 알 수 있다.
+        \item[(b)] $g(x\times y)=x^2+y^2$라 하면 (a)와 비슷한 논리로 $X^*$이 $[0,\infty)$와 위상동형임을 알 수 있다.
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    $U$가 $A$의 열린집합이라 하자. $A$가 $X$의 열린집합이므로 $U$도 $X$의 열린집합이다. 그러면 $q(U)=p(U)\subset p(A)$ 역시 열린집합이다.
+\end{exercise}
+
+\begin{exercise}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] $\R_K$가 $T_1$이고, $K$가 $\R_K$의 닫힌집합이므로 $Y$의 모든 한점집합 $\{[1]\}$, $\{x\}$ ($x\notin K$)은 닫혀있다. 따라서 $Y$는 $T_1$ 공간이다. $\R_K$에서 $0$의 근방은 $\R$에서의 근방 $U$에 대하여 $U$ 또는 $U\setminus K$의 형태를 갖는다. $U$는 $0$을 갖는 열린구간을 포함하므로 반드시 $K$와 만난다. 이때 $Y$에서 $[1]$의 근방은 $\R$에서 $K$의 각 점의 근방의 합집합이다. 따라서 $Y$에서 $0$과 $[1]$을 두 서로소 열린집합으로 구분할 수 없으므로 $Y$는 하우스도르프가 아니다.
+        \item[(b)] $Y$는 하우스도르프가 아니므로 집합 $\Delta_Y$는 $Y$의 닫힌집합이 아니다. 이때 역상
+            \[
+                (p\times p)^{-1}(\Delta_Y)=\{x\times y\mid x=y\text~{또는}~x,y\in K\}=\Delta_{\R_K}\cup(K\times K)
+            \]
+            은 $\R_K\times\R_K$의 닫힌집합이다.
+    \end{itemize}
+\end{exercise}
+
+\section{Connected Spaces}
+
+\begin{exercise}
+    공간 $(X,\mathcal{T})$의 분리는 공간 $(X,\mathcal{T}^\prime)$의 분리이므로 $(X,\mathcal{T}^\prime)$이 연결공간이면 $(X,\mathcal{T})$도 연결공간이다. 그러나 역은 성립하지 않는다. 이는 $X$ 위의 비이산 위상과 이산 위상을 비교하면 간단하다.
+\end{exercise}
+
+\begin{exercise}
+    두 집합 $C$와 $D$가 $\bigcup A_n$의 분리라 가정하자. $A_n$이 $\bigcup A_n$의 연결 부분공간이므로 $C$ 또는 $D$에 완전히 포함되어야 한다. $A_1\subset C$라 하자. $A_1\cap A_2\ne\varnothing$이므로 $A_2\subset C$이다. 귀납법에 의해 모든 $n$에 대하여 $A_n\subset C$이므로 모순이다.
+\end{exercise}
+
+\begin{exercise}
+    두 집합 $C$와 $D$가 $A\cup(\bigcup A_\alpha)$의 분리라 가정하자. $A$는 $A\cup(\bigcup A_\alpha)$의 연결 부분공간이므로 $C$ 또는 $D$에 완전히 포함되어야 한다. $A\subset C$라 하자. $A\cap A_\alpha\ne\varnothing$이므로 모든 $\alpha$에 대하여 $A_\alpha\subset C$이고, 이는 모순이다. 
+\end{exercise}
+\begin{note}
+    \textcolor{blue}{\textbf{Theorem 23.3}}을 두 번 적용하여 같은 결과를 얻을 수 있다.
+\end{note}
+
+\begin{exercise}
+    두 집합 $A$와 $B$가 $X$의 분리이면, $B=X\setminus A$이므로 $B$는 유한집합이다. 따라서 $B$는 여유한위상에서 열린집합이 될 수 없다.
+\end{exercise}
+
+\begin{exercise}
+    만약 두 점 $x$와 $y$가 $A\subset X$에 속해 있다면 두 집합 $\{x\}$와 $A\setminus\{x\}$는 $A$의 분리이다. \textcolor{blue}{\textbf{Example 23.4}}를 참고하면, 역은 성립하지 않음을 확인할 수 있다.
+\end{exercise}
+
+\begin{exercise}
+    $C\cap\operatorname{Bd}A=\varnothing$이면, $C\cap\operatorname{Int}A=C\cap\overline{A}\ne\varnothing$이고 $C\cap\operatorname{Int}(X\setminus A)=C\cap \overline{X\setminus A}\ne\varnothing$이므로 두 집합은 $C$의 분리이다.
+\end{exercise}
+
+\begin{exercise}
+    두 구간 $[0,\infty)$와 $(-\infty,0)$은 $\R_l$의 분리이므로 $\R_l$은 연결공간이 아니다.
+\end{exercise}
+
+\begin{exercise}
+	\label{exc:23.8}
+    $A$를 $\R^\omega$의 모든 유계 수열의 집합이라 하고, $B=X\setminus A$라 하자. (\textcolor{blue}{\textbf{Example 23.6}} 참고) $x\in A$이면 $\vert x_n\vert\leq M$인 $M>0$이 존재한다. $y\in B_{\overline{\rho}}(x,1/2)$라 하면, 모든 $n\in\Z_+$에 대하여
+    \[
+        \vert y_n\vert\leq\vert y_n-x_n\vert+\vert x_n\vert\leq\frac{1}{2}+M
+    \]
+    이므로 $y\in A$이다. 따라서 $A$는 열린집합이다. $x\in B$이면 임의의 $M>0$에 대하여 $\vert x_{n_M}\vert>M$이 되도록 하는 $n_M\in\Z_+$가 존재한다. 똑같이 $y\in B_{\overline{\rho}}(x,1/2)$라 하면, 임의의 $M>0$에 대하여
+    \[
+        \vert y_{n_{M+1}}\vert\geq\vert x_{n_{M+1}}\vert-\vert x_{n_{M+1}}-y_{n_{M+1}}\vert>M+1-\frac{1}{2}=M+\frac{1}{2}>M 
+    \]
+    이므로 $y\in B$이다. 따라서 $B$ 역시 열린집합이고, $A$와 $B$는 $\R^\omega$의 분리이다.
+\end{exercise}
+
+\begin{exercise}
+    $Z=(X\times Y)\setminus(A\times B)$라 하자. 임의의 $x\notin A$에 대하여, 세로선(vertical line) $V_x=\{x\}\times Y$는 $Y$와 위상동형이므로 연결공간이다. 같은 논리로, 임의의 $y\notin B$에 대하여, 가로선(horizontal line) $H_y=X\times \{y\}$는 연결공간이다. 이제 기준점(base point) $a\times b$ ($a\notin A$, $b\notin B$)를 하나 정하자. 그러면 \textcolor{blue}{\textbf{Theorem 23.3}}에 의해 $V_a\cup H_b$는 연결집합이다. 한편, 모든 세로선 $V_x$와 가로선 $H_y$는 집합 $V_a\cup H_b$와 만나므로 $Z=(\bigcup_{x\notin A}V_x)\cup(\bigcup_{y\notin B}H_y)$는 연결집합이다.
+\end{exercise}
+
+\begin{exercise}
+	\label{exc:23.10}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] $X_K$는 $\prod_{\alpha\in K}X_\alpha$와 위상동형이므로 연결공간이다.
+        \item[(b)] 모든 $X_K$는 점 $a$를 공유하므로 $Y$ 역시 연결공간이다. \textcolor{blue}{\textbf{(Theorem 23.3)}}
+        \item[(c)] 점 $x\in X$의 한 근방을 $U$라 하면 $x\in\prod_{\alpha\in J}U_\alpha\subset U$인 기저 원소 $\prod_{\alpha\in J}U_\alpha$가 존재한다. 이때 $\alpha_1,\cdots,\alpha_n$를 제외한 모든 $\alpha$에 대하여 $U_\alpha=X_\alpha$라 할 수 있다. 이제 $K=\{\alpha_1,\cdots,\alpha_n\}$이라 하고, $\alpha\in K$이면 $y_\alpha=x_\alpha$, $\alpha\notin K$이면 $y_\alpha=a_\alpha$라 두자. 그러면 점 $y=(y_\alpha)_{\alpha\in J}$는 $U\cap X_K$이다. 따라서 $\overline{Y}=X$이고, \textcolor{blue}{\textbf{Theorem 23.4}}에 의해 $X$는 연결공간이다.
+    \end{itemize}
+\end{exercise}
+\begin{note}
+    이 연습문제는 \textcolor{blue}{\textbf{Example 26.7}}의 일반화이다.
+\end{note}
+
+\begin{exercise}
+    두 집합 $A$와 $B$가 $X$의 분리라 가정하자. 만약 집합 $p^{-1}(\{y\})$이 $A$와 만나면 $A$는 연결집합인 $p^{-1}(\{y\})$를 포함해야 한다. $B$에도 같은 논리가 적용되므로, $A$와 $B$는 모두 포화된 열린집합(saturated open set)이다. 따라서 $p$에 의한 두 집합의 상 $p(A)$, $p(B)$는 모두 $Y$의 열린집합이다. 두 상은 서로소이므로 $Y$의 분리를 이룬다. 
+\end{exercise}
+
+\begin{exercise}
+    $C$와 $D$가 $Y\cup A$의 분리라 가정하자. $Y$는 $Y\cup A$의 연결 부분집합이므로 $Y$는 $C$ 또는 $D$에 포함되어야 한다. $C$와 $D$가 서로소이므로 $Y\subset C$라 하면 $D\subset A$이다. 여기서 $X=Y\cup(X\setminus Y)=Y\cup A\cup B=B\cup C\cup D$이므로 $D$가 $X$에서 열린집합이면서 닫힌집합임을 보이면 충분하다. \textcolor{blue}{\textbf{Lemma 23.1}}로부터 $C$의 극한점은 $D$에 속할 수 없고, $B$의 극한점은 $A$에 속할 수 없으므로 $D\cap A$에도 속할 수 없다. 이는 곧 $B\cup C$가 자신의 극한점을 모두 포함함을 의미하므로 $B\cup C$는 $X$의 닫힌집합이다. 따라서 $D$는 $X$의 열린집합이다. \textcolor{blue}{\textbf{Lemma 23.1}}을 한 번 더 적용하자. $D$의 극한점은 $C$와 $B$에 모두 속할 수 없다. 이는 $D$가 자신의 극한점을 모두 포함함을 의미하므로 $D$는 $X$의 닫한집합이다.
+\end{exercise}
+
+\section{Connected Subspaces of the Real Line}
+
+\begin{exercise}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] 각 구간에서 점을 하나 제거해보자. $(0,1)$에서 한 점을 제거한 집합은 연결집합이 아니다. 하지만 나머지 두 구간에서는 $1$을 제거해도 연결성을 유지한다. 따라서 $(0,1)$은 나머지 두 구간과 위상동형이 아니다. 한편, 닫힌구간 $[0,1]$에서는 두 점 $0$과 $1$을 제거해도 연결성을 유지하나, 다른 두 구간은 그렇지 않다. 따라서 $[0,1]$은 $(0,1]$과 위상동형이 아니다.
+        \item[(b)] (a)를 활용하자. $X=[0,1]$, $Y=(0,1)$, $f(x)=x/2+1/4$, $g(y)=y$로 두면 충분하다.
+        \item[(c)] $\R^n$에서 한 점을 제거해도 연결성을 유지하지만, $\R$에서는 그렇지 않다.
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    함수 $g:S^1\to\R$을 $g(x)=f(x)-f(-x)$로 정의하자. $S^1$은 연결공간이고 \textcolor{blue}{\textbf{(Example 18.6)}}, 모든 $x\in S^1$에 대하여 $g(-x)=-g(x)$이므로 $g(c)=0$이 되도록 하는 점 $c\in S^1$이 존재한다. \textcolor{blue}{\textbf{(Theorem 24.3(Intermediate value theorem))}} 즉, $f(c)=f(-c)$이다.
+\end{exercise}
+
+\begin{exercise}
+    $X=[0,1]$이라 하고, 함수 $g:X\to X$를 $g(x)=f(x)-x$로 정의하자. $g(0)=f(0)\geq0$이고 $g(1)=f(1)-1|\leq0$이므로 $g(c)=f(c)-c=0$을 만족하는 $c\in X$가 존재한다. $f(0)>0$이고 $f(1)<1$인 경우에는 \textcolor{blue}{\textbf{Theorem 24.3(Intermediate value theorem)}}를 적용하고, 그 외의 경우에는 $0$ 또는 $1$이 고정점(fixed point)이다. 이제 $X=[0,1)$ 또는 $X=(0,1)$이라 하자. 이 경우 $f(x)=(x+1)/2$로 정의된 함수 $f$는 $X$에서 고정점을 갖지 않는다.
+\end{exercise}
+
+\begin{exercise}
+    먼저 $S\ne\varnothing$이 위로 유계이면서 상한이 존재하지 않는 $X$의 부분집합이라 하자. $A$를 $S$의 모든 상계의 집합, $B=X\setminus A$라 하자. 가정에 의해 두 집합 $A$와 $B$는 모두 공집합이 아니다. 한편 $a\in A$이면 $a$는 $S$의 상계이지만 상한은 아니므로 $a_0<a$인 $a_0\in A$가 존재하고, $a\in(a_0,\infty)\subset A$이다. $b\in B$이면 $b$는 $S$의 상계가 아니므로 $s>b$인 $s\in S$가 존재하고, $b\in(-\infty,s)\subset B$이다. 따라서 $A$와 $B$는 열린집합이므로 $X$의 분리이다. 이제 두 점 $x<y$에 대하여 $x<z<y$를 만족하는 $z\in X$가 없다고 가정하자. 그러면 구간 $(-\infty,x]=(-\infty,y)$는 $X$의 열린집합이면서 닫힌집합이다.
+\end{exercise}
+\begin{note}
+    \textcolor{blue}{\textbf{Theorem 24.1}}의 역도 성립한다.
+\end{note}
+
+\begin{exercise}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] $\Z_+$는 정렬집합(well-ordered set)이므로 $\Z_+\times[0,1)$은 선형 연속체(linear continuum)이다. \textcolor{blue}{\textbf{(Exercise \ref{exc:24.6})}}
+        \item[(b)] \textcolor{blue}{\textbf{Example 3.12}}에 의해 $[0,1)\times\Z_+$는 선형 연속체가 아니다.
+        \item[(c)] 임의의 두 점 $a\times b<c\times d$에 대하여 $a\times b<(a+c)/2\times(b+d)/2<c\times d$이다. \textcolor{blue}{\textbf{Exercise 3.15(b)}}로부터 $[0,1)\times[0,1]$는 최소 상계 성질(least upper bound property)를 만족하므로 선형 연속체이다.
+        \item[(d)] 부분집합 $\{0\}\times[0,1)$은 위로 유계이지만 상한이 존재하지 않으므로 $[0,1]\times[0,1)$은 선형 연속체가 아니다.
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+	\label{exc:24.6}
+    $a\times b<c\times d$라 하자. $a<c$이면 $a\times b<a\times(b+1)/2<c\times d$이다. $a=c$이고 $b<d$이면 $a\times b<a\times(b+d)/2<c\times d$이다. 이제 $A\ne\varnothing$가 아래로 유계인 부분집합이라 하자. $X$가 정렬집합이므로, 집합 $\pi_1(A)\subset X$는 최소 원소 $x$를 갖는다. 그러면 점 $x\times\inf\pi_2((\{x\}\times[0,1))\cap A)$가 $A$의 하한이다.
+\end{exercise}
+
+\begin{exercise}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] $x_1<x_2$이면 $f(x_1)<f(x_2)$에서 $f$는 단사이므로 $f$는 일대일대응이다. $U$가 $X$의 열린집합이고 $x\in (a,b)\subset U$이면 $f(x)\in (f(a),f(b))\subset f(U)$이므로 $f(U)$는 $Y$의 열린집합이다. 역으로, $f(U)$가 $Y$의 열린집합이고 $y\in (c,d)\subset f(U)$이면 $f^{-1}(y)\in (f^{-1}(c),f^{-1}(d))\subset U$이므로 $U$는 $X$의 열린집합이다. 따라서 $f$는 위상동형사상이다. (최소 원소 또는 최대 원소의 경우도 비슷하게 논증할 수 있다.)
+        \item[(b)] $x\leq y$이면 $f(x)=x^n\leq y^n=f(y)$이고, $f(x^{1/n})=x$이므로 $f$는 순서를 보존하는 전사함수이다. (a)로부터 $f$는 위상동형사상이므로 $f^{-1}$는 연속이다.
+        \item[(c)] $x\leq y<-1$이면 $f(x)=x+1\leq y+1\leq f(y)$, $x<-1<0\leq y$이면 $f(x)=x+1\leq y=f(y)$, $0\leq x\leq y$이면 $f(x)=x\leq y=f(y)$이므로 $f$는 순서를 보존한다. $y<0$에 대하여 $f(y-1)=y$이고 $y\geq0$이면 $f(y)=y$이므로 $f$는 전사이다. 그러나 $f$는 위상동형사상이 아니다. 구간 $[0,\infty)=(-1/2,\infty)\cap X$는 $X$의 열린집합이지만 $f([0,\infty))=[0,\infty)$는 $\R$의 열린집합이 아니다.
+            \begin{note}
+                (c)에서 (a)가 성립하지 않는 이유는 $X$ 위의 순서 위상과 $X$의 $\R$에 대한 부분공간 위상이 서로 다르기 때문이다. 구간 $[0,\infty)$는 부분공간 위상에서는 열린집합이지만, 순서 위상에서는 열린집합이 아니다. (\textcolor{blue}{\textbf{Theorem 16.4}} 참고)
+            \end{note}
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+	\label{exc:24.8}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] 그렇다. $\{X_\alpha\}_{\alpha\in J}$를 경로연결공간의 모임이라 하고, $x$와 $y$를 곱 공간 $\prod_{\alpha\in J}X_\alpha$의 두 점이라 하자. 각 $\alpha\in J$에 대하여, $x_\alpha$와 $y_\alpha$를 연결하는 경로 $f_\alpha:[a,b]\to X_\alpha$를 택하자. 그러면 $f(t)=(f_\alpha(t))_{\alpha\in J}$로 정의된 함수 $f:[a,b]\to\prod_{\alpha\in J}X_\alpha$는 $x$와 $y$를 연결하는 경로이다. \textcolor{blue}{\textbf{(Theorem 19.6)}}
+        \item[(b)] 그렇지 않다. \textcolor{blue}{\textbf{Example 24.7}}을 생각하라. 
+        \item[(c)] 그렇다. $f(p),f(q)\in f(X)$라 하자. $g:[a,b]\to X$가 $p$와 $q$를 연결하는 경로이면, 합성 $f\circ g:[a,b]\to Y$는 $f(p)$와 $f(q)$를 연결하는 경로이다.
+        \item[(d)] 그렇다. $x$와 $y$가 같은 $A_\alpha$에 속해있는 경우는 자명하다. $x\in A_\alpha$, $y\in A_\beta$ ($\alpha\ne\beta)$라 하자. 점 $p\in\bigcap A_\alpha$를 택하면 $x$에서 $p$로의 경로 $f:[a,b]\to A_\alpha$와 $p$에서 $y$로의 경로 $g:[b,c]\to A_\beta$를 얻는다. 이제 두 경로를 이어 붙인 $h:[a,c]\to A_\alpha\cup A_\beta$는 $x$에서 $y$로의 경로이다. \textcolor{blue}{\textbf{(Theorem 18.3(The pasting lem))}}
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    $\R^2$의 특정한 점에서 $A$를 지나지 않는 직선의 집합은 비가산이다. 따라서 $A$를 피하면서 임의의 두 점을 적당한 선분 몇 개로 연결할 수 있다.
+\end{exercise}
+
+\begin{exercise}
+	\label{exc:24.10}
+    힌트에서 주어진 집합을 $A$라 하자. $y\in A$이면 $y\in B\subset U$인 열린 공 $B$가 존재한다. $B$의 모든 점은 $y$, $y$는 $x_0$와 경로로 연결되므로 $B$의 모든 점은 $x_0$와 경로로 연결된다. \textcolor{blue}{\textbf{(Example 24.3)}} 따라서 $B\subset A$이므로 $A$는 열린집합이다. $y\in U\setminus A$이면 같은 방식으로 열린 공 $B$를 생각했을 때, $B$의 임의의 점은 $x_0$와 경로로 연결될 수 없다. 그렇지 않으면 $y$와 $x_0$를 연결하는 경로가 존재하게 된다. 따라서 $B\subset U\setminus A$이므로 $A$는 닫힌집합이다. $A$는 연결집합 $U$의 열린집합이면서 닫힌집합이고 공집합이 아니므로 $A=U$이다.
+\end{exercise}
+
+\begin{exercise}
+    $\R$에서, 구간 $A_1=[-1,1]$는 연결집합이지만 $\operatorname{Bd}A_1=\{\pm1\}$은 연결집합이 아니다. \textcolor{blue}{\textbf{(Example 23.3)}} $\R^2$에서, $A_2=B(-1,1)\cup B(1,1)\cup\{0\times 0\}$은 연결집합이지만, $\operatorname{Int}A_2=A\setminus\{0\times0\}$은 연결집합이 아니다. $\R$에서, $\Q$는 연결집합이 아니지만 $\operatorname{Int}\Q=\varnothing$과 $\operatorname{Bd}\Q=\R$은 연결집합이다. \textcolor{blue}{\textbf{(Example 23.4)}}
+\end{exercise}
+
+\begin{exercise}
+    \textcolor{red}{To be updated.}
+\end{exercise}
+
+\section{Components and Local Connectedness}
+
+\begin{exercise}
+    $A$가 $\R_l$의 연결집합이고 $x\in A$이면 기저 원소 $[x,b)\cap A$는 $A$의 열린집합이라 닫힌집합이므로 임의의 $b>x$에 대하여 $A=[x,b)\cap A$이다. 따라서 $A=\{x\}$이다. 이는 $\R_l$의 연결성분과 경로성분 모두 한점집합이다. \textcolor{blue}{\textbf{Theorem 23.5}}로부터 $\R$에서 $\R_l$로의 연속함수는 상수함수밖에 없음을 알 수 있다.
+\end{exercise}
+\begin{note}
+    \textcolor{blue}{\textbf{Exercise \ref{exc:18.7}}}의 결론을 연결성을 이용하여 다시 확인하였다.
+\end{note}
+
+\begin{exercise}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] (경로)연결공간의 곱 공간은 (경로)연결공간이므로 곱 위상에서 $\R^\omega$의 (경로)연결성분은 자기 자신이다. \textcolor{blue}{\textbf{(Exercise \ref{exc:23.10}, Exercise \ref{exc:24.8})}}
+        \item[(b)] $x-y$가 유계라 가정하고, 함수 $f:[0,1]\to\R^\omega$를 $f(t)=(1-t)x+ty$로 정의하자. $M>0$이 $x-y$의 상계이면, 모든 $t,s\in[0,1]$에 대하여
+            \[
+                \Vert f(t)-f(s)\Vert_{\overline{\rho}}=\Vert x-y\Vert_{\overline{\rho}}\vert t-s\vert\leq M\vert t-s\vert
+            \]
+            이므로 $f$는 연속이다. $[0,1]$은 연결공간이므로 $f([0,1])$은 $f(0)=x$와 $f(1)=y$를 포함하는 연결 부분공간이다. 그러므로 $x$와 $y$는 같은 연결성분에 속한다. 역으로 $x-y$가 유계가 아니라 가정하자. 두 부분집합 $A$, $B$를 다음과 같이 설정하자.
+            \[
+                A=\{z\in\R^\omega\mid x-z\text{가 유계이다.}\},\quad B=\R^\omega\setminus A
+            \]
+            \textcolor{blue}{\textbf{Exercise \ref{exc:23.8}}}과 같은 방법으로, $A$와 $B$는 $\R^\omega$의 분리를 이룸을 보일 수 있다. 따라서 $x\in A$와 $y\in B$는 같은 연결성분에 속할 수 없다.
+        \item[(c)] 자연수 $N$에 대하여 $n>N$이면 $x_n=y_n$이라 가정하고, 함수 $g:\R^N\to\R^\omega$를 $g(a_1,\cdots,a_N)=(a_1,\cdots,a_N,\cdots,x_{N+1},x_{N+2},\cdots)$로 정의하자. 이때 $\R^\omega$의 기저 원소 $\prod_{n\in\Z_+}U_n$에 대하여
+            \[
+                g^{-1}\left(\prod_{n\in\Z_+}U_n\right)=\begin{cases}
+                    \displaystyle\prod_{n=1}^NU_n & (n>N\text{에 대하여 }x_n\in U_n\text{ 경우})\\[6pt]
+                    \varnothing & (\text{그 외의 경우})
+                \end{cases}
+            \]
+            이므로 $g$는 연속이다. $\R^N$은 연결공간이므로 $g(\R^N)$은 $x=g(x_1,\cdots,x_N)$과 $y=g(y_1,\cdots,y_N)$을 포함하는 연결공간아다. 그러므로 $x$와 $y$는 같은 연결성분에 속한다. 역으로, 무수히 많은 $n\in\Z_+$에 대하여 $x_n\ne y_n$이라 가정하고, 함수 $h:\R^\omega\to\R^\omega$를
+            \[
+                (h(z))_n=\begin{cases}
+                    \displaystyle\frac{n(z_n-x_n)}{\vert x_n-y_n\vert} & (x_n\ne y_n)\\[3pt]
+                    z_n-x_n & (x_n=y_n)
+                \end{cases}
+            \]
+            으로 정의하자. \textcolor{blue}{\textbf{Exercise \ref{exc:19.8}}}로부터 $h$는 위상동형사상이다. $h(x)=0$이고 $h(y)$는 유계가 아니므로 $x$와 $y$는 같은 연결성분에 속하지 않는다.
+    \end{itemize}
+\end{exercise}
+\begin{note}
+    이쯤에서 위상에 따른 $\R^\omega$의  연결성을 정리하자. (증명은 \textcolor{red}{Do it yourself!})
+    \begin{table}[H]
+    	\centering
+        \begin{tabular}{c|ccccc}
+            \toprule
+            $\R^\omega$ & 상자 위상 & $\supsetneq$ & 균등 위상 & $\supsetneq$ & 곱 위상 \\
+            \midrule
+            연결 & No && No && Yes \\
+            \midrule
+            경로연결 & No && No && Yes  \\
+            \midrule
+            국소연결 & No && Yes && Yes  \\
+            \midrule
+            국소경로연결 & No && Yes  && Yes  \\
+            \midrule
+            연결성분$=$경로연결성분 & Yes && Yes  && Yes \\
+            \midrule
+        \end{tabular}
+    \end{table}
+\end{note}
+
+\begin{exercise}
+    $I_o^2$에서 임의의 열린구간은 연결집합이므로 $I_o^2$는 국소연결이다. \textcolor{blue}{\textbf{(Example 24.1, Theorem 24.1)}} 한편, 점 $x\times 0$ ($x>0$)을 포함하는 임의의 열린구간은 점 $y\times 0$ ($y<x$)를 포함한다. \textcolor{blue}{\textbf{Example 24.6}}과 같은 논리로 $x\times 0$과 $y\times 0$은 경로로 연결될 수 없다. 따라서 $I_o^2$은 임의의 점 $x\times 0$ ($x>0$)에서 국소경로연결이 아니다. (점 $x\times 1$ ($x<1$) 역시 마찬가지이다.) 이제 경로연결성분을 구하기 위해 다음을 증명하자: 두 점 $x\times a$와 $y\times b$가 같은 경로연결성분에 속할 필요충분조건은 $x=y$이다. 먼저 $x=y$이고 $a<b$이면, $I_o^2$의 부분공간 $\{x\}\times[a,b]$는 $\R$의 구간 $[a,b]$와 위상동형이므로 경로연결이다. 역으로 $x<y$라 가정하고, 함수 $f:[a,b]\to I_o^2$이 $x\times a$와 $y\times b$를 연결하는 경로라 가정하자. \textcolor{blue}{\textbf{Theorem 24.3(Intermediate value theorem)}}으로부터 $x<z<y$인 임의의 $z$에 대하여 점 $z\times c$는 $f([a,b])$에 속해야 한다. 집합 $U_z=f^{-1}(\{z\}\times(0,1))$라 하면, 각 $z\in (x,y)$에 대하여 $U_z$는 공집합이 아니면서 구간 $[a,b]$에서의 열린집합이다. 따라서 집합 $U_z$마다 유리수점 $q_z$를 택할 수 있다. 각 $U_z$는 서로소이므로 사상 $z\mapsto q_z$는 구간 $(x,y)$에서 $\Q$로의 단사이고, 이는 모순이다. 따라서 두 점 $x\times a$와 $y\times b$는 같은 경로연결성분에 속할 수 없다. 이상의 결과를 종합하면, $I_o^2$의 경로연결성분은 $\{\{x\}\times[0,1]:x\in[0,1]\}$이다.
+\end{exercise}
+\begin{note}
+    $I_0^2$은 연결공간이므로 연결성분은 자기 자신 하나지만, 경로연결성분은 비가산이다.
+\end{note}
+
+\begin{exercise}
+    $U$를 $X$의 연결 열린집합이라 하자. $X$가 국소경로연결이므로, $U$의 각 경로연결성분은 $X$의 열린집합이다. \textcolor{blue}{\textbf{(Theorme 25.4)}} 만약 $U$의 경로연결성분이 둘 이상이면 이들은 $U$의 분리가 된다. 그러므로 $U$는 자기 자신의 경로연결성분이므로 경로연결이다.
+\end{exercise}
+\begin{note}
+    \textcolor{blue}{\textbf{Exercise \ref{exc:24.10}}}은 이 연습문제의 특수한 경우이다.
+\end{note}
+
+\begin{exercise}
+    \textcolor{red}{To be updated.}
+\end{exercise}
+
+\begin{exercise}
+    $U$를 $X$의 열린집합이라 하고, $C$를 $U$의 연결성분이라 하자. $C$의 임의의 점 $x$는, $U$의 원소로서, $x$의 근방 $V$를 포함하면서 $U$에 포함되는 연결집합 $D$를 갖는다. $C$는 연결성분이므로 $D$는 $C$에 포함된다. 따라서 $x\in V\subset D\subset C$이므로 $C$는 열린집합이다. \textcolor{blue}{\textbf{Theorem 25.3}}으로부터 $X$는 국소연결이다.
+\end{exercise}
+
+\begin{exercise}
+    \textcolor{red}{To be updated.}
+\end{exercise}
+
+\begin{exercise}
+    $U$를 $Y$의 열린집합이라 하고, $C$를 $U$의 연결성분이라 하자. $p$가 상사상이므로 $p^{-1}(C)$가 $X$의 열린집합임을 보이면 충분하다. 점 $x\in p^{-1}(C)\subset p^{-1}(U)$의 연결성분 $C_x$를 선택하자. $p^{-1}(U)$가 열린집합이므로 $C_x$ 역시 열린집합이다. 이때 $p(C_x)$는 점 $p(x)$를 포함하는 연결집합이므로 $p(C_x)\subset C$이다. 즉, $x\in C_x\subset p^{-1}(C)$이므로 $p^{-1}(C)$는 열린집합이다.
+\end{exercise}
+
+\begin{exercise}
+    \textcolor{red}{To be updated.}
+\end{exercise}
+
+\begin{exercise}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] (반사성) 어떤 분리도 같은 점을 공유할 수 없다. (대칭성) $A$와 $B$의 역할을 바꾼다. (추이성) $x\sim y$이고 $y\sim z$라 가정하고, 역으로 $x\sim z$이 성립하지 않는다고 하자. 그러면 $x\in A$이고 $z\in B$인 $X$의 분리 $A$, $B$가 존재한다. 이때 $y$는 $A$와 $B$ 둘 중 하나에 속해야 하고, 어느 경우에도 가정에 모순이다.
+        \item[(b)] 같은 연결 부분공간 $C$에 속하는 두 점 $x$와 $y$에 대하여 $X$의 분리 $A\ni x$, $B\ni y$가 존재하면 $C\cap A$와 $C\cap B$는 $C$의 분리이다. 따라서 임의의 연결성분은 어떤 준연결성분에 포함된다. 이제 $X$가 국소연결이면, \textcolor{blue}{\textbf{Theorem 25.3}}에 의해 모든 연결성분은 열린집합이다. 이는 서로 다른 연결성분에 속하는 두 점은 서로 다른 준연결성분에 각각 속함을 의미한다. 그러므로 $X$가 국소연결이면 연결성분과 준연결성분은 같다.
+        \item[(c)] \textcolor{red}{To be updated.}
+    \end{itemize}
+\end{exercise}
+
+\section{Compact Spaces}
+
+\begin{exercise}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] $(X,\mathcal{T})$의 열린집합은 $(X,\mathcal{T}^\prime)$의 열린집합이므로 $(X,\mathcal{T}^\prime)$가 콤팩트이면 $(X,\mathcal{T})$도 콤팩트이다. 역은 성립하지 않는다. \textcolor{blue}{\textbf{(Exercise \ref{exc:26.2})}}
+        \item[(b)] $\mathcal{T}\subset\mathcal{T}^\prime$이라 가정하고, 함수 $i:(X,\mathcal{T}^\prime)\to(X,\mathcal{T})$를 항등함수로 정의하자. 가정에 의해 $i$는 연속 전단사이고, 콤팩트 공간에서 하우스도르프 공간으로의 함수이므로 $i$는 위상동형사상이다. \textcolor{blue}{\textbf{(Theorem 26.6)}} 그러므로 $\mathcal{T}=\mathcal{T}^\prime$이다.
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+	\label{exc:26.2}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] 부분공간 $X\subset\R$의 한 열린덮개 $\{A_\alpha\}$를 생각하자. 이 덮개의 한 원소 $A_\beta$는 유한개를 제외한 $X$의 모든 점을 포함해야 한다. 따라서 $A_\beta$에 속하지 않은 $X$의 점을 갖는 유한개의 집합을 $\{A_\alpha\}$에서 택하면 유한 부분덮개를 얻는다.
+        \item[(b)] 집합 $A_n=[0,1]\setminus\{\frac{1}{n},\frac{1}{n+1},\cdots\}$에 대하여, $\{A_n\}_{n\in\Z_+}$은 $[0,1]$의 열린 덮개이지만 유한 부분덮개를 갖지 않는다.
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    $\{A_i\}_{i=1}^n$을 콤팩트 집합의 유한 모임이라 하고, $\{C_\alpha\}$를 $\bigcup_{i=1}^nA_i$의 한 열린 덮개라 하자. $\{C_\alpha\}$는 모든 $A_i$의 덮개이므로 각 $A_i$를 덮는 유한 부분 덮개 $\{C_{i,1},\cdots,C_{i,k_i}\}$가 존재한다. 그러므로 $\{C_{1,1},\cdots,C_{1,k_1},\cdots,C_{n,1},\cdots,C_{n,k_n}\}$은 $\{C_\alpha\}$의 유한 부분덮개이다.
+\end{exercise}
+
+\begin{exercise}
+	\label{exc:26.4}
+    거리공간은 하우스도르프 공간이므로 모든 콤팩트 집합은 닫힌집합이다. \textcolor{blue}{\textbf{(Theorem 26.3)}} $A$가 거리공간 $X$에서 유계가 아니라 가정하자. 점 $x\in A$에 대한 열린 공의 모임 $\{B(x,n)\mid n\in\Z_+\}$는 $A$의 열린 덮개이지만 유한 부분덮개를 갖지 않는다. 그러므로 거리공간의 콤팩트 부분공간은 유계인 닫힌집합이다. 유계성이 위상적 성질이 아님을 고려하면, 역이 성립하지 않는 예시는 쉽게 구상할 수 있다.
+\end{exercise}
+
+\begin{exercise}
+	\label{exc:26.5}
+    \textcolor{blue}{\textbf{Lemma 26.4}}로부터, 각 점 $x\in A$에 대하여 서로소인 두 열린집합 $U_x\ni x$와 $V_x\supset B$가 존재한다. 이때 $\{U_x\}_{x\in A}$는 $A$의 열린 덮개이므로 유한 부분덮개 $\{U_{x_i}\}_{i=1}^n$이 존재한다. 이때 $U=\bigcup_{i=1}^nU_{x_i}\supset A$와 $V=\bigcap_{i=1}^nV_{x_i}\supset B$는 서로소인 열린집합이다.
+\end{exercise}
+
+\begin{exercise}
+    $C$ 닫힌집합 $\xRightarrow[]{X\text{ 콤팩트}}$ $C$ 콤팩트 $\xRightarrow[]{f\text{ 연속}}$ $f(C)$ 콤팩트 $\xRightarrow[]{Y\text{ 하우스도르프}}$ $f(C)$ 닫힌집합
+\end{exercise}
+
+\begin{exercise}
+	\label{exc:26.7}
+    $C$를 $X\times Y$의 한 닫힌집합이라 하자. 그러면 $(X\times Y)\setminus C$는 열린집합이다. $x$가 $X\setminus\pi_1(C)$의 점이면 $\{x\}\times Y\subset(X\times Y)\setminus C$가 성립한다. 여기에 \textcolor{blue}{\textbf{Lemma 26.8(The tube lemma)}}를 적용하면, $X$에서 $x$의 근방 $W$가 존재하여 $\{x\}\times Y\subset W\times Y\subset(X\times Y)\setminus C$가 성립한다. 이는 $x\in W\subset X\setminus\pi_1(C)$를 의미하므로 $X\setminus\pi_1(C)$는 열린집합이고, $\pi_1(C)$는 닫힌집합이다.
+\end{exercise}
+
+\begin{exercise}
+	\label{exc:26.8}
+    \phantom{}
+    \begin{itemize}
+        \item[($\Longrightarrow$)] $f$가 연속이라 가정하고 $(X\times Y)\setminus G_f$가 열린집합임을 보이자. $x\times y\notin G_f$이면 $y\ne f(x)$이고 $Y$가 하우스도르프이므로 서로소인 두 근방 $V_1\ni y$, $V_2\ni f(x)$가 존재한다. 이때 $U_2=f^{-1}(V_2)\ni x$는 $X$의 열린집합이다. 만약 $a\times b\in(U_2\times V_1)\cap G_f$이면 $b=f(a)\in V_1\cap V_2$이므로 이는 모순이다. 따라서 $x\times y\in U_2\times V_1\subset(X\times Y)\setminus G_f$이므로 $(X\times Y)\setminus G_f$는 열린집합이다.
+        \item[($\Longleftarrow$)] 이제 $G_f$가 $X\times Y$의 닫힌집합이라 가정하고, 점 $x\in X$에 대하여 $V$를 $Y$에서 점 $f(x)$의 근방이라 하자. $Y\setminus V$가 닫힌집합이므로 집합 $A=G_f\cap(Y\setminus V)$는 닫힌집합이다. $Y$가 콤팩트이므로 \textcolor{blue}{\textbf{Exercise \ref{exc:26.7}}}로부터 $\pi_1(A)$는 $X$의 닫힌집합이다. 이때 $f^{-1}(V)=X\setminus\pi_1(A)$가 성립하므로 $f$는 연속이다.
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    세로선 $\{a\}\times B$를 $N$에 포함되는 열린집합 $U^a\times V^a$로 덮자. $\{a\}\times B$는 콤팩트 공간 $B$와 위상동형이므로 유한개의 집합 $U_1^a\times V_1^a,\cdots,U_{a_n}^a\times V_{a_n}^a$으로도 충분하다. 두 집합 $U_a=\bigcap_{i=1}^nU_{a_i}^a$와 $V_a=\bigcup_{i=1}^nV_{a_i}^a$의 곱 $U_a\times V_a$는 $N$에 포함되면서 $\{a\}\times B$를 덮는다. $\{U_a\times V_a\mid a\in A\}$는 $A\times B$의 열린 덮개이고, $A\times B$는 콤팩트이므로 유한 부분덮개 $\{U_1\times V_1,\cdots,U_k\times V_k\}$가 존재한다. 이제 $U=\bigcup_{i=1}^kU_i$와 $V=\bigcap_{i=1}^kV_i$가 찾고자 하는 두 열린집합이 된다.
+\end{exercise}
+
+\begin{exercise}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] $\epsilon>0$을 고정하자. 각 $x\in X$에 대하여, $f(x)-f_{n_x}(x)<\epsilon$이 되도록 하는 $n_x\in\Z_+$가 존재한다. 함수 $f-f_{n_x}$는 연속이므로 $x$의 근방 $U_x$가 존재하여 모든 $y\in U_x$에 대해 $f(y)-f_{n_x}(y)<\epsilon$이 성립한다. 함수열 $f_n$이 단조증가하므로 모든 $n\geq n_x$와 $y\in U_x$에 대하여 $f(y)-f_n(y)<\epsilon$이 성립한다. $\{U_x\mid x\in X\}$는 콤팩트 공간 $X$의 열린 덮개이므로 유한 부분덮개 $\{U_{x_1},\cdots,U_{x_k}\}$가 존재한다. $N=\max\{n_{x_1},\cdots,n_{x_k}\}$라 하자. 각 $x\in X$에 대해 $x_i$가 존재하여 $x\in U_{x_i}$이므로 $n\geq N$이면
+            \[
+                f(x)-f_n(x)\leq f(x)-f_N(x)\leq f(x)-f_{n_{x_i}}(x)<\epsilon
+            \]
+            이 성립한다. 따라서 함수열 $f_n$은 균등수렴한다.
+        \item[(b)] 함수열 $f_n$이 단조가 아닌 경우의 반례는 \textcolor{blue}{\textbf{Exercise \ref{exc:21.9}}}를 변형하여 얻을 수 있다. $X$가 콤팩트가 아닌 경우의 반례는 $f_n:[0,1)\to \R$, $f_n(x)=x^n$으로 쉽게 찾을 수 있다.
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    $C$와 $D$를 $Y$의 분리라 하자. $Y$는 닫힌집합이므로, $C$와 $D$도 $X$의 닫힌집합이다. $X$가 콤팩트 하우스도르프이므로 $C$와 $D$는 서로소인 콤팩트 집합이다. 따라서 서로소인 두 열린 근방 $U\supset C$와 $V\supset D$가 존재한다. \textcolor{blue}{\textbf{(Exercise \ref{exc:26.5})}} 가정에 의해, 모든 $A\in\mathcal{A}$에 대하여 $A\setminus(U\cup V)$는 공집합이 아닌 닫힌집합이다. (만약 공집합이면, $U\cap A$와 $V\cap A$는 $A$의 분리가 된다.) $\mathcal{A}$의 단순순서관계(simply ordered by proper inclusion)에 의해 모임 $\{A\setminus(U\cup V)\mid A\in\mathcal{A}\}$는 유한교차성(finite intersection property)을 갖는다. 따라서 $\bigcap_{A\in\mathcal{A}}A\setminus(U\cup V)$는 콤팩트 공간 $X$에서 공집합이 아니다. \textcolor{blue}{\textbf{(Theorem 26.9)}} 이는 $Y$에서 $U\cup V$에 속하지 않는 점이 있음을 의미하므로 $Y=C\cup D\subset U\cup V$에 모순이다.
+\end{exercise}
+
+\begin{exercise}
+	\label{exc:26.12}
+    먼저 힌트를 증명하자.
+    \begin{lem}
+        $U\supset p^{-1}(\{y\})$가 열린집합이면, $p^{-1}(W)\subset U$인 $y$의 근방 $W$가 존재한다.
+    \end{lem}
+    \begin{proof}
+        $p$가 닫힌 사상이므로 $p(X\setminus U)$는 $Y$의 닫힌집합이고, $W=Y\setminus p(X\setminus U)$는 열린집합이다. $y\notin W$이면 $y\in p(X\setminus U)$이고 $p$가 전사이므로 $y=f(x)$인 $x\in X\setminus U$가 존재한다. 그러나 $p^{-1}(\{y\})\subset U$이므로 이는 모순이고, $y\in W$이다. $x\in p^{-1}(W)$라 하면 $p(x)\in W$이므로 $p(x)\notin p(X\setminus U)$이다. 즉 $x\notin p^{-1}(p(X\setminus U))$이고, $X\setminus U\subset p^{-1}(p(X\setminus U))$이므로 $x\notin X\setminus U$이다. 따라서 $p^{-1}(W)\subset U$이다.
+    \end{proof}
+    \noindent 이제 $\{U_\alpha\}$를 $X=p^{-1}(Y)=\bigcup_{y\in Y}p^{-1}(\{y\})$의 열린 덮개라 하자. 각 $y\in Y$에 대하여 $p^{-1}(\{y\})$와 만나는 $\{U_\alpha\}$의 열린집합을 생각하자. $p^{-1}(\{y\})$가 콤팩트이므로 이를 덮는 유한 덮개 $\{U_{y_1},\cdots,U_{y_k}\}$가 존재한다. $U_y=\bigcup_{i=1}^kU_{y_i}$라 하고, $W_y$를 $p^{-1}(W_y)\subset U_y$를 만족하는 $y$의 근방이라 하자. $Y$가 콤팩트이므로 $\{W_y\mid y\in Y\}$의 유한 덮개 $\{W_1,\cdots, W_n\}$이 존재한다. 각 $W_i$에 해당하는 $U_i$는 $X$의 유한 덮개를 이룬다:
+    \[
+        \bigcup_{i=1}^nU_i\supset\bigcup_{i=1}^np^{-1}(W_i)=p^{-1}\biggl(\bigcup_{i=1}^nW_i\biggr)=p^{-1}(Y)=X.
+    \]
+\end{exercise}
+
+\begin{exercise}
+    \textcolor{red}{To be updated.}
+\end{exercise}
+
+\section{Compact Spaces of the Real Line}
+
+\begin{exercise}
+    점 $z$를 부분집합 $A$의 한 상계라 하자. $z\in A$이면 자명하게 $z$는 $A$의 상한이다. $z\notin A$라 가정하자. $A$의 원소 $a$를 하나 고르면 닫힌구간 $[a,z]$는 순서 위상에서 콤팩트이다. 닫힌구간의 모임
+    \[
+        \mathcal{A}=\{[b,y]\subset[a,z]\mid b\in A,y\text{는 }A\text{ 의 상계}\}
+    \]
+    를 고려하자. $[a,z]\in\mathcal{A}$이므로 $\mathcal{A}\ne\varnothing$이고, $\mathcal{A}$의 원소의 임의의 유한 교집합은 다시 $\mathcal{A}$에 속하는 닫힌구간이 되므로 $\mathcal{A}$는 유한교차성을 갖는다. 따라서 \textcolor{blue}{\textbf{Theorem 26.9}}로부터 $\bigcap_{A\in\mathcal{A}}A\ne\varnothing$이다. $x\in\bigcap_{A\in\mathcal{A}}A$라 하자. $a$보다 크거나 같은 모든 $b\in A$에 대하여 $b\leq x$이므로 $x$는 $A$의 상계이고, $z$보다 작은 모든 $A$의 상계 $y$에 대하여 $x\leq y$이다. 특히 $\bigcap_{A\in\mathcal{A}}A=\{x\}$이다. (만약 $x^\prime<x$ 역시 $\bigcap_{A\in\mathcal{A}}A$의 원소이면 $x^\prime$도 $A$의 상계이므로 $x\in[a,x^\prime]\in\mathcal{A}$이므로 $x\leq x^\prime$이 되어 모순이다.) 따라서 $\bigcap_{A\in\mathcal{A}}A$의 유일한 원소 $x$가 $A$의 상한이다.
+\end{exercise}
+
+\begin{exercise}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] $d(x,A)=0$ $\Longleftrightarrow$ $\forall\epsilon>0~\exists a\in A$ s.t. $d(x,a)<\epsilon$ $\Longleftrightarrow$ 모든 열린 공 $B_d(x,\epsilon)$는 $A$와 만난다. $\Longleftrightarrow$ $x\in\overline{A}$
+        \item[(b)] 고정된 점 $x\in X$에 대하여, $d_x(a)=d(x,a)$로 정의된 함수 $d_x:A\to \R$는 연속이다. \textcolor{blue}{\textbf{(Exercise \ref{exc:20.3})}} $A$가 콤팩트이므로 $d_x$는 최솟값을 갖는다.
+        \item[(c)] $x\in U(A,\epsilon)$ $\Longleftrightarrow$ $d(x,A)<\epsilon$ $\Longleftrightarrow$ $\exists a\in A$ s.t. $d(x,a)<\epsilon$ $\Longleftrightarrow$ $\exists a\in A$ s.t. $x\in B_d(a,\epsilon)$ $\Longleftrightarrow$ $x\in\bigcup_{a\in A}B_d(a,\epsilon)$
+        \item[(d)] 임의의 점 $a\in A\subset U$에 대하여 열린 공 $B_d(a,2\epsilon_a)\subset U$가 존재한다. 열린 공의 모임 $\{B_d(a,\epsilon_a)\subset U\mid a\in A\}$는 콤팩트 집합 $A$의 열린 덮개이므로 유한 부분덮개 $\{B_d(a_1,\epsilon_1),\cdots,B_d(a_n,\epsilon_n)\}$이 존재한다. $\epsilon=\min\{\epsilon_1,\cdots,\epsilon_n\}$이라 하자. (c)로부터
+            \begin{align}
+                x\in U(A,\epsilon)~&\Longrightarrow~\exists a\in A\text{ s.t. }x\in B_d(a,\epsilon)~\Longrightarrow~\exists a_i\text{ s.t. }a\in B_d(a_i,\epsilon_i)\\
+                &\Longrightarrow~d(x,a_i)\leq d(x,a)+d(a,a_i)<\epsilon+\epsilon_i\leq2\epsilon_i~\Longrightarrow~x\in B_d(a_i,2\epsilon_i)\subset U
+            \end{align}
+            이므로 $U(A,\epsilon)\subset U$이다.
+        \item[(e)] $A=\{x\times(1/x)\mid x\geq1\}$는 $\R^2$의 닫힌집합이지만 콤팩트는 아니다. \textcolor{blue}{\textbf{(Exercise \ref{exc:26.4}, Exercise \ref{exc:26.8})}} 이때 $U=\R_+^2$은 $\R^2$의 열린집합이지만 $A$의 어떠한 $\epsilon$--근방도 $U$에 포함되지 않는다.
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] $\{[0,1]\setminus K\}\cup\{(1/n,1]:n\in\Z_+\}$은 유한 부분덮개가 존재하지 않는 $[0,1]$의 열린 덮개이다.
+        \item[(b)] 힌트에서 $(0,\infty)$의 경우만 증명하자. ($(-\infty,0)$도 비슷하게 증명할 수 있다.) $\R_K$의 부분공간 위상이 보통 위상보다 세밀함은 자명하자. $x\in (a,b)\setminus K\subset (0,\infty)$라 하자. $n>1/x$인 가장 작은 자연수 $n$을 $n_x$라 하자. $n_x=1$이면 $a\leq 1<x<b$이므로 $x\in(1,b)\in(a,b)\setminus K$이다. $n_x>1$이면 $1/n<x<1/(n-1)$이므로 $x\in(1/n,1/(n-1))\cap(a,b)\setminus K\subset (a,b)\setminus K$이다. 따라서 $(0,\infty)$와 $(-\infty,0)$의 보통 위상 공간은 각각 $\R_K$의 부분공간이므로 연결공간이다. $0$은 $\overline{(0,\infty)}$와 $\overline{(-\infty,0)}$의 공통 원소이므로 $\R_K=(-\infty,0)\cup\{0\}\cup(0,\infty)$는 연결공간이다.
+        \item[(c)] $f:[0,1]\to\R_k$이 $0=f(0)$과 $1=f(1)$을 연결하는 경로라 하자. 정의역 $[0,1]$은 콤팩트 연결공간이므로 상 $f([0,1])$도 $\R_K$의 콤팩트 연결 부분공간이다. 그러므로 $f([0,1])$은 더 거친 공간인 $\R$에서도 연결 부분공간이어야 하므로 $[0,1]\subset f([0,1])$이다. 이는 $[0,1]$이 콤팩트 공간의 닫힌 부분집합으로서 $\R_K$의 콤팩트 집합임을 의미하므로 (a)에 모순이다.
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    $(X,d)$를 둘 이상의 점을 갖는 연결 거리공간이라 하자. 점 $x\in X$를 선택하자. \textcolor{blue}{\textbf{Exercise \ref{exc:20.3}}}에서 $d_x(y)=d(x,y)$로 정의된 함수 $d_x:X\to\R$는 연속이다. $x^\prime$이 $x$와 다른 $X$의 점이라 하면, $d_x(x)=0$과 $d^*:=d_x(x^\prime)>0$으로부터 $[0,d^*]\subset d_x(X)$이다. \textcolor{blue}{\textbf{(Theorem 24.3(Intermediate value theorem))}}
+\end{exercise}
+
+\begin{exercise}
+	\label{exc:27.5}
+    \textcolor{blue}{\textbf{Theorem 48.2(Baire category theorem)}}를 참고하라.
+\end{exercise}
+
+\begin{exercise}
+    \textcolor{red}{To be updated.}
+\end{exercise}
+
+\section{Limit Point Compactness}
+
+\begin{exercise}
+	\label{exc:28.1}
+    점 $x_i$를 $j\ne i$이면 $\pi_j(x_i)=0$, $\pi_i(x_i)=1$로 정의하고, $A=\{x_i\mid i\in\Z_+\}$라 하자. 점 $y\in[0,1]^\omega$에 대하여, 다음의 두 경우가 있다.
+    \begin{itemize}
+        \item[(i)] 모든 $j\in\Z_+$에 대하여 $\pi_j(y)=0$ 또는 $1$인 경우: 모든 $i$에 대하여 $\overline{\rho}(y,x_i)=0$ 또는 $1$이므로 $y$는 $A$의 극한점이 될 수 없다.
+        \item[(ii)] 모든 $j\in\Z_+$에 대하여 $\pi_j(y)\in(0,1)$인 경우: 모든 $\epsilon>0$에 대하여 점 $x_{i_\epsilon}\in B(y,\epsilon)$이 존재한다고 가정하자. $\epsilon_1\in(0,\min\{y_1,1-y_1\})$에 대하여 $i_{\epsilon_1}$을 택하자. 이때 $\overline{\rho}(x_{i_{\epsilon_1}},y)=\sup\{y_1,\cdots,y_{i_{\epsilon_1}-1},1-y_{i_{\epsilon_1}},y_{i_{\epsilon_1}+1},\cdots\}<\epsilon_1$이다. 만약 $i_{\epsilon_1}>1$이면, $y_1\leq\overline{\rho}(x_{i_{\epsilon_1}},y)<\epsilon_1$이므로 모순이다. $i_{\epsilon_1}=1$이면 $1-y_1<\epsilon_1$이므로 이 역시 모순이다. 따라서 어떤 열린 공 $B(y,\epsilon)$은 $A$의 원소를 갖지 않고, $y$는 $A$의 극한점이 아니다.
+    \end{itemize}
+    그러므로 $A$는 $[0,1]^\omega$에서 극한점을 갖지 않는 무한집합이다.
+\end{exercise}
+\begin{note}
+    균등 위상을 갖는 공간 $[0,1]^\omega$은 거리공간이다. \textcolor{blue}{\textbf{Theorem 28.2}}에 의해 $[0,1]^\omega$는 콤팩트, 극한점 콤팩트, 점렬 콤팩트 모두 아니다.
+\end{note}
+
+\begin{exercise}
+    집합 $A=\{1-1/n\mid n\in\Z_+\}$라 하자. 임의의 점 $x\in[0,1)$에 대하여, $n_0$를 $n_0>1/(1-x)$, 즉 $1-1/n_0>x$인 가장 작은 자연수라 하자. 그러면 $x$의 근방 $[x,1-1/n_0)$은 $A$와 $x$를 제외한 점에서는 만날 수 없다. $x=1$에 대해서는 $\{1\}=[1,2)\cap [0,1]$이 $A$와 만나지 않는 $x$의 근방이다. 그러므로 $A$는 $[0,1]$에서 극한점을 갖지 않는다.
+\end{exercise}
+
+\begin{exercise}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] $X$를 \textcolor{blue}{\textbf{Example 28.1}}의 공간 $\Z_+\times Y$라 하고, $f=\pi_1$이라 하자. 상 $f(X)=\Z_+$는 극한점 콤팩트가 아니다.
+        \item[(b)] $B$를 $A$의 무한 부분집합이라 하면 $X$의 무한 부분집합이기도 하므로 $X$에서 극한점 $x$를 갖는다. $X$에서 $x$의 모든 근방은 $B\setminus\{x\}$와 만나므로 $A\setminus\{x\}$와도 만난다. 이는 $x$가 $A$의 극한점임을 의미하고, $A$가 닫힌집합이므로 $x\in A$이다. 따라서 $A$는 극한점 콤팩트이다.
+        \item[(c)] $X=S_{\Omega}$, $Z=\overline{S_{\Omega}}$이라 하자. $Z$는 순서 위상이 부여된 공간이므로 $Z$는 하우스도르프이다. \textcolor{blue}{\textbf{Example 28.2}}의 논의로부터 $X$는 극한점 콤팩트이지만 $Z$의 닫힌집합은 아니다.
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    \phantom{}
+    \begin{itemize}
+        \item[($\Longrightarrow$)] $X$를 가산콤팩트 공간이라 하고 $A$를 극한점이 없는 $X$의 무한 부분집합이라 하자. $A$의 한 가산 무한 부분집합을 $B$라 하자. $B$ 역시 $X$에서 극한점을 갖지 않으므로 $B$는 닫힌집합이다. 또한 임의의 점 $b\in B$에 대하여 $U_b\cap B=\{b\}$를 만족하는 $b$의 근방 $U_b$가 존재한다. $\{X\setminus B\}\cup \{U_b\mid b\in B\}$는 $X$의 가산 열린 덮개이므로 유한 부분덮개가 존재한다. 따라서 $B$는 유한집합이므로 모순이다.
+        \item[($\Longleftarrow$)] $X$를 극한점 콤팩트 \textbf{$T_1$--공간}이라 하고, $\{U_n\}_{n\in\Z_+}$를 $X$의 가산 열린 덮개라 하자. $\{U_n\}_{n\in\Z_+}$의 어떤 유한 부분집합도 $X$를 덮을 수 없다고 가정하면, 각 $n\in\Z_+$에 대하여 집합 $\bigcup_{i=1}^nU_i$에 속하지 않는 점 $x_n$이 존재한다. $x_0\in X$를 임의의 점이라 하고, $n_1$을 $x_0\in\bigcup_{i=1}^{n_1}U_i$인 가장 작은 자연수라 하자. $\bigcup_{i=1}^{n_1}U_i$에 속하지 않는 점 $x_1$을 택하자. 같은 방식으로, 점 $x_1,\cdots,x_{k-1}$을 택했다고 할 때, 자연수 $n_k>n_{k-1}$를 $x_{k-1}\in\bigcup_{i=1}^{n_k}U_i$인 가장 작은 자연수라 하자. $\bigcup_{i=1}^{n_k}U_i$에 속하지 않는 점 $x_k$을 택하자. 이같은 방법으로 무한집합 $A=\{x_k\mid k\in\Z_+\}$를 구성할 수 있다. $A$는 $X$에서 극한점을 갖지 않음을 보이자. 만약 $A$가 극한점 $x$를 가지면, $n_x$를 $x\in\bigcup_{i=1}^{n_x}U_i=:V_x$인 가장 작은 자연수라 하자. $A$의 구성 방식에 의해, $V_x$는 $A$의 점을 유한개만 포함한다. 그 점들을 $x_{k_1},\cdots, x_{k_m}$이라 하자. $X$가 $T_1$--공간이므로 각 $x_{k_j}$ ($j=1,\cdots,m$)와 만나지 않는 $x$의 근방 $V_j$가 존재한다. 그러면 집합 $\bigcup_{j=1}^m(V_x\cap V_j)$는 $A\setminus\{x\}$와 만나지 않는 $x$의 근방이므로 이는 $x$가 $A$의 극한점이라는 가정에 모순이다.
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    \phantom{}
+    \begin{itemize}
+        \item[($\Longrightarrow$)] $X$가 가산콤팩트이고 $\{C_n\}$를 공집합이 아닌 닫힌집합의 축소열(nested sequence)이라 하자. 여기서 임의의 유한 모임 $\{X\setminus C_{n_1},\cdots,X\setminus C_{n_k}\}$은 $X$의 열린 덮개가 될 수 없다. $\bigcap_{j=1}^kC_{n_j}\ne\varnothing$이기 때문이다. 따라서 가산 모임 $\{X\setminus C_n\}_{n\in\Z_+}$ 역시 $X$의 열린 덮개가 될 수 없고, $\bigcap_{n\in\Z_+}C_n\ne\varnothing$이다.
+        \item[($\Longleftarrow$)] $\{U_n\}_{n\in\Z_+}$를 유한 부분덮개가 존재하지 않는 $X$의 가산 열린 덮개라 하자. 집합 $C_n=X\setminus(\bigcup_{i=1}^nU_n)$이라 하면 $\{C_n\}_{n\in\Z_+}$는 공집합이 아닌 닫힌집합의 축소열이다. 만약 $x\in\bigcap_{n\in\Z_+}C_n$이면 어떠한 $U_n$도 $x$를 포함할 수 없다. 따라서 $\bigcap_{n\in\Z_+}C_n=\varnothing$이다.
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    $f$가 연속인 단사함수임은 자명하다.
+    \begin{claim}
+        $f$는 전사이다.
+    \end{claim}
+    \begin{proof}
+        $a\notin f(X)$라 가정하자. $X$는 콤팩트 하우스도르프 공간이므로 $f(X)$는 콤팩트이고, $B(a,\epsilon)\cap f(X)=\varnothing$인 $\epsilon>0$가 존재한다. \textcolor{blue}{\textbf{(Theorem 26.5, Lemma 26.4)}} 점렬 $x_n$을 $x_1=a$, $x_{n+1}=f(x_n)$ ($n\in\Z_+$)로 정의하자. $n>m>1$이면
+        \[
+            d(x_n,x_m)=d(f(x_{n-1}),f(x_{m-1}))=d(x_{n-1},x_{m-1})=\cdots=d(f(x_{n-m}),a)\geq\epsilon
+        \]
+        이다. 이는 점렬 $x_n$이 수렴하는 부분수열을 갖지 않음을 의미한다. 그러나 $X$는 콤팩트 거리공간이므로 점렬 콤팩트여야 한다. 따라서 $f$는 전사이다.
+    \end{proof}
+    \noindent 이제 $f$는 연속인 전단사함수이고, $X$는 콤팩트 하우스도르프 공간이므로 \textcolor{blue}{\textbf{Theorem 26.6}}에 따라 $f$는 위상동형사상이다.
+\end{exercise}
+
+\begin{exercise}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] $f$의 축약적 성질(contracting principle)로부터 $f$가 연속함수임을 알 수 있다. 집합 $A_n=f^n(X)$라 하면, $f$가 연속이고 $X$가 콤팩트이므로 $A_n$ 역시 콤팩트이다. 따라서 거리공간의 부분공간으로서 $A_n$은 닫힌집합이다. 이때 $\{A_n\}_{n\in\Z_+}$는 공집합이 아닌 닫힌집합의 축소열이므로 \textcolor{blue}{\textbf{Theorem 26.9}}로부터 $A:=\bigcap_{n\in\Z_+}A_n\ne\varnothing$이다.
+            \begin{claim}
+                $f(A)\subset A$.
+            \end{claim}
+            \begin{proof}
+                $y\in f(A)$이고 $y\notin A$라 가정하자. 그러면 $y=f(x)$인 $x\in A$가 존재하고, $y\notin A_n$인 $n\in\Z_+$가 존재한다. 이때 $x\in A_{n-1}$이므로 $x=f(x^\prime)$인 $x^\prime\in A_{n-1}$이 존재한다. 따라서 $y=f(x)=f(f^{n-1}(x^\prime))=f^n(x^\prime)\in A_n$이므로 모순이다.
+            \end{proof}
+            \begin{claim}
+                $\lim\limits_{n\to\infty}\operatorname{diam}(A_n)=0$.
+            \end{claim}
+            \begin{proof}
+                $\epsilon>0$을 고정하자. $X$가 콤팩트 거리공간이므로 유계이다. 모든 $x_1$, $x_2\in X$에 대하여 $d(x_1,x_2)\leq M$인 $M>0$을 택하자. $a,b\in A_n$라 하면 어떤 $a_0,b_0\in X$에 대하여 $a=f^n(a_0)$, $b=f^n(b_0)$이다. 그러면
+                \[
+                    d(a,b)\leq\alpha d(f^{n-1}(a_0),f^{n-1}(b_0))\leq\cdots\leq\alpha^nd(a_0,b_0)\leq M\alpha^n
+                \]
+                이므로 충분히 큰 $n\in\Z_+$에 대하여 $\operatorname{diam}(A_n)<\epsilon$을 얻는다.
+            \end{proof}
+            \begin{claim}
+                $A$는 한점집합이다.
+            \end{claim}
+            \begin{proof}
+                $t,s\in A$ ($t\ne s$)라 가정하자. 임의의 $\epsilon\in (0,d(t,s))$를 택하자. 그러면 $n_0\in\Z_+$가 존재하여 $\operatorname{diam}(A_{n_0})<\epsilon$이다. $t,s\in A_{n_0}$에서, $d(t,s)\leq\operatorname{diam}(A_{n_0})<\epsilon<d(t,s)$이므로 모순이다.
+            \end{proof}
+            이상의 논의로부터, $f$는 $A$의 원소를 유일한 고정점을 갖는다.
+        \item[(b)] 집합 $A$를 (a)에서 정의한 것과 같은 것으로 두자.
+            \begin{claim}
+                $A=f(A)$.
+            \end{claim}
+            \begin{proof}
+                $x\in A$이면 모든 $n\geq0$에 대하여 $x=f^{n+1}(x_n)$인 $x_n\in X$가 존재한다. 콤팩트 거리공간으로서, $X$는 점렬 콤팩트이다. 따라서 점렬 $y_n=f^n(x_n)$은 수렴하는 부분열을 갖는다. $a$를 한 부분열 $y_{n_j}$의 극한이라 하자. 정의에 의해, $a$의 모든 근방은 점 $y_{n_j}=f^{n_j}(x_{n_j})$을 무수히 많이 포함한다. $A_n$이 닫힌집합이므로, 모든 $n\in\Z_+$에 대해 $a\in A_n$, 즉 $a\in A$이다. 모든 $n\in\Z_+$에 대해 $f(y_n)=x$이므로 $f(a)=x$이고, 따라서 $A\subset f(A)$이다.
+            \end{proof}
+            \begin{claim}
+                $\operatorname{diam}(A)=0$, 즉 $A$는 한점집합이다.
+            \end{claim}
+            \begin{proof}
+                거리공간에서 거리 $d$는 연속함수이고, $A$가 콤팩트 집합이므로 $d(x,y)$가 $d$의 최댓값이 되도록 하는 점 $x,y$가 존재한다. $A=f(A)$이므로 $x=f(a)$, $y=f(b)$가 되도록 하는 $a,b\in A$가 존재한다. 만약 $x\ne y$이면 $d(x,y)=d(f(a),f(b))<d(a,b)\leq d(x,y)$이므로 모순이다. 따라서 $A$는 한점집합이다.
+            \end{proof}
+            이상의 논의로부터, $f$는 $A$의 원소를 유일한 고정점을 갖는다.
+        \item[(c)] $f([0,1])=[0,1]$임은 자명하고, $x\ne y$이면
+            \[
+                d(f(x),f(y))=\vert x-y\vert\cdot\biggl\vert 1-\frac{1}{2}(x+y)\biggr\vert<\vert x-y\vert=d(x,y)
+            \]
+            이다. $\alpha<1$라 하자. 임의의 $x<y<1-\alpha$에 대하여
+            \[
+                \biggl\vert\frac{f(x)-f(y)}{x-y}\biggr\vert=\vert f^\prime(c_{x,y})\vert=1-c_{x,y}
+            \]
+            인 실수 $c_{x,y}\in(x,y)$가 존재한다. 즉, 다음이 성립한다.
+            \[
+                d(f(x),f(y))=\vert f(x)-f(y)\vert=\vert 1-c_{x,y}\vert\cdot\vert x-y\vert>\alpha\vert x-y\vert=\alpha d(x,y)
+            \]
+        \item[(d)] 등식 $f(x)=x$를 정리하면 $1=0$이므로 모순이고, $f$는 고정점을 갖지 않는다. $f$가 문제에서 제시하는 조건을 만족함은 다음과 같이 보일 수 있다.
+            \begin{align*}
+                \biggl\vert\frac{f(x)-f(y)}{x-y}\biggr\vert&=\frac{1}{2}\left\vert 1+\frac{x+y}{\sqrt{x^2+1}+\sqrt{y^2+1}}\right\vert<1\\[3pt]
+                \biggl\vert\frac{f(x)-f(0)}{x-0}\biggr\vert&=\frac{1}{2}\left\vert1+\frac{x}{\sqrt{x^2+1}+1}\right\vert\to1\text{ as }x\to\infty
+            \end{align*}
+    \end{itemize}
+\end{exercise}
+
+\section{Local Compactness}
+
+\begin{exercise}
+	\label{exc:29.1}
+    $\Q$에서 열린집합 $U$를 포함하는 콤팩트 집합 $C$가 존재한다고 가정하자. 그러면 $U$는 어떤 닫힌구간 $[a,b]$를 반드시 포함해야 한다. (순서 위상의 관점, 유리수의 조밀성) $[a,b]$는 $C$의 닫힌 부분집합이므로 콤팩트이다. 그러나 $[a,b]$는 점렬 콤팩트가 아니므로 콤팩트일 수 없다. (거리 위상의 관점) 따라서 $\Q$는 국소콤팩트가 아니다.
+\end{exercise}
+
+\begin{exercise}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] 사영 $\pi_\alpha$가 연속인 열린 사상이므로 \textcolor{blue}{\textbf{Exercise \ref{exc:29.3}}}에 의해 각 $X_\alpha$가 국소콤팩트임은 쉽게 확인할 수 있다. $\prod X_\alpha$가 국소콤팩트이므로 콤팩트 집합에 포함되는 기저 원소 $\prod U_\alpha$가 존재한다. 이때 유한개를 제외한 모든 $\alpha$에 대하여 $U_\alpha=X_\alpha$이다. 이 $\alpha$들에 대한 사영을 생각하면 유한개를 제외한 모든 $X_\alpha$가 콤팩트임을 알 수 있다. 
+        \item[(b)] 두 국소콤팩트 공간 $X_1$과 $X_2$에 대하여 곱 공간 $X_1\times X_2$가 국소콤팩트임을 보이면 충분하다. $x_1\times x_2$를 $X_1\times X_2$의 점이라 하자. 각 $i=1,2$에 대하여, $X_i$가 국소콤팩트이므로, 콤팩트 집합 $C_i$와 열린집합 $U_i$가 존재하여 $x_i\in U_i\subset C_i\subset X_i$이다. 따라서 $x_1\times x_2\in U_1\times U_2\subset C_1\times C_2\subset X_1\times X_2$이다.
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+	\label{exc:29.3}
+    $f$가 연속인 열린 사상이면 $f(X)$도 국소콤팩트이다. $f(x)\in f(X)$라 하자. $X$가 국소콤팩트이므로 $X$의 어떤 콤팩트 집합 $C$와 열린집합 $U$에 대하여 $x\in U\subset C$이다. 가정에 의해 $f(C)$는 콤팩트 집합, $f(U)$는 열린집합이고, $f(x)\in f(U)\subset f(C)$이므로 $f(X)$는 $f(x)$에서 국소콤팩트이다. $f$가 열린 사상이 아닌 연속함수이면 반례가 존재한다. $\Q$를 $\R$의 부분공간이라 하고, $\Q_d$를 $\Q$ 위에 이산 위상을 부여한 공간이라 하자. $f:\Q_d\to\Q$를 항등사상이라 하면, $f$는 연속이지만 열린 사상은 아니다. $\Q_d$는 국소콤팩트이지만, $\Q$는 그렇지 않다. \textcolor{blue}{\textbf{(Exercise \ref{exc:29.1})}}
+\end{exercise}
+
+\begin{exercise}
+    $[0,1]^\omega$가 $0$에서 국소콤팩트라 가정하자. 그러면 콤팩트 집합 $C$와 열린집합 $U$가 존재하여 $0\in U\subset C$이다. $U$가 $0$의 근방이므로 $B(0,\epsilon)\subset U$인 $\epsilon>0$가 존재한다. \textcolor{blue}{\textbf{Exercise \ref{exc:28.1}}}과 비슷한 논리로, $C$는 극한점 콤팩트가 아니다. 따라서 $[0,1]^\omega$는 $0$에서 국소콤팩트가 아니다. ($\pi_i(x_i)=\epsilon/2$로 바꾸면 충분하다.)
+\end{exercise}
+
+\begin{exercise}
+	\label{exc:29.5}
+    $X_1$과 $X_2$의 한점콤팩트화를 각각 $Y_1=X_1\cup\{p\}$, $Y_2=X_2\cup\{q\}$라 하자. 함수 $f$를 확장하여 $f(p)=q$라 정의하자. $f$가 전단사임은 자명하다. 다음 논증에 의해 $f$는 $Y_1$에서 $Y_2$로의 위상동형사상이다. $U$가 $Y_1$의 열린집합이다. $\Longleftrightarrow$ (i) $U$는 $X_1$의 열린집합이다. (ii) $Y_1\setminus U$는 $X_1$의 콤팩트 집합이다. $\Longleftrightarrow$ (i) $f(U)$는 $X_2$의 열린집합이다. (ii) $f(Y_1\setminus U)=Y_2\setminus f(U)$는 $X_2$의 콤팩트 집합이다. ((i), (ii)를 대응시켜 생각하라.)
+\end{exercise}
+
+\begin{exercise}
+    한 점을 제거한 원과 $\R$이 서로 위상동형임은 직접 확인해보라. \textcolor{red}{(Do it yourself!)} 따라서 \textcolor{blue}{\textbf{Exercise \ref{exc:29.5}}}에 의해 $S^1$과 $\R$의 한점콤팩트화는 서로 위상동형이다.
+\end{exercise}
+\begin{note}
+    이 결과를 $n$차원으로 확장할 수 있다.
+\end{note}
+
+\begin{exercise}
+    $\overline{S_\Omega}$는 정렬집합이므로 최소상계성질(least upper bound property)를 갖고, 닫힌집합이므로 콤팩트 공간이다. \textcolor{blue}{\textbf{(Exercise 10.1, Theorem 27.1)}} 또한 \textcolor{blue}{\textbf{Theorem 17.11}}에 의해 $\overline{S_\Omega}$는 하우스도르프 공간이다. 같은 논리로 $S_\Omega$ 역시 하우스도르프 공간이고, \textcolor{blue}{\textbf{Example 29.3}}에 의해 국소콤팩트이다. 그러나 \textcolor{blue}{\textbf{Example 28.2}}에서 $S_\Omega$는 콤팩트 공간이 아님을 알 수 있다.
+\end{exercise}
+
+\begin{exercise}
+    $\Z_+$와 $\{1/n\mid n\in\Z_+\}$는 모두 $\R$의 부분공간으로서 이산 위상을 가지므로 항등사상에 대하여 위상동형이다. $\{0\}\cup\{1/n\mid n\in\Z_+\}$는 콤팩트 하우스도르프 공간이므로 $\Z_+$의 한점콤팩트화와 위상동형이다.
+\end{exercise}
+
+
+\begin{exercise}
+    \textcolor{red}{To be updated.}
+\end{exercise}
+
+\begin{exercise}
+    $X$가 점 $x$에서 국소콤팩트이므로 $x\in W\subset C$인 콤팩트 집합 $C$와 열린집합 $W$가 존재한다. $x$의 근방 $U$에 대하여, 집합 $C\setminus(U\cap W)$은 $C$의 닫힌집합이므로 콤팩트이다. $X$가 하우스도르프이므로, 서로소인 두 열린집합 $V_1\ni x$과 $V_2\supset C\setminus(U\cap W)$가 존재한다. 이때 집합 $V=V_1\cap U\cap W$는 $x$의 근방이고, $\overline{V}\subset U$는 $C$의 닫힌집합이므로 콤팩트이다.
+\end{exercise}
+
+\begin{exercise}
+    \textcolor{red}{To be updated.}
+\end{exercise}
+
+\section{The Countability Axioms}
+
+\begin{exercise}
+	\label{exc:30.1}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] $\mathcal{B}_x$를 점 $x\in X$에서의 가산 국소 기저라 하자. 점 $y\ne x$를 포함하지 않는 $x$의 국소 기저 원소 $B_y\in\mathcal{B}_x$가 존재한다. 따라서 $\bigcap_{B\in\mathcal{B}_x}B=\{x\}$이다.
+        \item[(b)] $\R^\omega$의 곱 공간 $\R^\omega_{\text{prod}}$는 거리화 가능 공간이므로 제1가산 $T_1$--공간이고, 임의의 한점집합은 $G_\delta$ 집합이다. 이제 $\R^\omega$에 상자 위상을 부여한 공간 $\R^\omega_{\text{box}}$을 생각하자. \textcolor{blue}{\textbf{Example 21.6}}으로부터 $\R^\omega_{\text{box}}$는 제1가산이 아님을 알 수 있다.  그러나 $\R^\omega_{\text{box}}$는 $\R^\omega_{\text{prod}}$보다 세밀한 공간이므로 모든 한점집합은 $G_\delta$ 집합이다.
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    힌트에 따라 $\mathcal{C}$의 부분모임 $\{C_{n,m}\}$을 구성하자. 점 $x$를 포함하는 임의의 열린집합 $U$에 대하여 $x\in B_m\subset U$인 기저 원소 $B_m$이 존재한다. $U=B_m$에 같은 논리를 적용하면 $x\in B_n\subset B_m\subset U$인 기저 원소 $B_n$이 존재한다. 따라서 $x\in B_n\subset C_{n,m}\subset B_m\subset U$이므로 $\{C_{n,m}\}$은 $X$의 기저이다.
+\end{exercise}
+
+\begin{exercise}
+	\label{exc:30.3}
+    역으로, $A$의 도집합 $A^\prime$이 가산이라 가정하자. 그러면 $A^\prime$에 속하지 않는 $A$의 점은 비가산이다. 이러한 점에 $x$에 대하여 $B_x\cap A=\{x\}$인 기저 원소 $B_x$를 택하자. 이 기저 원소들은 기준점마다 서로 다르기에 모순이다.
+\end{exercise}
+\begin{note}
+    \textcolor{blue}{\textbf{Example 30.3}}의 아이디어를 활용하여, 비가산집합 $A\setminus A^{\prime}$에서 가산집합 $\{B_x\}$로의 단사 $x\mapsto B_x$를 구성한다.
+\end{note}
+
+\begin{exercise}
+	\label{exc:30.4}
+    $\mathcal{A}=\bigcup_{n\in\Z_+}\mathcal{A}_n$이라 하자. $\mathcal{A}$가 $X$의 기저임을 보이면 충분하다. 임의의 열린 공 $B(x,\epsilon)$에 대하여, 자연수 $n>2/\epsilon$과 $x$를 덮는 열린 공 $B(y,1/n)\in\mathcal{A}_n$을 차례대로 택하면 $x\in B(y,1/n)\subset B(x,\epsilon)$이다.
+\end{exercise}
+
+\begin{exercise}
+	\label{exc:30.5}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] $A$를 $X$의 가산 조밀 부분집합이라 하고, $\mathcal{A}_n=\{B(a,1/n)\mid a\in A\}$라 하자. 그러면 $\mathcal{A}=\bigcup_{n\in\Z_+}\mathcal{A}_n$은 $X$의 기저이다. 열린 공 $B(x,\epsilon)$에 대하여, 자연수 $n>2/\epsilon$과 점 $a\in B(x,1/n)\cap A$를 차례대로 택하면 $x\in B(a,1/n)\subset B(x,\epsilon)$이다.
+        \item[(b)] 모임 $\mathcal{A}_n$이 가산집합인 점을 제외하면 \textcolor{blue}{\textbf{Exercise \ref{exc:30.4}}}와 동일하다.
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    \phantom{}
+    \begin{itemize}
+        \item $\R_l$은 제2가산이 아닌 린델뢰프 공간이다. \\ \textcolor{blue}{\textbf{(Example 30.3, Exercise \ref{exc:30.5}(b))}}
+        \item $I_o^2$은 콤팩트 공간이지만 제2가산이 아닌 부분공간을 포함한다. \\ \textcolor{blue}{\textbf{(Theorem 27.1, Example 30.5, Exercise \ref{exc:30.4}, Theorem 30.2)}}
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    $S_\Omega$의 최소원을 $a_0$이라 하자.
+    \begin{table}[H]
+    	\centering
+        \begin{tabular}{c|cccc}
+            \toprule
+            & 제1가산 & 린델뢰프 & 분리가능 & 제2가산  \\
+            \midrule
+            $S_\Omega$ & Yes$^{(\text{i})}$ & No$^{(\text{iii})}$ & No$^{(\text{v})}$ & No \\
+            \midrule
+            $\overline{S_\Omega}$ & No$^{(\text{ii})}$ & Yes$^{(\text{iv})}$ & No$^{(\text{v})}$ & No \\ 
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    \begin{itemize}
+        \item[(i)] $\{a_0\}=[a_0,a_0+1)$는 $S_\Omega$의 열린집합이므로 $a_0$에서 가산 국소 기저를 갖는다. 점 $x>a_0$는 가산 국소 기저 $\{(y,x]\mid y<x\}$를 갖는다.
+        \item[(ii)] \textcolor{blue}{\textbf{Example 21.3}}으로부터 $\overline{S_\Omega}$는 $\Omega$에서 가산 국소 기저를 갖지 않는다.
+        \item[(iii)] 열린 덮개 $\{[a_0,x)\mid x\in S_\Omega\}$는 부분덮개를 갖지 않는다.
+        \item[(iv)] $\overline{S_\Omega}$는 콤팩트 공간이다.
+        \item[(v)] 임의의 가산 부분집합은 상한을 갖는다. \textcolor{blue}{\textbf{(Theorem 10.3)}}
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    \phantom{}
+    \begin{center}
+        \begin{tabular}{|c||ccccc|}
+            \hline
+            $\R^\omega$ & 상자 위상 & $\supsetneq$ & 균등 위상 & $\supsetneq$ & 곱 위상 \\ \hline\hline
+            제1가산 & No && Yes && Yes \\ \hline
+            린델뢰프 & No && No && Yes \\ \hline
+            분리가능 & No && No && Yes \\ \hline
+            제2가산 & No && No && Yes \\ \hline
+        \end{tabular}
+    \end{center}
+    \textbf{균등 위상}에서, $\R^\omega$는 거리공간이므로 제1가산이고, 나머지 세 성질은 동치이다. 만약 $\R^\omega$가 가산 기저를 갖는다면, \textcolor{blue}{\textbf{Exercise \ref{exc:30.3}}}에 의해 임의의 비가산 집합은 극한점을 가져야 한다. 그러나 모든 이진 수열(binary sequence)의 집합은 극한점을 갖지 않으므로 $\R^\omega$는 제2가산이 아니다.
+\end{exercise}
+\begin{note}
+    상자 위상과 곱 위상은 스스로 고민해보라. \textcolor{red}{Do it yourself!}
+\end{note}
+
+\begin{exercise}
+    $\{V_\alpha\}$를 $A$에서의 열린집합으로 구성된 $A$의 덮개라 하자. $X$의 열린집합 $U_\alpha$에 대하여 $V_\alpha=U_\alpha\cap A$라 하자. $A$가 닫힌 부분공간이므로 모임 $\{U_\alpha\}\cup\{X\setminus A\}$는 $X$의 열린 덮개이다. $X$가 린델뢰프이므로 가산 부분덮개 $\{U_n\}_{n\in\Z_+}\cup\{X\setminus A\}$가 존재한다. 각 $U_n$에 해당하는 $V_n$의 모임 $\{V_n\}_{n\in\Z_+}$은 $\{V_\alpha\}$의 가산 부분덮개이다. 이제 조르겐프라이 평면 $\R_l^2$을 고려하자. 유리수 평면 $\Q^2$이 가산 조밀 부분집합이므로 $\R_l^2$은 분리가능이다. 그러나 $\R_l^2$의 닫힌 부분공간 $L$(anti-diagonal, \textcolor{blue}{\textbf{Example 30.3}})은 분리가능하지 않다.
+\end{exercise}
+
+\begin{exercise}
+    $X=\prod_{n\in\Z_+}X_n$이 $\{X_n\}$의 가산 곱 공간이고 $A_n$이 공간 $X_n$의 가산 조밀 부분집합이면, $\prod_{n\in\Z_+}A_n$은 $X$의 가산 조밀 부분집합이다.
+\end{exercise}
+
+\begin{exercise}
+    먼저 $X$가 린델뢰프이고 $\{U_\alpha\}$가 $f(X)$의 열린 덮개라 가정하자. $\{f^{-1}(U_\alpha)\}$는 $X$의 열린 덮개이므로 가산 부분덮개 $\{f^{-1}(U_n)\}_{n\in\Z_+}$가 존재한다. 이때 $\{U_n\}_{n\in\Z_+}$는 $\{U_\alpha\}$의 가산 부분덮개이다. 이제 $A$가 $X$의 가산 조밀 부분집합이라 가정하자. \textcolor{blue}{\textbf{Theorem 18.1}}로부터 $\overline{f(A)}\supset f(\overline{A})=f(X)$가 성립하므로 $\overline{f(A)}=f(X)$이다. 따라서 $f(A)$는 $f(X)$의 가산 조밀 부분집합이다.
+\end{exercise}
+
+\begin{exercise}
+    먼저 $X$가 제1가산이라 하자. 그러면 점 $X$는 점 $x$에서 가산 국소 기저 $\{U_n\}_{n\in\Z_+}$를 갖는다. $f$가 열린 사상이므로 $\{f(U_n)\}_{n\in\Z_+}$는 $y:=f(x)$를 포함하는 $Y$의 열린집합의 모임이다. $V$를 $y$의 임의의 근방이라 하면 $f^{-1}(V)$는 $x$의 근방이므로 어떤 $n_0\in\Z_+$에 대하여 $x\in U_{n_0}\subset f^{-1}(V)$, 즉 $y\in f(U_{n_0})\subset V$이다. 따라서 $\{f(U_n)\}_{n\in\Z_+}$은 $y$의 가산 국소 기저이므로 $f(X)$는 제1가산이다. 이제 $X$가 가산 기저 $\{B_n\}_{n\in\Z_+}$를 갖는다고 가정하자. 비슷한 논리로 $\{f(B_n)\}_{n\in\Z_+}$은 $f(X)$의 가산 기저이다.
+\end{exercise}
+
+\begin{exercise}
+    $A$를 $X$의 가산 조밀 부분집합이라 하고, $\{U_\alpha\}_{\alpha\in I}$를 공집합이 아니면서 서로소인 $X$의 열린집합의 모임이라 하자. $\overline{A}=X$이므로 모든 $U_\alpha$는 $A$와 만나야 한다. 각 $\alpha\in I$에 대하여 점 $x_\alpha\in U_\alpha\cap A$를 선택하자. 여기서 $\alpha_1\ne\alpha_2$이면 $x_{\alpha_1}\ne x_{\alpha_2}$여야 한다. 그렇지 않으면 $U_{\alpha_1}\cap U_{\alpha_2}\ne\varnothing$이다. 따라서 $\alpha\mapsto x_\alpha$로 정의된 사상은 $I$에서 $A$로의 단사이다.
+\end{exercise}
+
+\begin{exercise}
+    $\{U_\alpha\times V_\alpha\}$를 곱 공간 $X\times Y$의 기저 덮개라 하자. 각 점 $x\in X$에 대하여 공간 $\{x\}\times Y$의 유한 부분덮개 $\{U_n^x\times V_n^x\}$를 택하자. $U^x=\bigcap_nU_n^x$라 하고 $X$의 열린 덮개 $\{U^x\}$의 가산 부분덮개 $\{U^{x_k}\}$를 택하자. 그러면 $\{U_n^{x_k}\times V_n^{x_k}\}$는 $\{U_\alpha\times V_\alpha\}$의 가산 부분덮개이다. 
+\end{exercise}
+
+\begin{exercise}
+    힌트에서 주어진 함수의 모임은 가산이므로 임의의 함수 $f\in\mathcal C(I,\R)$가 힌트의 함수로 근사 가능함을 보이면 충분하다. $f$가 균등 연속이므로 주어진 $\epsilon>0$에 대하여 $\vert x-y\vert<\delta$이면 $\vert f(x)-f(y)\vert<\epsilon/4$이 되도록 하는 $\delta>0$가 존재한다. $\{x_n\}$을 노름(norm)이 $\delta$보다 작은 $I$의 분할이라 하자. 각 분할점 $x_n$에 대하여 $\vert q_n-f(x_n)\vert<\epsilon/6$인 유리수 $q_n$을 택하자. 여기서
+    \[
+        \vert q_{n+1}-q_n\vert\leq\vert q_n-f(x_{n+1})\vert+\vert f(x_{n+1})-f(x_n)\vert+f(x_n)-q_n\vert<\frac{7}{12}\epsilon
+    \]
+    이다. 좌표평면 상의 점 $x_n\times q_n$을 선분으로 이어 만든 함수를 $g$라 하자. 그러면 임의의 $x\in[x_n,x_{n+1}]$에 대하여 다음이 성립한다.
+    \begin{align*}
+        \vert f(x)-g(x)\vert&\leq\vert f(x)-f(x_n)\vert+\vert f(x_n)-q_n\vert+\vert q_n-g(x)\vert\\[3pt]
+        &<\frac{\epsilon}{4}+\frac{\epsilon}{6}+\vert q_n-q_{n+1}\vert<\epsilon
+    \end{align*}
+\end{exercise}
+
+\begin{exercise}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] $x\in\R^I$라 하고, $\prod_{\alpha\in I}U_\alpha$를 $x$의 기저 근방이라 하자. 즉 $x_\alpha\in U_\alpha$이고, $\alpha_1,\cdots,\alpha_n$을 제외한 모든 $\alpha$에 대하여 $U_\alpha=\R$이다. 양 끝점이 유리수이고 서로소인 닫힌구간 $I_i\ni\alpha_i$를 택하자. 각 $j=1,\cdots,n$에 대하여 점 $x_j\in U_{\alpha_j}\cap\Q$를 택하자. 이제
+        \[
+            y_\alpha=\begin{cases}
+                x_j & (\text{어떤 }j=1,\cdots,n\text{에 대하여 } \alpha\in I_j\text{인 경우})\\
+                0 & (\alpha\notin I_1\cup\cdots\cup I_n\text{인 경우})
+            \end{cases}
+        \]
+        라 하고 $y=(y_\alpha)_{\alpha\in I}$라 하자. 이렇게 구성한 점 $y$의 집합은 가산이다: $(\{I_i\},\{x_j\})\mapsto y_\alpha$. $y\in\prod_{\alpha\in I}U_\alpha$이므로 점 $y$의 집합은 $\R^I$의 가산 조밀 부분집합이다.
+        \item[(b)] 힌트의 사상 $f$는 단사이다. 만약 $\alpha\ne\beta$이면 집합 $D\cap\pi_\alpha^{-1}((a,b))\cap\pi_\beta^{-1}((b,\infty))$는 $\pi_\beta^{-1}((a,b))$에 속하지 않는 $\R^J$의 점을 포함하므로 $f(\alpha)\ne f(\beta)$이다. 그러므로 $\vert J\vert<\vert\mathcal{P}(D)\vert$이다.
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    $\Q^\infty$는 가산집합이므로 린델뢰프이면서 분리가능이다. \textcolor{blue}{\textbf{Exercise \ref{exc:30.1}(b)}}와 비슷한 논리로 $\Q^\infty$는 제1가산이 아니다. 그러므로 $\Q^\infty$는 제2가산 역시 아니다.
+\end{exercise}
+
+\begin{exercise}
+    \textcolor{red}{To be updated.}
+\end{exercise}
+
+\section{The Separation Axioms}
+
+\begin{exercise}
+	\label{exc:31.1}
+    서로 다른 두 점 $x$, $y$에 대하여 서로소인 열린 근방 $U_x\ni x$와 $U_y\ni y$가 존재한다. $X$의 정칙성에 의해 $x\in\overline{V_x}\subset U_x$, $y\in\overline{V_y}\subset U_y$인 두 열린 근방 $V_x$와 $V_y$가 존재한다. \textcolor{blue}{\textbf{(Lemma 31.1)}}
+\end{exercise}
+
+\begin{exercise}
+    \textcolor{blue}{\textbf{Exercise \ref{exc:31.1}}}에서 점 대신 닫힌집합으로 생각하여도 무관하다.
+\end{exercise}
+
+\begin{exercise}
+    $-\infty\leq a<x<b\leq\infty$라 하자.
+    \begin{itemize}
+        \item[(i)] $a<c<x<d<b$인 경우: $x\in\overline{(c,d)}\subset[c,d]\subset[a,b]$ \textcolor{blue}{\textbf{(Exercise 17.5)}}
+        \item[(ii)] $(a,x)=\varnothing$이면서 $x<d<b$인 경우: $x\in(a,d)=[x,d)\subset\overline{[x,d)}\subset[x,d]\subset(a,b)$
+        \item[(iii)] $a<c<x$이면서 $(x,b)=\varnothing$인 경우: (ii)와 동일하다.
+        \item[(iv)] $(a,x)=(x,b)=\varnothing$인 경우: $\{x\}=(a,b)$는 열린집합이자 닫힌집합이다.
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    $X$가 하우스도르프이면 $X^\prime$도 하우스도르프이다. 그러나 나머지 두 성질은 이러한 관계가 없다. $\R$은 정규 공간이지만 $\R_K$는 정칙 공간도 아니다. 모든 이산 공간은 정규 공간이다.
+\end{exercise}
+
+\begin{exercise}
+    $Y$가 하우스도르프이므로 $Y$의 대각(diagonal) $\Delta_Y=\{y\times y\mid y\in Y\}$는 $Y\times Y$의 닫힌집합이다. \textcolor{blue}{\textbf{(Exercise \ref{exc:17.13})}} $f$와 $g$가 모두 연속이므로 \textcolor{blue}{\textbf{Exercise \ref{exc:18.10}}}의 사상 $f\times g:X\to Y\times Y$도 연속이다. 주어진 집합은 $(f\times g)^{-1}(\Delta_Y)$이고, 이는 닫힌집합이다.
+\end{exercise}
+
+\begin{exercise}          
+    $Y$의 임의의 한점집합은 $X$의 한점집합의 상이므로 $Y$는 $T_1$--공간이다. 이제 $B$를 $Y$의 닫힌집합이라 하고 $V$를 $B$의 근방이라 하자. 집합 $A:=p^{-1}(B)$는 $X$의 닫힌집합이고, $U:=p^{-1}(V)$는 $A$의 근방이므로 $A\subset W$이고 $\overline{W}\subset U$인 $A$의 근방 $W$가 존재한다. $X\setminus W$가 $X$의 닫힌집합이므로 $p(X\setminus W)$는 $Y$의 닫힌집합이다. 이떄 $A\cap(X\setminus W)=\varnothing$이고 $p(X\setminus W)\cup p(W)=Y$이므로 $W^\prime=Y\setminus p(X\setminus W)$라 하면 $W^\prime$은 $Y$의 열린집합이고 $B\subset W^\prime\subset p(W)\subset p(\overline{W})\subset V$가 성립한다. $p(\overline{W})$는 $W^\prime$을 포함하는 닫힌집합이므로 $\overline{W^\prime}\subset p(\overline{W})\subset V$가 성립한다. 따라서 $Y$는 정규공간이다.
+\end{exercise}
+\begin{note}
+    솔직히 힌트를 어디에 쓰는지 모르겠다.
+\end{note}
+
+\begin{exercise}
+    \textcolor{blue}{\textbf{Exercise \ref{exc:26.12}}}의 힌트를 이용하자. 약간의 변형을 거치면 $p^{-1}(\{y\})$ 대신 $Y$의 임의의 부분집합에 똑같이 적용할 수 있다.
+    \begin{lem}
+        $U\supset p^{-1}(\{y\})$가 열린집합이면 $p^{-1}(W)\subset U$인 $y$의 근방 $W$가 존재한다.
+    \end{lem}
+    \begin{itemize}
+        \item[(a)] $y_1\ne y_2$라 하자. $p$가 전사 완전사상이므로 두 집합 $p^{-1}(\{y_1\})$과 $p^{-1}(\{y_2\})$는 공집합이 아니고, $X$에서 서로소인 콤팩트 집합이다. $X$가 하우스도르프이므로 서로소인 두 근방 $U_1\supset p^{-1}(\{y_1\})$, $U_2\supset p^{-1}(\{y_2\})$가 존재한다. \textcolor{blue}{\textbf{Lemma}}에 의해 $p^{-1}(W_1)\subset U_1$, $p^{-1}(W_2)\subset U_2$인 두 근방 $W_1\ni y_1$과 $W_2\ni y_2$가 존재한다. $W_1\cap W_2=\varnothing$이므로 $Y$는 하우스도르프이다.
+        \item[(b)] (a)로부터 $Y$는 하우스도르프이다. $Y$의 점 $y$와 닫힌집합 $C\not\ni y$에 대하여, $p$가 전사 연속 완전사상이므로 $p^{-1}(\{y\})$는 콤팩트이고 $p^{-1}(C)$는 닫힌집합이며, 두 집합은 모두 공집합이 아니다. $X$가 정칙공간이므로 각 점 $x\in p^{-1}(\{y\})$에 대하여 서로소인 두 근방 $U_x\ni x$와 $V_x\supset p^{-1}(C)$가 존재한다. $\{U_x\}$는 $p^{-1}(\{y\})$의 열린 덮개이므로 유한 부분덮개 $\{U_{x_1},\cdots,U_{x_n}\}$이 존재한다. $U=\bigcup_{i=1}^nU_{x_i}\supset p^{-1}(\{y\})$, $V=\bigcap_{i=1}^nV_{x_i}\supset p^{-1}(C)$라 하면 $U$, $V$는 서로소인 열린집합이다. \textcolor{blue}{\textbf{Lemma}}로부터 $p^{-1}(W_1)\subset U$이고 $p^{-1}(W_2)\subset V$인 두 근방 $W_1\ni y$와 $W_2\supset C$가 존재한다. $W_1\cap W_2=\varnothing$이므로 $Y$는 정칙공간이다.
+        \item[(c)] $y\in Y$라 하자. $p^{-1}(\{y\})$가 공집합이 아닌 콤팩트 집합이고 $X$가 국소콤팩트이므로 각 점 $x\in p^{-1}(\{y\})$에 대하여 $x\in U_x\subset C_x$인 열린집합 $U_x$와 콤팩트 집합 $C_x$가 존재한다. $\{U_x\}$는 $p^{-1}(\{y\})$의 열린 덮개이므로 유한 부분덮개 $\{U_{x_1},\cdots,U_{x_n}\}$이 존재한다. 이때 $p^{-1}(\{y\})\subset U:=\bigcup_{i=1}^nU_{x_i}\subset C:=\bigcup_{i=1}^nC_{x_i}$이고 $U$는 열린집합이므로 \textcolor{blue}{\textbf{Lemma}}에 의해 $p^{-1}(W)\subset U\subset C$인 근방 $W\ni y$가 존재한다. $C$가 콤팩트 집합이므로 $p(C)$도 콤팩트이고, $y\in W\subset p(C)$이므로 $Y$는 국소콤팩트이다.
+        \item[(d)] $\mathcal{B}=\{B_n\}_{n\in\Z_+}$를 $X$의 가산 기저라 하자. $J$를 $\Z_+$의 임의의 유한 부분집합이라 할 때,  $p^{-1}(W)\subset\bigcup_{j\in J}B_j$을 만족하는 $Y$의 열린집합 $W$에 대하여 $p^{-1}(W)$의 합집합을 $U_J$라 하자. 이러한 $U_J$의 모임은 가산이다. $p(U_J)$는 $Y$의 열린집합의 합집합이므로 열린집합이다. $V$를 $Y$의 열린집합이라 하자. $p$가 연속 완전사상이므로 각 점 $y\in V$에 대하여 유한 부분집합 $J_y\subset\Z_+$가 존재하여 $p^{-1}(\{y\})\subset U_{J_y}\subset\bigcup_{j\in J_y}B_j\subset p^{-1}(V)$이다. 이때 \textcolor{blue}{\textbf{Lemma}}로부터 $p^{-1}(W_y)\subset\bigcup_{j\in J_y}B_j$인 근방 $W_y\ni y$가 존재한다. 그러므로 $U_{J_y}\ne\varnothing$이고, $p^{-1}(\{y\})\subset U_{J_y}\subset\bigcup_{j\in J_y}B_j\subset p^{-1}(V)$이다. $p^{-1}(V)=\bigcup_{y\in V}p^{-1}(\{y\})=\bigcup_{y\in V}U_{J_y}$에서 $V=p(p^{-1}(V))=p(\bigcup_{y\in V}U_{J_y})$이므로 $V$는 가산 모임 $\{p(U_J)\}$의 원소의 합집합으로 표현된다. 따라서 $Y$는 제2가산이다.
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    \textcolor{red}{To be updated.}
+\end{exercise}
+
+\begin{exercise}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] $x\in[0,1]\setminus\Q$이면 $x\times(-x)\in B$이므로 $\epsilon>0$이 존재하여 $[x,x+\epsilon)\times[-x,-x+\epsilon)\subset V$이다. 따라서 $\bigcup_{n\in\Z_+}K_n=[0,1]\setminus\Q$이다.
+        \item[(b)] $\R$에서 $[0,1]$은 콤팩트 하우스도르프 부분공간이다. $\{\overline{K_n}\mid n\in\Z_+\}\cup\{\{q\}\mid q\in[0,1]\cap\Q\}$은 합집합이 $[0,1]$인 닫힌집합의 가산 모임이므로 어떤 $\overline{K_n}$은 적당한 열린구간 $(a,b)$를 포함해야 한다. \textcolor{blue}{\textbf{(Exercise \ref{exc:27.5})}}
+        \item[(c)] $n$, $a$, $b$가 (b)를 만족한다고 하자. $x\in(a,b)$이고 $\epsilon\in(0,1/n)$라 하자. $x\in\overline{K_n}$이므로 만약 $\epsilon<x-a$이면 $(x-\epsilon,x)\cap K_n\ne\varnothing$이다. 이 집합의 한 원소를 $y$라 하면 $x-\epsilon<y<x$이고 $[y,y+1/n)\times[-y,-y+1/n)\subset V$이므로 $x-y<\epsilon<1/n$에서 $x\in[y,y+1/n)$이고 $(x-\epsilon)-(y-1/n)=(x-y)+(1/n-\epsilon)>0$에서 $-x+\epsilon\in[-y,-y+1/n)$이다. 따라서 $x\times(-x+\epsilon)\in V$이다.
+        \begin{note}
+            (b)를 만족하는 $n$을 충분히 크게 잡을 수 있음을 이용한다.
+        \end{note}
+        \item[(d)] $\R_l$의 기저 원소 $[q,q+\epsilon_1)\times[-q,-q+\epsilon_2)$에 대하여 양수 $\epsilon$을 $\epsilon<\min\{\epsilon_1,\epsilon_2,1/n,q-a\}$가 되도록 택하면 $q\times(-q+\epsilon)\in V$이다.
+    \end{itemize}
+\end{exercise}
+
+\section{Normal Spaces}
+
+\begin{exercise}
+    $A$를 $X$의 닫힌집합아라 하고 $B$와 $C$를 $A$의 서로소인 두 닫힌집합이라 하자. $B$와 $C$는 $X$에서도 닫힌집합이다. 따라서 $X$에서 두 서로소 근방 $U\supset B$와 $V\supset C$가 존재한다. 이때 $U\cap A\supset B$와 $V\cap A\supset C$는 $A$에서 서로소인 두 근방이다.
+\end{exercise}
+
+\begin{exercise}
+    $A$와 $B$를 $X_\alpha$에서 서로소인 두 닫힌집합이라 하자. 그러면 곱 공간 $\prod X_\alpha$에서 두 서로소 근방 $U\supset\prod_\beta A_\beta$와 $V\supset\prod_\beta A_\beta$가 존재한다. 여기서 $\beta\ne\alpha$이면 $A_\beta=B_\beta=X_\beta$,이고, $A_\alpha=A$, $B_\beta=B$이다. 그러면 $\pi_\alpha(U)\supset A$와 $\pi_\alpha(V)\supset B$는 서로소인 두 근방이다. 이제 $X_\alpha$가 $T_0$--공간이 아니라고 가정하자. 그러면 서로 다른 두 점 $a$와 $b$가 존재하여 $a$의 임의의 근방은 $b$를 포함해야 한다.
+    \[
+        y_\beta=\begin{cases}
+            a & (\beta=\alpha)\\
+            x_\beta & (\beta\ne\alpha)
+        \end{cases},\quad
+        z_\beta=\begin{cases}
+            b & (\beta=\alpha)\\
+            x_\beta & (\beta\ne\alpha)
+        \end{cases}
+    \]
+    라 하면 곱 공간 $\prod X_\alpha$에서 점 $y:=(y_\beta)_\beta$의 모든 근방은 점 $z:=(z_\beta)_\beta$을 포함해야 하므로 $\prod X_\alpha$는 $T_0$--공간이 아니다.
+\end{exercise}
+\begin{note}
+    세 분리 성질의 증명이 서로 비슷하므로 정규성만 증명하였다. 나머지 두 성질은 직접 해보라. \textcolor{red}{Do it yourself!} Munkres의 정의에서는 정칙성과 정규성에 $T_0$ 성질을 요구하므로 이를 추가로 증명해야 한다.
+\end{note}
+
+\begin{exercise}
+    모든 국소콤팩트 하우스도르프 공간은 그 한점콤팩트화 공간의 부분공간이다. \textcolor{blue}{\textbf{(Theorem 29.1, Theorem 31.2)}}
+\end{exercise}
+\begin{note}
+    \textcolor{blue}{\textbf{Theorem 29.2}}와 \textcolor{blue}{\textbf{Lemma 31.1}}을 통해서도 같은 결과를 얻는다.
+\end{note}
+
+\begin{exercise}
+    $X$가 린델뢰프 정칙공간이라 하고, $A$와 $B$를 서로소인 $X$의 두 닫힌집합이라 하자. 각 점 $x\in A$에 대하여 $U_x\cap B=\varnothing$인 $x$의 근방 $U_x$가 존재하며, $\overline{V_x}\subset U_x$인 $x$의 근방 $V_x$가 존재한다. 따라서 폐포가 $B$와 만나지 않는 열린집합으로 구성된 $A$의 가산 열린 덮개가 존재한다. 이후는 \textcolor{blue}{\textbf{Theorem 32.1}}의 증명과 동일하다.
+\end{exercise}
+
+\begin{exercise}
+    두 공간 모두 거리화가능 공간이므로 정규공간이다. \textcolor{blue}{\textbf{(Theorem 20.5, Theorem 32.2)}}
+\end{exercise}
+
+\begin{exercise}
+    먼저 분리된 집합(separated sets) 조건이 성립한다고 가정하자. $Y$를 $X$의 부분공간이라 하고, $A$와 $B$를 서로소인 $Y$의 두 닫힌집합이라 하자. 그러면 $A=\overline{A}\cap Y$, $B=\overline{B}\cap Y$이다. 여기서 $\overline{A}$와 $\overline{B}$는 각각 $X$에서 $A$와 $B$의 폐포이다. $\overline{A}\cap B=A\cap\overline{B}=\varnothing$이므로 $A$와 $B$는 $X$에서 분리된 집합이다. 그러므로 $A$와 $B$는 $X$의 두 열린집합으로 분리할 수 있으며, $Y$에서도 가능하다. 이제 역으로 $X$가 완전정규공간이라 가정하자. $A$와 $B$를 분리된 집합이라 하자. $Y=X\setminus(\overline{A}\cap\overline{B})$는 $A$와 $B$를 모두 포함하는 열린 부분공간이다. 이때 $A$와 $B$의 $Y$에서의 폐포의 교집합은 $\overline{A}_Y\cap\overline{B}_Y=(\overline{A}\cap Y)\cap(\overline{B}\cap Y)=Y\cap(\overline{A}\cap\overline{B})=\varnothing$이므로 $Y$에서 두 서로소 근방 $U\supset\overline{A}_Y\supset A$, $V\supset\overline{B}_Y\supset B$가 존재한다. $Y$가 열린집합이므로 $U$와 $V$는 $X$에서도 열린집합이다.
+\end{exercise}
+
+\begin{exercise}
+    \phantom{}
+    \begin{itemize}
+        \item[(a)] Yes. 부분공간의 부분공간은 부분공간이다.
+        \item[(b)] No. (g)에서 $\R_l$은 완전정규공간이지만 $\R_l^2$은 정규공간이 아니다.
+        \item[(c)] Yes. $a_0$를 최소원이라 하고, $A$와 $B$를 각각 $a_0$를 포함하지 않는 분리된 집합이라 하자. 모든 $a\in A$에 대하여 $B$와 만나지 않는 $a$의 기저 근방이 존재하며, 그 기저 근방은 구간 $(x_a,a]$를 포함한다. 같은 방식으로 모든 $b\in B$에 대하여 $A$와 만나지 않는 구간 $(y_b,b]$를 얻는다. 이후는 \textcolor{blue}{\textbf{Theorem 32.4}}의 증명을 참고하라.
+        \begin{note}
+            모든 순서 위상공간은 완전정규공간이다.
+        \end{note}
+        \item[(d)] Yes. 거리공간의 부분공간은 거리화가능 공간이다. (\textcolor{blue}{\textbf{Exercise \ref{exc:21.1}}})
+        \item[(e)] No. \textcolor{blue}{\textbf{Example 32.2}}를 보라.
+        \item[(f)] Yes. 모든 부분공간 역시 제2가산 정칙공간이다.
+        \item[(g)] Yes. $A$와 $B$를 $\R_l$의 분리된 집합이라 하자. 그러면 모든 $a\in A$에 대하여 $[a,x_a)\cap B=\varnothing$인 점 $x_\alpha$가 존재하고, 모든 $b\in B$에 대하여 $[b,y_b)\cap A=\varnothing$인 점 $y_b$가 존재한다. 이후는 \textcolor{blue}{\textbf{Theorem 32.4}}의 증명이나 \textcolor{blue}{\textbf{Example 31.2}}를 참고하라.
+    \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+    \textcolor{red}{To be updated.}
+\end{exercise}
+
+\begin{exercise}
+	\textcolor{red}{To be updated.}
+\end{exercise}
+
+\begin{exercise}
+	\textcolor{red}{To be updated.}
+\end{exercise}
+\end{document}
